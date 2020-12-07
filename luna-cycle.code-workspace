@@ -10,5 +10,7 @@
 			"path": "../slippage"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "luna-cycle"
+	}
 }
