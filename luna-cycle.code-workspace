@@ -11,6 +11,7 @@
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "luna-cycle"
+		"liveServer.settings.multiRootWorkspaceName": "luna-cycle",
+		"liveServer.settings.port": 5501
 	}
 }
