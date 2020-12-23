@@ -1,0 +1,100 @@
+{
+  "name": "name",
+  "bind": true,
+  "groups": [
+    {
+      "note": "Variants of 'brave'",
+      "tags": [
+        ["class", "light"],
+        ["status", "warship"]
+      ],
+      "phrases": [
+        "Brave",
+        "Courageous",
+        "Valiant",
+        "Defiant",
+        "Intrepid",
+        "Fearless",
+        "Audacious",
+        "Mettlesome",
+        "Bold"
+      ]
+    },
+    {
+      "note": "Variants of 'strong'",
+      "tags": [
+        ["class", "heavy"],
+        ["status", "warship"]
+      ],
+      "phrases": [
+        "Robust",
+        "Fortified",
+        "Indefatigable",
+        "Powerful",
+        "Indestructible",
+        "Inescapable",
+        "Invincible",
+        "Unassailable",
+        "Unsinkable"
+      ]
+    },
+    {
+      "note": "Freigher names",
+      "tags": [
+        ["class", "freight"],
+        ["role", "transport"]
+      ],
+      "phrases": [
+        "Hind",
+        "Golden Hind",
+        "Dromedary",
+        "Camel",
+        "Reliable",
+        "Drudge"
+      ]
+    },
+    {
+      "tags": [["class", "submarine"], ["status", "warship"], ["era", "new"]],
+      "phrases": [
+        "Silent",
+        "Assassin",
+        "Nocturnal",
+        "Liquidator",
+        "Slayer",
+        "Dagger",
+        "Knife",
+        "Icepick"
+      ]
+    },
+    {
+      "tags": [
+        ["era", "new"],
+        ["propulsion", "engine", "electric"]
+      ],
+      "phrases": [
+        "Voltaic",
+        "Lightning",
+        "Voulger"
+      ]
+    },
+    {
+      "tags": [
+        ["era", "new"],
+        ["class", "heavy", "battleship"],
+        ["status", "warship"]
+      ],
+      "phrases": [
+        "Empress Gloriana"
+      ]
+    },
+    {
+      "tags": [
+        ["class", "heavy", "battleship"],
+        ["status", "warship"]
+      ],
+      "phrases": [
+        "Emperor Maximus"
+      ]
+    }
+  ]
+}
