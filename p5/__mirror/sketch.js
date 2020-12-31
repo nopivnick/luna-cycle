@@ -6,10 +6,6 @@ function setup() {
   screen = select('body');
 }
 
-function mirrorScreen() {
-  screen.style('transform: rotateY(180deg)');
-}
-
 function draw() {
   textAlign(CENTER);
   text("Mirror", windowWidth / 2, windowHeight / 2)
@@ -17,13 +13,17 @@ function draw() {
 
 function keyPressed() {
   if (keyCode === 77) {
-    if (isMirrored == true) {
-      screen.style('transform: none');
-      isMirrored = !isMirrored;
-    } else {
-      mirrorScreen();
-      isMirrored = !isMirrored;
-    }
-    print("is text mirrored? " + isMirrored);
+    mirrorScreen();
   }
+}
+
+function mirrorScreen() {
+  if (isMirrored == true) {
+    screen.style('transform: none');
+    isMirrored = !isMirrored;
+  } else {
+    screen.style('transform: rotateY(180deg)');
+    isMirrored = !isMirrored;
+  }
+  print("is text mirrored? " + isMirrored);
 }
