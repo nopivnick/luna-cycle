@@ -12,7 +12,7 @@ function draw() {
 }
 
 function keyPressed() {
-  if (keyCode === 77) {
+  if (key === 'm') {
     mirrorScreen();
   }
 }
