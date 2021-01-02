@@ -1,0 +1,12 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.luna-text {
+  color: lime;
+}
+
+canvas {
+  display: block;
+}
