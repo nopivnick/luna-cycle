@@ -7,6 +7,7 @@ let sceneCount = 5;
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
+  canvas.style('z-index', '-1');
   sceneManager = new SceneManager();
   sceneManager.wire();
 
@@ -40,6 +41,7 @@ function playtestKeyPressed() {
 
 function onEnterScene() {
   clear();
+  // background(175);
   paragraph = createP("This is " + sceneManager.scene.fnScene.name + ".");
 }
 
