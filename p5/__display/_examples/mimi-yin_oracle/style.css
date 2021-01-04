@@ -1,0 +1,10 @@
+html, body {
+  margin: 0 auto;
+  padding: 5 vh 0; // Mimi's not sure if it's this ...
+  padding: 5 vh auto; // ... or this
+  width: 0.7 vh;
+}
+
+canvas {
+  display: block;
+}
