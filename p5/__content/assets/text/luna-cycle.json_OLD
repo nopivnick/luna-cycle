@@ -1,0 +1,45 @@
+{
+  "screens": [  {
+      "screen": 0
+      [
+        "users": [
+          "user": "A" [{
+              "base": [{
+                  "p0": "This is paragraph 0 of screen 0 for user A. It's a very %BLISS% state."
+                },
+                {
+                  "p1": "This is paragraph 1 of screen 0 for user A. It's a very %BLISS% state."
+                },
+                "BLISS": "euphoric"
+              }]
+          }
+          "user": B[{
+            "base": {
+              "p1": "This is state 0 for user B. It's a very %BLISS% state."
+            },
+            "BLISS": "euphoric"
+          }]
+        ]
+        "screen": 1,
+        []
+      }]
+  }
+
+  // {
+  //   "screen1": {
+  //     "userA": {
+  //       "base": {
+  //         "p1": "This is state 1 for user A. It's a very %BLISS% state."
+  //       },
+  //       "BLISS": "euphoric"
+  //     },
+  //     "userB": {
+  //       "base": {
+  //         "p1": "This is state 1 for user B. It's a very %BLISS% state."
+  //       },
+  //       "BLISS": "euphoric"
+  //     }
+  //   }
+  // }
+  //   ]
+  // }
