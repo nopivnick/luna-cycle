@@ -29,6 +29,16 @@ function setup() {
   sceneManager.showScene(scene0);
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  print("window size: " + windowWidth + " x " + windowHeight);
+}
+
+function keyPressed() {
+  print("We're in the keyPressed() function!");
+  playtestKeyPressed();
+}
+
 function playtestKeyPressed() {
   print("We're in the playtestKeyPressed() function!");
   if (keyCode === RIGHT_ARROW) {
@@ -87,10 +97,10 @@ function scene0() {
     onExitScene();
   }
 
-  this.keyPressed = function () {
-    // print("A key was pressed in scene" + (sceneManager.findSceneIndex() + 1) + "!");
-    playtestKeyPressed();
-  }
+  // this.keyPressed = function () {
+  //   // print("A key was pressed in scene" + (sceneManager.findSceneIndex() + 1) + "!");
+  //   playtestKeyPressed();
+  // }
 }
 
 function scene1() {
@@ -133,9 +143,9 @@ function scene1() {
     onExitScene();
   }
 
-  this.keyPressed = function () {
-    playtestKeyPressed();
-  }
+  // this.keyPressed = function () {
+  //   playtestKeyPressed();
+  // }
 }
 
 function scene2() {
@@ -175,9 +185,9 @@ function scene2() {
     onExitScene();
   }
 
-  this.keyPressed = function () {
-    playtestKeyPressed();
-  }
+  // this.keyPressed = function () {
+  //   playtestKeyPressed();
+  // }
 }
 
 function scene3() {
@@ -217,9 +227,9 @@ function scene3() {
     onExitScene();
   }
 
-  this.keyPressed = function () {
-    playtestKeyPressed();
-  }
+  // this.keyPressed = function () {
+  //   playtestKeyPressed();
+  // }
 }
 
 function scene4() {
@@ -259,7 +269,7 @@ function scene4() {
     onExitScene();
   }
 
-  this.keyPressed = function () {
-    playtestKeyPressed();
-  }
+  // this.keyPressed = function () {
+  //   playtestKeyPressed();
+  // }
 }
