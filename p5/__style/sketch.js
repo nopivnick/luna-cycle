@@ -1,5 +1,7 @@
 function setup() {
-  createCanvas(400, 400);
+  let canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0, 0);
+  canvas.style('z-index', '-1');
 }
 
 function draw() {

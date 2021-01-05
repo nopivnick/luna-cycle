@@ -2,7 +2,9 @@ let screen;
 let isMirrored = false;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  let canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0, 0);
+  canvas.style('z-index', '-1');
   // Uncomment to test with p5 DOM element
   // let paragraph = createP("Mirror");
   // paragraph.style('text-align: center');
