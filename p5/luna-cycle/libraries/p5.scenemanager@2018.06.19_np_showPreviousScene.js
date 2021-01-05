@@ -161,7 +161,7 @@ function SceneManager(p)
             // search current scene... 
             // can be optimized to avoid searching current scene...
             var i = this.findSceneIndex( this.scene.fnScene );
-            previousSceneIndex = i = 0 ? i - 1 : this.scenes.length;
+            previousSceneIndex = i == 0 ? this.scenes.length - 1 : i - 1;
         }
 
         var previousScene = this.scenes[previousSceneIndex];
