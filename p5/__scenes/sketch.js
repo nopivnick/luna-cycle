@@ -1,8 +1,8 @@
 let canvas;
 
 let sceneManager;
-let sceneNumber = null;
-let sceneCount = 5;
+let sceneIndex = null;
+let sceneCount = null;
 
 function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
