@@ -16,8 +16,7 @@ function draw() {
 function scaleFontSize() {
   while (poem.size().height > innerHeight)
     fontSize--;
-  poem.style('font-size'
-    optimalFontSize + 'vh')
+  poem.style('font-size', optimalFontSize + 'vh')
 }
 
 
