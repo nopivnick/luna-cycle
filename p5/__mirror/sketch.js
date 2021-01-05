@@ -3,12 +3,16 @@ let isMirrored = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  // Uncomment to test with p5 DOM element
+  // let paragraph = createP("Mirror");
+  // paragraph.style('text-align: center');
   screen = select('body');
 }
 
 function draw() {
-  textAlign(CENTER);
-  text("Mirror", windowWidth / 2, windowHeight / 2)
+  // Uncomment to test with p5 text() function
+  textAlign(CENTER, CENTER);
+  text("Mirror", windowWidth / 2, windowHeight / 2);
 }
 
 function keyPressed() {
