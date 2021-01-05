@@ -4,6 +4,11 @@ function setup() {
   canvas.style('z-index', '-1');
 }
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  print("window size: " + windowWidth + " x " + windowHeight);
+}
+
 function draw() {
 
 }
