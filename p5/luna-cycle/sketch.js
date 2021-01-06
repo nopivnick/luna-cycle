@@ -31,6 +31,12 @@ function draw() {
 
 }
 
+function drawScene() {
+  // Draw something in the canvas of every scene
+  textAlign(CENTER);
+  text("-> Every scene will get this block of code. <-", windowWidth / 2, windowHeight / 2);
+}
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   print("window size: " + windowWidth + " x " + windowHeight);
