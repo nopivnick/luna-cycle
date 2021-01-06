@@ -1,14 +1,17 @@
+let screen;
 let sceneManager;
 let sceneIndex;
 let sceneCount;
+
+let isMirrored = false;
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
+  screen = select('body');
   sceneManager = new SceneManager();
   sceneManager.wire();
-
   // Preload scenes. Preloading is normally optional
   // ... but needed if showNextScene() is used.
   // The order in which scenes are added (preloaded) 
@@ -23,7 +26,6 @@ function setup() {
   //   sceneManager.addScene("scene" + i);
   //   print("scene" + i + " preloaded!");
   // }
-
   sceneManager.showScene(scene0);
 }
 
@@ -42,9 +44,22 @@ function windowResized() {
   print("window size: " + windowWidth + " x " + windowHeight);
 }
 
+function mirrorScreen() {
+  if (isMirrored == true) {
+    screen.style('transform: none');
+    isMirrored = !isMirrored;
+  } else {
+    screen.style('transform: rotateY(180deg)');
+    isMirrored = !isMirrored;
+  }
+  print("is text mirrored? " + isMirrored);
+}
+
 function playtestKeyPressed() {
   print("We're in the playtestKeyPressed() function!");
-  if (keyCode === RIGHT_ARROW) {
+  if (key === 'm') {
+    mirrorScreen();
+  } else if (keyCode === RIGHT_ARROW) {
     sceneManager.showNextScene();
   } else if (keyCode === LEFT_ARROW) {
     sceneManager.showPreviousScene();
