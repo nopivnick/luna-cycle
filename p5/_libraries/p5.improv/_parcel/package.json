@@ -1,0 +1,14 @@
+{
+  "name": "test_improve-parcel",
+  "version": "0.1.0",
+  "description": "Testing Improv.js text generator in a Parcel package.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Noah Pivnick",
+  "license": "ISC",
+  "dependencies": {
+    "improv": "^1.0.0"
+  }
+}
