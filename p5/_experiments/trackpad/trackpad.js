@@ -66,7 +66,7 @@ function updateSamples() {
 // }
 
 // Uncomment below for vanilla javascript code
-function init() {
+function initTrackpad() {
   document.addEventListener("mousemove", handleMouseEvent);
   setInterval("updateSamples()", 100);
 }
