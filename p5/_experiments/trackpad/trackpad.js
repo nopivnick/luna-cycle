@@ -4,7 +4,9 @@
  * - https://github.com/X123M3-256/X123M3-256.github.io/blob/master/rotationtest.html
  */
 
-// Uncomment below for vanilla javascript code
+console.log("trackpad.js FOUND");
+
+// Uncomment below for vanilla javascript-friendly code
 let mouseX = 0;
 let mouseY = 0;
 
@@ -14,12 +16,14 @@ let trackpadSamples = [
   [0, 0]
 ];
 
-// Uncomment below for p5 code
+let counter = 0;
+
+// Uncomment below for p5-friendly code
 // function setup() {
 //   setInterval("updateSamples()", 100);
 // }
 
-// Uncomment below for vanilla javascript code
+// Uncomment below for vanilla javascript-friendly code
 function handleMouseEvent(event) {
   mouseX = event.clientX;
   mouseY = event.clientY;
@@ -39,34 +43,36 @@ function updateSamples() {
   if (cross > 0) {
     isSpinningFwd = true;
     document.body.innerHTML = "Forward";
-    // Uncomment below for vanilla javascript code
+    // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinningFwd is " + isSpinningFwd);
-    // Uncomment below for p5 code
+    // Uncomment below for p5-friendly code
     // print("isSpinningFwd is " + isSpinningFwd);
   } else if (cross < 0) {
     isSpinningBkwd = true;
     document.body.innerHTML = "Backward";
-    // Uncomment below for vanilla javascript code
+    // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinningBkwd is " + isSpinningBkwd);
-    // Uncomment below for p5 code
+    // Uncomment below for p5-friendly code
     // print("isSpinningBkwd is " + isSpinningBkwd);
   } else {
     isSpinning = false;
     document.body.innerHTML = "Stopped";
-    // Uncomment below for vanilla javascript code
+    // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinning is " + isSpinning);
-    // Uncomment below for p5 code
+    // Uncomment below for p5-friendly code
     // print("isSpinning is " + isSpinning);
   }
 }
 
-// Uncomment below for p5 code
+// Uncomment below for p5-friendly code
 // function mouseMoved() {
 //   updateSamples();
 // }
 
-// Uncomment below for vanilla javascript code
+// Uncomment below for vanilla javascript-friendly code
 function initTrackpad() {
   document.addEventListener("mousemove", handleMouseEvent);
   setInterval("updateSamples()", 100);
 }
+
+console.log("trackpad.js LOADED.");
