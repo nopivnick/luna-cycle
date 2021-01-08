@@ -66,7 +66,10 @@ function updateSamples() {
 
 // Uncomment below for p5-friendly code
 // function mouseMoved() {
-//   updateSamples();
+//   print("Mouse is moving!");
+//   setInterval("updateSamples()", 100);
+//   // prevent default
+//   return false;
 // }
 
 // Uncomment below for vanilla javascript-friendly code
