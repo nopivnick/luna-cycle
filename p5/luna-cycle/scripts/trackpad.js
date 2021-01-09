@@ -46,10 +46,10 @@ function calculateCrossProduct() {
   let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
   // Calculate the cross product of the two vectors (B-A) x (C-B)
   cross = (x1 * y2) - (y1 * x2);
-  displayPlateRotation();
+  displaySpinState();
 }
 
-function displayPlateRotation() {
+function displaySpinState() {
   if (cross > 0) {
     isSpinningFwd = true;
     document.body.innerHTML = "Forward";
