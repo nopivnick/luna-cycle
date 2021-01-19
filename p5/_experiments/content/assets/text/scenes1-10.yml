@@ -1,0 +1,51 @@
+luna-text:
+  - scene: 1
+    screen:
+      - string: I've just closed the laptop lid when the screen on my phone grows
+          bright.
+      - string: It 's thrilling how you always seem to know.
+  - scene: 2
+    screen:
+      - string: We speak in text.
+      - string: "And yet, you can't help but feel these words seem somehow scripted as
+          you type them on the screen:"
+      - string: Are you awake?
+      - string: Yes.
+  - scene: 3
+    screen:
+      - string: I confess I've been writing you.
+      - string: What have you written?
+      - string: I don't yet know.
+  - scene: 4
+    screen:
+      - string: Though I'm fairly certain you meant specifically what about you.
+      - string: Will I get to see it?
+      - string: Yes, of course.
+  - scene: 5
+    screen:
+      - string: You are so very far away.
+      - string: I ask if you will come.
+  - scene: 6
+    screen:
+      - string: Are you close ?
+      - string: Not yet.
+      - string: And so I wait and ask again.
+  - scene: 7
+    screen:
+      - string: Are you close?
+      - string: Still not yet.
+      - string: So I wait longer still. Again I ask.
+  - scene: 8
+    screen:
+      - string: Are you close now?
+      - string: Yes, I'm close.
+      - string: I hold my breath and listen for the sound of your arrival.
+  - scene: 9
+    screen:
+      - string: Miraculous, daylight shows itself just beyond the horizon.
+      - string: The garble of birdsong.Auspicious.Emergent.
+      - string: The space between us grows smaller.
+      - string: Warmer.
+  - scene: 10
+    screen:
+      - string: And you wonder whether it's possible to go on like this forever.
