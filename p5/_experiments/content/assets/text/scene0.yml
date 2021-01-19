@@ -17,7 +17,7 @@ screen:
     content:
       - fragment: 0
         base: false
-        variations:
+        variants:
           - tone: bliss
             string: Delicate and uncanny
           - tone: blah
@@ -29,7 +29,7 @@ screen:
         string: ", big as your "
       - fragment: 2
         base: false
-        variations:
+        variants:
           - tone: bliss
             string: palm
           - tone: blah
@@ -41,7 +41,7 @@ screen:
         string: they
       - fragment: 4
         base: false
-        variations:
+        variants:
           - tone: bliss
             string: flaunt
           - tone: blah
@@ -66,7 +66,7 @@ screen:
         string: "That night we "
       - fragment: 1
         base: false
-        variations:
+        variants:
           - tone: bliss
             string: marveled at
           - tone: blah
@@ -78,7 +78,7 @@ screen:
         string: them,
       - fragment: 3
         base: false
-        variations:
+        variants:
           - tone: bliss
             string: pristine and demure
           - tone: blah
@@ -90,7 +90,7 @@ screen:
         string: ", facing opposite directions with the "
       - fragment: 5
         base: false
-        variations:
+        variants:
           - tone: bliss
             string: awkward reticence of new found lovers?
           - tone: blah
