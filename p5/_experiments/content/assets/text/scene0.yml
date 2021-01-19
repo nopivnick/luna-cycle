@@ -1,0 +1,99 @@
+scene: 0
+screen:
+  - p: 0
+    style: .default
+    content:
+      - fragment: 0
+        base: true
+        string: They come while I write.
+  - p: 1
+    style: .default
+    content:
+      - fragment: 0
+        base: true
+        string: Actias luna.
+  - p: 2
+    style: .default
+    content:
+      - fragment: 0
+        base: false
+        variations:
+          - tone: bliss
+            string: Delicate and uncanny
+          - tone: blah
+            string: Large and unearthly
+          - tone: bad
+            string: Dumb and clumsy
+      - fragment: 1
+        base: true
+        string: ", big as your "
+      - fragment: 2
+        base: false
+        variations:
+          - tone: bliss
+            string: palm
+          - tone: blah
+            string: hand
+          - tone: bad
+            string: fist
+      - fragment: 3
+        base: true
+        string: they
+      - fragment: 4
+        base: false
+        variations:
+          - tone: bliss
+            string: flaunt
+          - tone: blah
+            string: park
+          - tone: bad
+            string: foist
+      - fragment: 5
+        base: true
+        string: themselves on the window closest to the light and pitter-patter against
+          the glass with lime-green wings of paper and dust.
+  - p: 3
+    style: .text-sent
+    content:
+      - fragment: 0
+        base: true
+        string: Do you remember?
+  - p: 4
+    style: .default
+    content:
+      - fragment: 0
+        base: true
+        string: "That night we "
+      - fragment: 1
+        base: false
+        variations:
+          - tone: bliss
+            string: marveled at
+          - tone: blah
+            string: watched
+          - tone: bad
+            string: pitied
+      - fragment: 2
+        base: true
+        string: them,
+      - fragment: 3
+        base: false
+        variations:
+          - tone: bliss
+            string: pristine and demure
+          - tone: blah
+            string: frayed and shabby
+          - tone: bad
+            string: torn and battered
+      - fragment: 4
+        base: true
+        string: ", facing opposite directions with the "
+      - fragment: 5
+        base: false
+        variations:
+          - tone: bliss
+            string: awkward reticence of new found lovers?
+          - tone: blah
+            string: familiar disinterest of steadfast partners?
+          - tone: bad
+            string: forlorn resentment of lifelong counterparts?
