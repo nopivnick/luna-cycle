@@ -12,6 +12,7 @@
 	],
 	"settings": {
 		"liveServer.settings.multiRootWorkspaceName": "luna-cycle",
-		"liveServer.settings.port": 5501
+		"liveServer.settings.port": 5501,
+		"twee3LanguageTools.storyformat.current": ""
 	}
 }
