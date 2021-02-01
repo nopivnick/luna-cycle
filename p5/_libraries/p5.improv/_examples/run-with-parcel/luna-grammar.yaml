@@ -1,0 +1,802 @@
+# Scene 0
+scene0p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "They come while I write."
+scene0p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "Actias luna."
+scene0p2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+      phrases:
+        - "[:0], big as your [:1], they [:2] themselves on the window closest to the light and pitter-patter against the glass with lime-green wings of paper and dust."
+0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+      phrases:
+        - "Delicate and otherworldly"
+    - tags:
+        -
+          - tone
+          - blah
+      phrases:
+        - "Large and clumsy"
+    -
+      tags:
+        -
+          - tone
+          - bad
+      phrases:
+        - "Grotesque and shabby"
+1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+      phrases:
+        - "palm"
+    -
+      tags:
+        -
+          - tone
+          - blah
+      phrases:
+        - "hand"
+    -
+      tags:
+        -
+          - tone
+          - bad
+      phrases:
+        - "fist"
+2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+      phrases:
+        - "flaunt"
+    -
+      tags:
+        -
+          - tone
+          - blah
+      phrases:
+        - "park"
+    -
+      tags:
+        -
+          - tone
+          - bad
+      phrases:
+        - "foist"
+scene0p3:
+  groups:
+    -
+      tags:
+        - style
+        - text-sent
+      phrases:
+        - "Do you remember?"
+scene0p4:
+  groups:
+    -
+      tags:
+        - style
+        - default
+      phrases:
+        - "That night we [:4] them, [:5], facing opposite directions with the [:6]."
+4:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+      phrases:
+        - "marveled at"
+    -
+      tags:
+        -
+          - tone
+          - blah
+      phrases:
+        - "pondered"
+    -
+      tags:
+        -
+          - tone
+          - bad
+      phrases:
+        - "pitied"
+5:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+      phrases:
+        - "pristine and demure"
+    -
+      tags:
+        -
+          - tone
+          - blah
+      phrases:
+        - "frayed and shabby"
+    -
+      tags:
+        -
+          - tone
+          - bad
+      phrases:
+        - "torn and battered"
+6:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+      phrases:
+        - "awkward reticence of new found lovers"
+    -
+      tags:
+        -
+          - tone
+          - blah
+      phrases:
+        - "familiar disinterest of steadfast partners"
+    - tags:
+        -
+          - tone
+          - bad
+      phrases:
+        - "forlorn resentment of lifelong counterparts"
+# Scene 1
+scene1p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+      phrases:
+        - "I've just closed the laptop lid when the screen on my phone grows bright."
+scene1p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+      phrases:
+        - "It's [:7] how you always seem to know."
+7:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - sentiment
+      phrases:
+        - "thrilling"
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - sentiment
+      phrases:
+        - "eerie"
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - sentiment
+      phrases:
+        - "irksome"
+# Scene 2
+scene2p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "We speak in text."
+scene2p1:
+  groups:
+    -
+      tags:
+        -
+          - 
+          -
+      phrases:
+        - "And yet, you can't help but feel these words [:8] as you type them on the screen:"
+8:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - 
+      phrases:
+        - "come effortlessly"
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - 
+      phrases:
+        - "seem scripted"
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - 
+      phrases:
+        - "sound hollow"
+scene2p2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-recd
+      phrases:
+        - "Are you awake?"
+scene2p3:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-sent
+      phrases:
+        - "Yes."
+# Scene 3
+scene3p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+      phrases:
+        - "I confess I've been writing you."
+scene3p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-recd
+      phrases:
+        - "What have you written?"
+scene3p2:
+  groups:
+    -
+      tags:
+        -
+          -
+          -
+      phrases:
+        - "[:9]"
+9:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - text-sent
+      phrases:
+        - "I don't yet know."
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - text-sent
+      phrases:
+        - "I'm no longer sure."
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - text-sent
+      phrases:
+        - "I prefer not to say."
+# Scene 4
+scene4p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "Though I'm fairly certain you meant specifically what about you."
+scene4p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-recd
+      phrases:
+        - "Will I get to see it?"
+scene4p2:
+10:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - text-sent
+      phrases:
+        - "Yes, of course."
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - text-sent
+      phrases:
+        - "Perhaps when it's done."
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - text-sent
+      phrases:
+        - "I think it best you don't."
+# Scene 5
+scene5p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "You are so very far away."
+scene5p1:
+  groups:
+    -
+      tags:
+        -
+          -
+          -
+      phrases:
+        - "I ask if you will come."
+# Scene 6
+scene6p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-sent
+      phrases:
+        - "Are you close?"
+scene6p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-recd
+      phrases:
+        - "Not yet."
+scene6p2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+      phrases:
+        - "And so I wait and ask again."
+# Scene 7
+scene7p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-sent
+      phrases:
+        - "Are you close?"
+scene7p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-recd
+      phrases:
+        - "Still not yet."
+scene7p2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "So I wait longer still."
+scene7p3:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - 
+        -
+          - style
+          - 
+      phrases:
+        - "Again I ask."
+# Scene 8
+scene8p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-sent
+      phrases:
+        - "Are you close now?"
+scene8p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - text-recd
+      phrases:
+        - "Yes, I'm close."
+scene8p2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "[:11] and listen for the sound of your arrival."
+11:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - default
+      phrases:
+        - "I hold my breath"
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - default
+      phrases:
+        - "I rouse myself"
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - default
+      phrases:
+        - "I brace myself"
+# Scene 9
+scene9p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "[:12]"
+12:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - default
+      phrases:
+        - "Miraculous, daylight shows itself just beyond the horizon."
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - default
+      phrases:
+        - "Predictably, street light shows itself just beyond the driveway."
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - default
+      phrases:
+        - "Inevitably, lightning shows itself just beyond the horizon."
+scene9p1:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "[:13]"
+13:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - default
+      phrases:
+        - "The garble of birdsong. Auspicious. Emergent."
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - default
+      phrases:
+        - "The call of coydogs. Shrill. Unnerving."
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - default
+      phrases:
+        - "The grumble of thunder. Ominous. Imminent."
+
+scene9p2:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "[:14]"
+14:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - default
+      phrases:
+        - "The space between us grows smaller."
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - default
+      phrases:
+        - "The moments between us grow fewer."
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - default
+      phrases:
+        - "The distance between us grows larger."
+scene9p3:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "[:15]"
+15:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - default
+      phrases:
+        - "Warmer."
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - default
+      phrases:
+        - "Shorter."
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - default
+      phrases:
+        - "Colder."
+
+# Scene 10
+scene10p0:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - neutral
+        -
+          - style
+          - default
+      phrases:
+        - "And you wonder whether it's possible to go on like this forever."
