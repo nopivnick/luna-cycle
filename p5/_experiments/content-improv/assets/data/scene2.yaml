@@ -1,0 +1,160 @@
+scene0:
+  groups:
+    -
+      tags: []
+      phrases:
+        - "We speak in text.\n\nAnd yet, you can't help but feel these words seem somehow scripted as you type them on the screen:\n\nAre you awake?\n\n\nYes."
+string0:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string1:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string2:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string3:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string4:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string5:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string6:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string7:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string8:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string9:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string10:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""

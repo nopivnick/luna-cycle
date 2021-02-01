@@ -1,0 +1,160 @@
+scene0:
+  groups:
+    -
+      tags: []
+      phrases:
+        - "Are you close?\n\nStill not yet.\n\n\nSo I wait longer still. Again I ask."
+string0:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string1:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string2:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string3:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string4:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string5:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string6:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string7:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string8:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string9:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""
+string10:
+  groups:
+    -
+      tags: ['tone', 'bliss']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'blah']
+      phrases:
+        - ""
+    -
+      tags: ['tone', 'bad']
+      phrases:
+        - ""

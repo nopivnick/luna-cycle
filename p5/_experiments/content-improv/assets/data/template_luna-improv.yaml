@@ -1,0 +1,41 @@
+scene:
+  groups:
+    -
+      tags:
+        -
+          -
+          -
+      phrases:
+        - ""
+num:
+  groups:
+    -
+      tags:
+        -
+          - tone
+          - bliss
+        -
+          - style
+          - 
+      phrases:
+        - ""
+    -
+      tags:
+        -
+          - tone
+          - blah
+        -
+          - style
+          - 
+      phrases:
+        - ""
+    -
+      tags:
+        -
+          - tone
+          - bad
+        -
+          - style
+          - 
+      phrases:
+        - ""
