@@ -191,10 +191,14 @@ function setupScreen3HTML(tone) {
   return [
     `<p>
     I confess I've been writing you.
-    </p>`
+    </p>`,
 
     `<p class="messages message message-recd">
     "What have you written?
+    </p>`,
+
+    `<p>
+    ${snips.s0[tone]}
     </p>`
   ].join('')
 }
@@ -250,7 +254,7 @@ function setupScreen6HTML(tone) {
     Are you close?
     </p>`,
 
-    `<p class="messages message message-recd"
+    `<p class="messages message message-recd">
     Not yet.
     </p>`,
 
@@ -341,9 +345,9 @@ function setupScreen9HTML(tone) {
       bad: "grows larger"
     },
     s5: {
-      bliss: "Warmer",
-      blah: "Shorter",
-      bad: "Colder"
+      bliss: "Warmer.",
+      blah: "Shorter.",
+      bad: "Colder."
     }
   }
 

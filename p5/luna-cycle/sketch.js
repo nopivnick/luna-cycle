@@ -3,6 +3,14 @@ let sceneManager;
 let sceneIndex;
 let sceneCount;
 
+let loop = 0;
+
+// const bliss = 'bliss';
+// const blah = 'blah';
+// const bad = 'bad';
+
+let tone = 'bliss';
+
 let isMirrored = false;
 
 function setup() {
@@ -19,6 +27,12 @@ function setup() {
   sceneManager.addScene(scene2);
   sceneManager.addScene(scene3);
   sceneManager.addScene(scene4);
+  sceneManager.addScene(scene5);
+  sceneManager.addScene(scene6);
+  sceneManager.addScene(scene7);
+  sceneManager.addScene(scene8);
+  sceneManager.addScene(scene9);
+  sceneManager.addScene(scene10);
   // TODO: preload scenes with a for loop
   // for (let i = 0; i < sceneCount; i++) {
   //   sceneManager.addScene("scene" + i);
@@ -42,7 +56,10 @@ function setupCanvas() {
 function drawScene() {
   // Draw something in the canvas of *every* scene
   textAlign(CENTER);
+  fill(255, 0, 0);
   text("-> Every scene will get this block of code. <-", windowWidth / 2, windowHeight / 2);
+  updateSpinState();
+  // displaySpinState();
 }
 
 function windowResized() {
@@ -51,7 +68,7 @@ function windowResized() {
 }
 
 function mirrorScreen() {
-  if (isMirrored == true) {
+  if (isMirrored === true) {
     screen.style('transform: none');
     isMirrored = !isMirrored;
   } else {
@@ -62,11 +79,24 @@ function mirrorScreen() {
 }
 
 function onEnterScene() {
-  clear();
+  // clear();
   // background(175);
-  paragraph = createP("This is " + sceneManager.scene.fnScene.name + ".");
+  // paragraph = createP("This is " + sceneManager.scene.fnScene.name + ".");
 }
 
 function onExitScene() {
   removeElements();
+}
+
+function updateTone() {
+  if (loop % 4 === 3) {
+    /* Bad */
+    tone = 'bad';
+  } else if (loop % 2 === 0) {
+    /* Blah */
+    tone = 'blah';
+  } else if (loop % 4 === 1) {
+    /* Bliss */
+    tone = 'bliss';
+  }
 }

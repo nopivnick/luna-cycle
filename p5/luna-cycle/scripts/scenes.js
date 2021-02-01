@@ -16,6 +16,7 @@ function scene0() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen0HTML(tone));
   }
 
   /**
@@ -62,6 +63,7 @@ function scene1() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen1HTML(tone));
   }
 
   /**
@@ -104,6 +106,7 @@ function scene2() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen2HTML(tone));
   }
 
   /**
@@ -146,6 +149,7 @@ function scene3() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen3HTML(tone));
   }
 
   /**
@@ -188,6 +192,7 @@ function scene4() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen4HTML(tone));
   }
 
   /**
@@ -230,6 +235,7 @@ function scene5() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen5HTML(tone));
   }
 
   /**
@@ -272,6 +278,7 @@ function scene6() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen6HTML(tone));
   }
 
   /**
@@ -314,6 +321,7 @@ function scene7() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen7HTML(tone));
   }
 
   /**
@@ -356,6 +364,7 @@ function scene8() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen8HTML(tone));
   }
 
   /**
@@ -398,6 +407,7 @@ function scene9() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen9HTML(tone));
   }
 
   /**
@@ -416,6 +426,8 @@ function scene9() {
    */
   this.exit = function () {
     onExitScene();
+    loop++;
+    updateTone();
   }
 
   this.keyPressed = function () {
@@ -440,6 +452,7 @@ function scene10() {
    */
   this.enter = function () {
     onEnterScene();
+    createDiv(setupScreen10HTML(tone));
   }
 
   /**

@@ -18,6 +18,10 @@ let trackpadSamples = [
 
 let cross = 0;
 
+let isSpinning = false;
+let isSpinningFwd = false;
+let isSpinningBkwd = false;
+
 let counter = 0;
 
 // Uncomment below for p5-friendly code
@@ -46,32 +50,51 @@ function calculateCrossProduct() {
   let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
   // Calculate the cross product of the two vectors (B-A) x (C-B)
   cross = (x1 * y2) - (y1 * x2);
-  displaySpinState();
+}
+
+function updateSpinState() {
+  if (cross > 0) {
+    isSpinning = true;
+    isSpinningFwd = true;
+    isSpinningBkwd = false;
+  } else if (cross < 0) {
+    isSpinning = true;
+    isSpinningFwd = false;
+    isSpinningBkwd = true;
+  } else {
+    isSpinning = false;
+    isSpinningFwd = false;
+    isSpinningBkwd = false;
+  }
 }
 
 function displaySpinState() {
-  if (cross > 0) {
-    isSpinningFwd = true;
-    document.body.innerHTML = "Forward";
+  if (isSpinningFwd === true) {
+    // textAlign(CENTER);
+    // fill(255, 0, 0);
+    // text("Forward", windowWidth / 2, 10);
+    // document.body.innerHTML = "Forward";
     // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinningFwd is " + isSpinningFwd);
     // Uncomment below for p5-friendly code
     // print("isSpinningFwd is " + isSpinningFwd);
-  } else if (cross < 0) {
-    isSpinningBkwd = true;
-    document.body.innerHTML = "Backward";
-    // Uncomment below for vanilla javascript-friendly code
-    console.log("isSpinningBkwd is " + isSpinningBkwd);
-    // Uncomment below for p5-friendly code
-    // print("isSpinningBkwd is " + isSpinningBkwd);
+    // } else if (isSpinningBkwd === true) {
+    //   // textAlign(CENTER);
+    //   // fill(255, 0, 0);
+    //   // text("Backward", windowWidth / 2, 10);
+    //   // document.body.innerHTML = "Backward";
+    //   // Uncomment below for vanilla javascript-friendly code
+    // console.log("isSpinningBkwd is " + isSpinningBkwd);
+    //   // Uncomment below for p5-friendly code
+    //   // print("isSpinningBkwd is " + isSpinningBkwd);
   } else {
-    isSpinning = false;
-    document.body.innerHTML = "Stopped";
-    // Uncomment below for vanilla javascript-friendly code
+    //   // document.body.innerHTML = "Stopped";
+    //   // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinning is " + isSpinning);
     // Uncomment below for p5-friendly code
     // print("isSpinning is " + isSpinning);
   }
+  // console.log("Hello?");
 }
 
 // Uncomment below for p5-friendly code
@@ -84,8 +107,8 @@ function displaySpinState() {
 
 // Uncomment below for vanilla javascript-friendly code
 // function initTrackpad() {
-  // document.addEventListener("mousemove", handleMouseEvent);
-  // setInterval("updateSamples()", 100);
+// document.addEventListener("mousemove", handleMouseEvent);
+// setInterval("updateSamples()", 100);
 // }
 
 console.log("trackpad.js LOADED.");
