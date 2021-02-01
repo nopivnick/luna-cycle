@@ -6,9 +6,7 @@ let sceneCount;
 let isMirrored = false;
 
 function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight);
-  canvas.position(0, 0);
-  canvas.style('z-index', '-1');
+  setupCanvas();
   screen = select('body');
   sceneManager = new SceneManager();
   sceneManager.wire();
@@ -27,14 +25,22 @@ function setup() {
   //   print("scene" + i + " preloaded!");
   // }
   sceneManager.showScene(scene0);
+
+  setInterval("updateSamples()", 100);
 }
 
 function draw() {
 
 }
 
+function setupCanvas() {
+  let canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0, 0);
+  canvas.style('z-index', '-1');
+}
+
 function drawScene() {
-  // Draw something in the canvas of every scene
+  // Draw something in the canvas of *every* scene
   textAlign(CENTER);
   text("-> Every scene will get this block of code. <-", windowWidth / 2, windowHeight / 2);
 }
@@ -53,18 +59,6 @@ function mirrorScreen() {
     isMirrored = !isMirrored;
   }
   print("is text mirrored? " + isMirrored);
-}
-
-function playtestKeyPressed() {
-  print("We're in the playtestKeyPressed() function!");
-  if (key === 'm') {
-    mirrorScreen();
-  } else if (keyCode === RIGHT_ARROW) {
-    sceneManager.showNextScene();
-  } else if (keyCode === LEFT_ARROW) {
-    sceneManager.showPreviousScene();
-  }
-  print(key + " pressed!");
 }
 
 function onEnterScene() {
