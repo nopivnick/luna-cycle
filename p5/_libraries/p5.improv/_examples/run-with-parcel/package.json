@@ -9,6 +9,8 @@
   "author": "Noah Pivnick",
   "license": "ISC",
   "dependencies": {
-    "improv": "^1.0.0"
+    "fs-jetpack": "^4.1.0",
+    "improv": "^1.0.0",
+    "js-yaml": "^4.0.0"
   }
 }
