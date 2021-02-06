@@ -194,7 +194,7 @@ function setupScreen3HTML(tone) {
     </p>`,
 
     `<p class="messages message message-recd">
-    "What have you written?
+    What have you written?
     </p>`,
 
     `<p>
@@ -220,6 +220,10 @@ function setupScreen4HTML(tone) {
 
     `<p class= "messages message message-sent">
     Will I get to see it?
+    </p>`,
+
+    `<p>
+    ${snips.s0[tone]}
     </p>`
 
   ].join('')
@@ -276,8 +280,8 @@ function setupScreen7HTML(tone) {
     Are you close?
     </p>`,
 
-    `<p class="messages message message-recd>
-    "Still not yet.
+    `<p class="messages message message-recd">
+    Still not yet.
     </p>`,
 
     `<p>
