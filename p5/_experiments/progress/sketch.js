@@ -1,16 +1,13 @@
 let scene;
-let scene0;
 let scenes = [];
 let screens = [];
-
-let span;
 
 let charIndex;
 let previousCharIndex;
 let highestCharIndex;
 
 let encoder;
-let previousEncoder = 0;
+let previousEncoder;
 
 let isSpinning = false;
 let isSpinningFwd = false;
@@ -44,7 +41,7 @@ function setupScenes() {
 function setupScreens() {
   for (i = 0; i < scenes.length; i++) {
     for (j = 0; j < scenes[i].length; j++) {
-      paragraph = createP();
+      let paragraph = createP();
       for (k = 0; k < scenes[i][j].length; k++) {
         let character = scenes[i][j].charAt(k);
         let span = createSpan(character);
@@ -60,12 +57,13 @@ function setupScreens() {
     }
   }
   characterIndex = 0;
-  encoder = -1; // TODO: the first character is not visible on initial display of screen
+  encoder = -1; // TODO: the first character is not visible on initial display of screen if set to 0
+  previousEncoder = 0;
 }
 
 function draw() {
   background(0);
-  updateEncoder();
+  updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
   displayScreen();
   displayEncoder();
 }
