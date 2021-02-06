@@ -3,7 +3,7 @@ let sceneManager;
 let sceneIndex;
 let sceneCount;
 
-let loop = 0;
+let loopCounter = 0;
 
 // const bliss = 'bliss';
 // const blah = 'blah';
@@ -15,7 +15,22 @@ let isMirrored = false;
 
 function setup() {
   setupCanvas();
+  setupSceneManager();
   screen = select('body');
+  setInterval("updateSamples()", 100);
+}
+
+function draw() {
+
+}
+
+function setupCanvas() {
+  let canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0, 0);
+  canvas.style('z-index', '-1');
+}
+
+function setupSceneManager() {
   sceneManager = new SceneManager();
   sceneManager.wire();
   // Preload scenes. Preloading is normally optional
@@ -39,32 +54,22 @@ function setup() {
   //   print("scene" + i + " preloaded!");
   // }
   sceneManager.showScene(scene0);
-
-  setInterval("updateSamples()", 100);
 }
 
-function draw() {
-
-}
-
-function setupCanvas() {
-  let canvas = createCanvas(windowWidth, windowHeight);
-  canvas.position(0, 0);
-  canvas.style('z-index', '-1');
-}
-
+/**
+ * p5.SceneManager draw function
+ * 
+ * Draws something in *all* scenes
+ */
 function drawScene() {
-  // Draw something in the canvas of *every* scene
-  textAlign(CENTER);
-  fill(255, 0, 0);
-  text("-> Every scene will get this block of code. <-", windowWidth / 2, windowHeight / 2);
+  background(0);
   updateSpinState();
   // displaySpinState();
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  print("window size: " + windowWidth + " x " + windowHeight);
+  console.log("window size: " + windowWidth + " x " + windowHeight);
 }
 
 function mirrorScreen() {
@@ -75,13 +80,11 @@ function mirrorScreen() {
     screen.style('transform: rotateY(180deg)');
     isMirrored = !isMirrored;
   }
-  print("is text mirrored? " + isMirrored);
+  console.log("is text mirrored? " + isMirrored);
 }
 
 function onEnterScene() {
-  // clear();
-  // background(175);
-  // paragraph = createP("This is " + sceneManager.scene.fnScene.name + ".");
+  console.log(sceneManager.scene.fnScene.name);
 }
 
 function onExitScene() {
@@ -89,13 +92,13 @@ function onExitScene() {
 }
 
 function updateTone() {
-  if (loop % 4 === 3) {
+  if (loopCounter % 4 === 3) {
     /* Bad */
     tone = 'bad';
-  } else if (loop % 2 === 0) {
+  } else if (loopCounter % 2 === 0) {
     /* Blah */
     tone = 'blah';
-  } else if (loop % 4 === 1) {
+  } else if (loopCounter % 4 === 1) {
     /* Bliss */
     tone = 'bliss';
   }
