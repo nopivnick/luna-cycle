@@ -34,8 +34,8 @@ function setupScreen() { // TODO: add parameters for SCENE and TONE
         }
       } else {
         // console.log("YES Snippets!");
-        console.log(lunaData.scene[i].paragraph[j].base.replaceAll(regex, '{SNIPPET}'));
-        createP(lunaData.scene[i].paragraph[j].base.replaceAll(regex, '{SNIPPET}'));
+        console.log(lunaData.scene[i].paragraph[j].base.replaceAll(regex, '*SNIPPET*'));
+        createP(lunaData.scene[i].paragraph[j].base.replaceAll(regex, '*SNIPPET*'));
         if (lunaData.scene[i].paragraph[j].cssClass) {
           // console.log(lunaData.scene[i].paragraph[j].cssClass);
           paragraph.addClass(lunaData.scene[i].paragraph[j].cssClass);
