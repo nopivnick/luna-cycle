@@ -32,7 +32,7 @@ const lunaData = {
         },
         {
           base: "Do you remember?",
-          cssClass: "messages message text-sent",
+          cssClass: "messages message message-sent",
           snippets: null
         },
         {
@@ -91,15 +91,197 @@ const lunaData = {
           snippets: null
         },
         {
-          base: "And yet, you can't help but feel these words {0} as you type them on the screen:",
+          base: "And the words {0} as you type them on the screen:",
           cssClass: null,
           snippets: [{
             bliss: "come effortlessly",
-            blah: "feel tired",
-            bad: "seem scripted"
+            blah: "seem tired",
+            bad: "feel scripted"
           }]
         }
       ]
+    },
+    {
+      paragraph: [{
+          base: "Are you awake?",
+          cssClass: "messages message message-recd",
+          snippets: null
+        },
+        {
+          base: "Yes.",
+          cssClass: "messages message message-sent",
+          snippets: null
+        },
+        {
+          base: "I've been writing.",
+          cssClass: "messages message message-sent",
+          snippets: null
+        },
+        {
+          base: "What have you written?",
+          cssClass: "messages message message-recd",
+          snippets: null
+        }
+      ]
+    },
+    {
+      paragraph: [{
+        base: "{0}",
+        cssClass: null,
+        snippets: [{
+          bliss: "I don't yet know.",
+          blah: "I'm no longer sure.",
+          bad: "I prefer not to say."
+        }]
+      }]
+    },
+    {
+      paragraph: [{
+        base: "I'm writing you.",
+        cssClass: "messages message message-sent",
+        snippets: null
+      }]
+    },
+    {
+      paragraph: [{
+        base: "Though I'm fairly certain you meant specifically what about you.",
+        cssClass: null,
+        snippets: null
+      }]
+    },
+    {
+      paragraph: [{
+        base: "Will I get to see it?",
+        cssClass: "messages message message-recd",
+        snippets: null
+      }]
+    },
+    {
+      paragraph: [{
+          base: "You are so very far away.",
+          cssClass: null,
+          snippets: null
+        },
+        {
+          base: "I ask if you will come."
+        }
+      ]
+    },
+    {
+      paragraph: [{
+          base: "Are you close?",
+          cssClass: "messages message message-sent",
+          snippets: null
+        },
+        {
+          base: "Not yet.",
+          cssClass: "messages message message-recd",
+          snippets: null
+        }
+      ]
+    },
+    {
+      paragraph: [{
+        base: "And so I wait and ask again.",
+        cssClass: null,
+        snippets: null
+      }]
+    },
+    {
+      paragraph: [{
+          base: "Are you close?",
+          cssClass: "messages message message-sent",
+          snippets: null
+        },
+        {
+          base: "Still not yet.",
+          cssClass: "messages message message-recd",
+          snippets: null
+        }
+      ]
+    },
+    {
+      paragraph: [{
+          base: "So I wait longer still.",
+          cssClass: null,
+          snippets: null
+        },
+        {
+          base: "Again I ask.",
+          cssClass: null,
+          snippets: null
+        }
+      ]
+    },
+    {
+      paragraph: [{
+          base: "Are you close now?",
+          cssClass: "messages message message-sent",
+          snippets: null
+        },
+        {
+          base: "Yes, I'm close.",
+          cssClass: "messages message message-recd",
+          snippets: null
+        }
+      ]
+    },
+    {
+      paragraph: [{
+        base: "I {0} and listen for the sound of your arrival.",
+        cssClass: null,
+        snippets: [{
+          bliss: "hold my breath",
+          blah: "rouse myself",
+          bad: "brace myself"
+        }]
+      }]
+    },
+    {
+      paragraph: [{
+          base: "{0}",
+          cssClass: null,
+          snippets: [{
+            bliss: "Miraculous, daylight shows itself just beyond the horizon.",
+            blah: "Predictably, street light shows itself just beyond the driveway.",
+            bad: "Inevitably, lightning shows itself just beyond the horizon."
+          }]
+        },
+        {
+          base: "{0}",
+          cssClass: null,
+          snippets: [{
+            bliss: "The garble of birdsong. Auspicious. Emergent.",
+            blah: "The call of coydogs. Shrill. Unnerving.",
+            bad: "The grumble of thunder. Ominous. Imminent."
+          }]
+        },
+        {
+          base: "{0}",
+          cssClass: null,
+          snippets: [{
+            bliss: "The space between us grows smaller.",
+            blah: "The moments between us grow fewer.",
+            bad: "The distance between us grows larger."
+          }]
+        },
+        {
+          base: "{0}",
+          cssClass: null,
+          snippets: [{
+            bliss: "Warmer.",
+            blah: "Shorter.",
+            bad: "Colder."
+          }]
+        }
+      ]
+    },
+    {
+      paragraph: [{
+        base: "And you wonder whether it's possible to go on like this forever.",
+        cssClass: null,
+        snippets: null
+      }]
     }
   ]
 }
