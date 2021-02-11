@@ -71,8 +71,8 @@ And yet, you can't help but feel these words ${0} as you type them on the screen
 
 0
 bliss: "come effortlessly"
-blah: "feel tired"
-bad: "seem scripted"
+blah: "seem tired"
+bad: "feel scripted"
 
 "Are you awake?"
 
