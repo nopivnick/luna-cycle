@@ -3,8 +3,8 @@ let scenes = [];
 let screens = [];
 
 let charIndex;
-let previousCharIndex;
-let highestCharIndex;
+// let previousCharIndex;
+// let highestCharIndex;
 
 let encoder;
 let previousEncoder;
@@ -13,7 +13,12 @@ let isSpinning = false;
 let isSpinningFwd = false;
 let isSpinningBkwd = false;
 
-let isAlphaOn = true;
+let isFading = false;
+let isFadingIn = false;
+let isFadingOut = false;
+let isProceeding = false;
+
+let isAlphaDisplayed = true;
 let alphaValue = 1;
 
 let isEncoderDisplayed = true;
@@ -46,8 +51,8 @@ function setupScreens() {
         let character = scenes[i][j].charAt(k);
         let span = createSpan(character);
         span.style('position: relative');
-        if (isAlphaOn === true) {
-          span.style('color: rgba(255, 255, 255, 0)');
+        if (isAlphaDisplayed === true) {
+          span.style('color: rgba(255, 255, 255, 0)'); // MIMI: better to handle alpha in css? 
         } else {
           span.style('color: rgba(255, 255, 255, 1)');
         }
@@ -56,7 +61,7 @@ function setupScreens() {
       }
     }
   }
-  characterIndex = 0;
+  charIndex = -1;
   encoder = -1; // TODO: the first character is not visible on initial display of screen if set to 0
   previousEncoder = 0;
 }
@@ -70,68 +75,64 @@ function draw() {
 
 function displayScreen() {
   characters = selectAll('span');
-  if (encoder > previousEncoder && encoder < characters.length) {
-    previousEncoder = encoder; // TODO: seems like this belongs in updateEncoder()
-    updateCharIndex();
-    updateAlpha();
+  if (isProceeding) {
     characters[charIndex].style('color: rgba(255, 255, 255, ' + alphaValue + ')');
-  } else if (encoder < previousEncoder || encoder > characters.length) {
-    previousEncoder = encoder; // TODO: seems like this belongs in updateEncoder()
-    updateCharIndex();
-    updateAlpha();
-    for (i = 0; i < charIndex; i++) {
+  } else if (isFading) {
+    for (i = 0; i <= charIndex; i++) {
       characters[i].style('color: rgba(255, 255, 255, ' + alphaValue + ')');
     }
   }
 }
 
 function updateEncoder() {
+  previousEncoder = encoder
   if (keyIsDown(RIGHT_ARROW)) {
     isSpinning = true;
     isSpinningFwd = true;
     isSpinningBkwd = false;
     encoder++;
-    print("Encoder: " + encoder);
+    // print("Encoder: " + encoder);
   } else if (keyIsDown(LEFT_ARROW)) {
     isSpinning = true;
     isSpinningFwd = false;
     isSpinningBkwd = true;
     encoder--;
-    print("Encoder: " + encoder);
+    // print("Encoder: " + encoder);
   } else {
     isSpinning = false;
     isSpinningFwd = false;
     isSpinningBkwd = false;
   }
-  // previousEncoder = encoder; // TODO: seems like this belongs here but can't get it to work
+  if (isSpinning) {
+    updateCharIndex();
+  }
+  isFadingOut = (isSpinningBkwd && encoder < charIndex) || (isSpinningFwd && encoder > characters.length);
+  isFadingIn = isSpinningFwd && encoder < charIndex;
+  isFading = isFadingOut || isFadingOut;
+  isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
+  if (isFadingOut) {
+    alphaValue -= 0.005;
+  } else if (isFadingIn) {
+    alphaValue += 0.005; // try higher value or try encoder = charIndex and alphaValue = 1;
+  }
+  if (alphaValue < 0) {
+    // Move to next scene OR move to previous hidden scene
+    // setupScreen();
+  }
 }
 
 function updateCharIndex() {
-  if (encoder >= 0 && encoder <= characters.length) {
+  if (encoder > charIndex) {
     charIndex = encoder;
-    // print("Character Index: " + charIndex);
-  } else if (encoder < 0) {
-    charIndex = 0;
-    // print("Character Index: " + charIndex);
-  } else if (encoder > characters.length) {
-    charIndex = characters.length;
-    // print("Character Index: " + charIndex);
   }
-  // print("Character Index: " + charIndex);
-  updateHighestCharIndex();
-  previousCharIndex = charIndex;
-}
-
-function updateHighestCharIndex() {
-  if (charIndex > previousCharIndex) {
-    highestCharIndex = charIndex;
-  }
+  charIndex = constrain(charIndex, 0, characters.length - 1);
 }
 
 function updateAlpha() {
-  if (isAlphaOn === false) {
-    // TODO: immediately turn alphaValue on entire screen to 1 (text fully make opaque)
-  } else if ((isSpinningBkwd === true) || (charIndex === characters.length && isSpinningFwd === true)) {
+  if (isAlphaDisplayed === false) {
+    // TODO: immediately turn alphaValue on entire screen to 1 (make text opaque)
+  } else if ((isSpinningBkwd === true) || (charIndex === characters.length - 1 && isSpinningFwd === true)) {
+  } else if (encoder > charIndex) {
     alphaValue = alphaValue - 0.005;
   }
 }
