@@ -163,7 +163,9 @@ const lunaData = {
           snippets: null
         },
         {
-          base: "I ask if you will come."
+          base: "I ask if you will come.",
+          cssClass: null,
+          snippets: null
         }
       ]
     },
