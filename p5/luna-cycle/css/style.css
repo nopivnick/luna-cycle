@@ -1,4 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+
 @import url(chat.css);
+
+@font-face {
+  font-family: "Inconsolata", monospace;
+  src: url("assets/font/Inconsolata/Inconsolata-Regular.ttf") format('truetype');
+}
 
 @font-face {
   font-family: "Ubuntu";
@@ -8,7 +15,7 @@
 html {
   color: limegreen;
   box-sizing: border-box;
-  font-family: "Ubuntu";
+  font-family: "Inconsolata";
 }
 
 body {
