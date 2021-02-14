@@ -48,13 +48,12 @@ function setupScenes() {
   scenes.push(scene2);
 }
 
-function setupScreen(i) {
+function setupScreen(scene) {
   removeElements();
-  // for (i = 0; i < scenes.length; i++) {
-  for (j = 0; j < scenes[i].length; j++) {
+  for (i = 0; i < scenes[scene].length; i++) {
     let paragraph = createP();
-    for (k = 0; k < scenes[i][j].length; k++) {
-      let character = scenes[i][j].charAt(k);
+    for (j = 0; j < scenes[scene][i].length; j++) {
+      let character = scenes[scene][i].charAt(j);
       let span = createSpan(character);
       span.style('position: relative');
       if (isAlphaOn === true) {
@@ -66,7 +65,10 @@ function setupScreen(i) {
       paragraph.child(span);
     }
   }
-  // }
+  resetCursor();
+}
+
+function resetCursor() {
   alphaValue = 1; // otherwise characters on a new screen fade in incrementally rather than turn opaque
   charIndex = -1;
   encoder = -1;
