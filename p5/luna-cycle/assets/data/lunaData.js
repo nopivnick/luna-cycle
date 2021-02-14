@@ -1,6 +1,6 @@
 const lunaData = {
-  scene: [{
-      paragraph: [{
+  scenes: [{
+      paragraphs: [{
           base: "They come while I write.",
           cssClass: null,
           snippets: null
@@ -32,7 +32,7 @@ const lunaData = {
         },
         {
           base: "Do you remember?",
-          cssClass: "messages message message-sent",
+          cssClass: null,
           snippets: null
         },
         {
@@ -68,7 +68,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "I've just closed the laptop lid when the screen on my phone grows bright.",
           cssClass: null,
           snippets: null
@@ -85,7 +85,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "We speak in text.",
           cssClass: null,
           snippets: null
@@ -102,7 +102,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "Are you awake?",
           cssClass: "messages message message-recd",
           snippets: null
@@ -125,7 +125,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "{0}",
         cssClass: null,
         snippets: [{
@@ -136,28 +136,28 @@ const lunaData = {
       }]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "I'm writing you.",
         cssClass: "messages message message-sent",
         snippets: null
       }]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "Though I'm fairly certain you meant specifically what about you.",
         cssClass: null,
         snippets: null
       }]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "Will I get to see it?",
         cssClass: "messages message message-recd",
         snippets: null
       }]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "You are so very far away.",
           cssClass: null,
           snippets: null
@@ -170,7 +170,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "Are you close?",
           cssClass: "messages message message-sent",
           snippets: null
@@ -183,14 +183,14 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "And so I wait and ask again.",
         cssClass: null,
         snippets: null
       }]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "Are you close?",
           cssClass: "messages message message-sent",
           snippets: null
@@ -203,7 +203,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "So I wait longer still.",
           cssClass: null,
           snippets: null
@@ -216,7 +216,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "Are you close now?",
           cssClass: "messages message message-sent",
           snippets: null
@@ -229,7 +229,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "I {0} and listen for the sound of your arrival.",
         cssClass: null,
         snippets: [{
@@ -240,7 +240,7 @@ const lunaData = {
       }]
     },
     {
-      paragraph: [{
+      paragraphs: [{
           base: "{0}",
           cssClass: null,
           snippets: [{
@@ -279,7 +279,7 @@ const lunaData = {
       ]
     },
     {
-      paragraph: [{
+      paragraphs: [{
         base: "And you wonder whether it's possible to go on like this forever.",
         cssClass: null,
         snippets: null
