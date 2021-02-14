@@ -1,4 +1,4 @@
-let scene;
+let scene = 0;
 let scenes = [];
 let screens = [];
 
@@ -18,19 +18,22 @@ let isFadingIn = false;
 let isFadingOut = false;
 let isProceeding = false;
 
-let isAlphaDisplayed = true;
+let isAlphaOn = true;
 let alphaValue = 1;
+let alphaFade = 0.005;
 
 let isEncoderDisplayed = true;
 
 function preload() {
-  scene = loadStrings('assets/text/scene0.txt');
+  scene0 = loadStrings('assets/text/scene0.txt');
+  scene1 = loadStrings('assets/text/scene1.txt');
+  scene2 = loadStrings('assets/text/scene2.txt');
 }
 
 function setup() {
   setupCanvas();
   setupScenes();
-  setupScreens();
+  setupScreen(scene);
 }
 
 function setupCanvas() {
@@ -40,29 +43,33 @@ function setupCanvas() {
 }
 
 function setupScenes() {
-  scenes.push(scene);
+  scenes.push(scene0);
+  scenes.push(scene1);
+  scenes.push(scene2);
 }
 
-function setupScreens() {
-  for (i = 0; i < scenes.length; i++) {
-    for (j = 0; j < scenes[i].length; j++) {
-      let paragraph = createP();
-      for (k = 0; k < scenes[i][j].length; k++) {
-        let character = scenes[i][j].charAt(k);
-        let span = createSpan(character);
-        span.style('position: relative');
-        if (isAlphaDisplayed === true) {
-          span.style('color: rgba(255, 255, 255, 0)'); // MIMI: better to handle alpha in css? 
-        } else {
-          span.style('color: rgba(255, 255, 255, 1)');
-        }
-        // make each <span>char</span> a child of it's respective paragraph
-        paragraph.child(span);
+function setupScreen(i) {
+  removeElements();
+  // for (i = 0; i < scenes.length; i++) {
+  for (j = 0; j < scenes[i].length; j++) {
+    let paragraph = createP();
+    for (k = 0; k < scenes[i][j].length; k++) {
+      let character = scenes[i][j].charAt(k);
+      let span = createSpan(character);
+      span.style('position: relative');
+      if (isAlphaOn === true) {
+        span.style('color: rgba(50, 205, 50, 0)'); // TODO: better to handle alpha with a class in css? 
+      } else {
+        span.style('color: rgba(50, 205, 50, 1)');
       }
+      // make each <span>char</span> a child of it's respective paragraph
+      paragraph.child(span);
     }
   }
+  // }
+  alphaValue = 1; // otherwise characters on a new screen fade in incrementally rather than turn opaque
   charIndex = -1;
-  encoder = -1; // TODO: the first character is not visible on initial display of screen if set to 0
+  encoder = -1;
   previousEncoder = 0;
 }
 
@@ -73,17 +80,6 @@ function draw() {
   displayEncoder();
 }
 
-function displayScreen() {
-  characters = selectAll('span');
-  if (isProceeding) {
-    characters[charIndex].style('color: rgba(255, 255, 255, ' + alphaValue + ')');
-  } else if (isFading) {
-    for (i = 0; i <= charIndex; i++) {
-      characters[i].style('color: rgba(255, 255, 255, ' + alphaValue + ')');
-    }
-  }
-}
-
 function updateEncoder() {
   previousEncoder = encoder
   if (keyIsDown(RIGHT_ARROW)) {
@@ -91,13 +87,11 @@ function updateEncoder() {
     isSpinningFwd = true;
     isSpinningBkwd = false;
     encoder++;
-    // print("Encoder: " + encoder);
   } else if (keyIsDown(LEFT_ARROW)) {
     isSpinning = true;
     isSpinningFwd = false;
     isSpinningBkwd = true;
     encoder--;
-    // print("Encoder: " + encoder);
   } else {
     isSpinning = false;
     isSpinningFwd = false;
@@ -110,15 +104,7 @@ function updateEncoder() {
   isFadingIn = isSpinningFwd && encoder < charIndex;
   isFading = isFadingOut || isFadingOut;
   isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
-  if (isFadingOut) {
-    alphaValue -= 0.005;
-  } else if (isFadingIn) {
-    alphaValue += 0.005; // try higher value or try encoder = charIndex and alphaValue = 1;
-  }
-  if (alphaValue < 0) {
-    // Move to next scene OR move to previous hidden scene
-    // setupScreen();
-  }
+  updateAlpha();
 }
 
 function updateCharIndex() {
@@ -129,11 +115,49 @@ function updateCharIndex() {
 }
 
 function updateAlpha() {
-  if (isAlphaDisplayed === false) {
-    // TODO: immediately turn alphaValue on entire screen to 1 (make text opaque)
-  } else if ((isSpinningBkwd === true) || (charIndex === characters.length - 1 && isSpinningFwd === true)) {
-  } else if (encoder > charIndex) {
-    alphaValue = alphaValue - 0.005;
+  if (isAlphaOn === false) {
+    alphaValue = 1;
+  } else if (isFadingOut) {
+    decreaseAlpha();
+  } else if (isFadingIn) {
+    encoder = charIndex;
+    increaseAlpha();
+  }
+}
+
+function decreaseAlpha() {
+  alphaValue -= alphaFade;
+}
+
+function increaseAlpha() {
+  alphaValue += alphaFade;
+}
+
+function updateScene() {
+  if (scene < scenes.length - 1) {
+    scene++;
+  } else {
+    scene = 0;
+  }
+  setupScreen(scene);
+}
+
+function displayScreen() {
+  characters = selectAll('span');
+  if (isProceeding) {
+    if (alphaValue < 1) {
+      increaseAlpha();
+    }
+    for (i = 0; i <= charIndex; i++) {
+      characters[i].style('color: rgba(50, 205, 50, ' + alphaValue + ')');
+    }
+  } else if (isFading) {
+    for (i = 0; i <= charIndex; i++) {
+      characters[i].style('color: rgba(50, 205, 50, ' + alphaValue + ')');
+    }
+  }
+  if (alphaValue < 0 && isSpinningFwd) {
+    updateScene();
   }
 }
 
