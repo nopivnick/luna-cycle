@@ -16,7 +16,6 @@ function scene0() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen0HTML(tone));
   }
 
   /**
@@ -63,7 +62,6 @@ function scene1() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen1HTML(tone));
   }
 
   /**
@@ -106,7 +104,6 @@ function scene2() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen2HTML(tone));
   }
 
   /**
@@ -149,7 +146,6 @@ function scene3() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen3HTML(tone));
   }
 
   /**
@@ -192,7 +188,6 @@ function scene4() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen4HTML(tone));
   }
 
   /**
@@ -235,7 +230,6 @@ function scene5() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen5HTML(tone));
   }
 
   /**
@@ -278,7 +272,6 @@ function scene6() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen6HTML(tone));
   }
 
   /**
@@ -321,7 +314,6 @@ function scene7() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen7HTML(tone));
   }
 
   /**
@@ -364,7 +356,6 @@ function scene8() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen8HTML(tone));
   }
 
   /**
@@ -407,7 +398,6 @@ function scene9() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen9HTML(tone));
   }
 
   /**
@@ -426,8 +416,6 @@ function scene9() {
    */
   this.exit = function () {
     onExitScene();
-    loop++;
-    updateTone();
   }
 
   this.keyPressed = function () {
@@ -452,7 +440,6 @@ function scene10() {
    */
   this.enter = function () {
     onEnterScene();
-    createDiv(setupScreen10HTML(tone));
   }
 
   /**
@@ -477,3 +464,274 @@ function scene10() {
     playtestKeyPressed();
   }
 }
+
+function scene11() {
+
+  let paragraph;
+
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    playtestKeyPressed();
+  }
+}
+
+function scene12() {
+
+  let paragraph;
+
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    playtestKeyPressed();
+  }
+}
+
+function scene13() {
+
+  let paragraph;
+
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    playtestKeyPressed();
+  }
+}
+
+function scene14() {
+
+  let paragraph;
+
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    playtestKeyPressed();
+  }
+}
+
+function scene15() {
+
+  let paragraph;
+
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    playtestKeyPressed();
+  }
+}
+
+function scene16() {
+
+  let paragraph;
+
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    playtestKeyPressed();
+  }
+}
+

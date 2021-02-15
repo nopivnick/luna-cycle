@@ -1,4 +1,6 @@
 let screen;
+
+let scene = 0;
 let sceneManager;
 let sceneIndex;
 let sceneCount;
@@ -48,6 +50,12 @@ function setupSceneManager() {
   sceneManager.addScene(scene8);
   sceneManager.addScene(scene9);
   sceneManager.addScene(scene10);
+  sceneManager.addScene(scene11);
+  sceneManager.addScene(scene12);
+  sceneManager.addScene(scene13);
+  sceneManager.addScene(scene14);
+  sceneManager.addScene(scene15);
+  sceneManager.addScene(scene16);
   // TODO: preload scenes with a for loop
   // for (let i = 0; i < sceneCount; i++) {
   //   sceneManager.addScene("scene" + i);
@@ -83,12 +91,23 @@ function mirrorScreen() {
   console.log("is text mirrored? " + isMirrored);
 }
 
+function getSceneNum() {
+  scene = sceneManager.scene.fnScene.name;
+  scene = scene.slice(5);
+}
+
 function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
+  getSceneNum();
+  setupScreen(scene, tone); // TODO: createDiv(setupScreen(scene, tone)) ?
 }
 
 function onExitScene() {
   removeElements();
+  if (scene == sceneManager.scenes.length - 1) {
+    loopCounter++;
+    updateTone();
+  }
 }
 
 function updateTone() {
