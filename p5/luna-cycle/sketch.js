@@ -18,7 +18,6 @@ let isMirrored = false;
 function setup() {
   setupCanvas();
   setupSceneManager();
-  screen = select('body');
   setInterval("updateSamples()", 100);
 }
 
@@ -81,6 +80,8 @@ function windowResized() {
 }
 
 function mirrorScreen() {
+  screen = select('body'); // TODO: cleaner to mirror a div wrapped around the multiple <p>'s?
+  // screen = select('div');
   if (isMirrored === true) {
     screen.style('transform: none');
     isMirrored = !isMirrored;
@@ -91,7 +92,7 @@ function mirrorScreen() {
   console.log("is text mirrored? " + isMirrored);
 }
 
-function getSceneNum() {
+function getSceneNum() { // TODO: this is a hack, how do I get the scenes[i] from sceneManager?
   scene = sceneManager.scene.fnScene.name;
   scene = scene.slice(5);
 }
@@ -99,7 +100,10 @@ function getSceneNum() {
 function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
-  setupScreen(scene, tone); // TODO: createDiv(setupScreen(scene, tone)) ?
+  setupScreen(scene, tone);
+  // let div = createDiv();
+  // text = setupScreen(scene, tone);
+  // div.child(text);
 }
 
 function onExitScene() {
