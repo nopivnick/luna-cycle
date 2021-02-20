@@ -35,6 +35,7 @@ let isAlphaOn = true;
 let alphaValue = 1;
 let alphaFade = 0.005;
 
+let isCursorDisplayed = false;
 let isEncoderDisplayed = true;
 
 let isMirrored = false;
@@ -94,6 +95,7 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
+  displayCursor()
   updateSpinState();
   // displaySpinState();
   updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
@@ -117,6 +119,18 @@ function mirrorScreen() {
     isMirrored = !isMirrored;
   }
   console.log("is text mirrored? " + isMirrored);
+}
+
+function displayCursor() {
+  if (isCursorDisplayed === false) {
+    // noCursor();
+    screen = select('body');
+    screen.style('cursor: auto')
+  } else {
+    // cursor();
+    screen = select('body');
+    screen.style('cursor: none')
+  }
 }
 
 function getSceneNum() { // TODO: this is a hack, how do I get the scenes[i] from sceneManager?

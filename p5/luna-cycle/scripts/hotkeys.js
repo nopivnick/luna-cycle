@@ -1,6 +1,8 @@
 function playtestKeyPressed() {
   print("We're in the playtestKeyPressed() function!");
-  if (key === 'm') {
+  if (key === 'c') {
+    isCursorDisplayed = !isCursorDisplayed;
+  } else if (key === 'm') {
     mirrorScreen();
   } else if ((keyIsDown(SHIFT)) && ((keyCode === RIGHT_ARROW))) {
     sceneManager.showNextScene();
