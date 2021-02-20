@@ -13,6 +13,30 @@ let loopCounter = 0;
 
 let tone = 'bliss';
 
+// let characters = [];
+let charIndex;
+// let previousCharIndex;
+// let highestCharIndex;
+
+let encoder;
+let previousEncoder;
+
+// TODO: pull variables out of trackpad.js
+// let isSpinning = false;
+// let isSpinningFwd = false;
+// let isSpinningBkwd = false;
+
+let isFading = false;
+let isFadingIn = false;
+let isFadingOut = false;
+let isProceeding = false;
+
+let isAlphaOn = true;
+let alphaValue = 1;
+let alphaFade = 0.005;
+
+let isEncoderDisplayed = true;
+
 let isMirrored = false;
 
 function setup() {
@@ -72,6 +96,9 @@ function drawScene() {
   background(0);
   updateSpinState();
   // displaySpinState();
+  updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
+  displayEncoder();
+  displayScreen();
 }
 
 function windowResized() {
@@ -101,6 +128,7 @@ function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
   setupScreen(scene, tone);
+  // displayScreen()
   // let div = createDiv();
   // text = setupScreen(scene, tone);
   // div.child(text);
