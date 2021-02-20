@@ -1,11 +1,11 @@
 function updateEncoder() {
   previousEncoder = encoder
-  if (keyIsDown(RIGHT_ARROW)) {
+  if (keyIsDown(RIGHT_ARROW) || cross > 0) {
     isSpinning = true;
     isSpinningFwd = true;
     isSpinningBkwd = false;
     encoder++;
-  } else if (keyIsDown(LEFT_ARROW)) {
+  } else if (keyIsDown(LEFT_ARROW) || cross < 0) {
     isSpinning = true;
     isSpinningFwd = false;
     isSpinningBkwd = true;
