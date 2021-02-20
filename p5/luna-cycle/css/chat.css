@@ -10,7 +10,7 @@
   max-width: 450px;
   margin: 50px auto;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
 }
 
 .message {
