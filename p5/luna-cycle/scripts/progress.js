@@ -35,11 +35,11 @@ function displayScreen() {
       increaseAlpha();
     }
     for (i = 0; i <= charIndex; i++) {
-      characters[i].style('color: rgba(50, 205, 50, ' + alphaValue + ')');
+      characters[i].style('color: rgba('+red+', '+green+', '+blue+', '+alphaValue+')');
     }
   } else if (isFading) {
     for (i = 0; i <= charIndex; i++) {
-      characters[i].style('color: rgba(50, 205, 50, ' + alphaValue + ')');
+      characters[i].style('color: rgba('+red+', '+green+', '+blue+', '+alphaValue+')');
     }
   }
   if (alphaValue < 0 && isSpinningFwd) {

@@ -29,5 +29,8 @@ function displayEncoder() {
   if (isEncoderDisplayed === true) {
     fill(255, 0, 0);
     text(("Encoder: " + encoder), windowWidth / 2, windowHeight / 2);
+    // let counter = createP("Encoder: " + encoder); // TODO: do this in the DOM instead
+    // counter.style('position: absolute');
+    // counter.style('color: red');
   }
 }

@@ -37,15 +37,11 @@ function scene0() {
   }
 
   this.keyPressed = function () {
-    // print("A key was pressed in scene" + (sceneManager.findSceneIndex() + 1) + "!");
     playtestKeyPressed();
   }
 }
 
 function scene1() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 

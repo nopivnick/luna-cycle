@@ -32,16 +32,17 @@ let isFadingOut = false;
 let isProceeding = false;
 
 let isAlphaOn = true;
-let alphaValue = 1;
+// let alphaValue = 1;
 let alphaFade = 0.005;
 
 let isCursorDisplayed = false;
-let isEncoderDisplayed = true;
+let isEncoderDisplayed = false;
 
-let isMirrored = false;
+let isScreenMirrored = false;
 
 function setup() {
   setupCanvas();
+  toggleCursor();
   setupSceneManager();
   setInterval("updateSamples()", 100);
 }
@@ -95,7 +96,7 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
-  displayCursor()
+  // toggleAlpha();
   updateSpinState();
   // displaySpinState();
   updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
@@ -108,28 +109,40 @@ function windowResized() {
   console.log("window size: " + windowWidth + " x " + windowHeight);
 }
 
-function mirrorScreen() {
-  screen = select('body'); // TODO: cleaner to mirror a div wrapped around the multiple <p>'s?
-  // screen = select('div');
-  if (isMirrored === true) {
-    screen.style('transform: none');
-    isMirrored = !isMirrored;
+
+function toggleAlpha() {
+  if (isAlphaOn === false) {
+    screen = select('body');
+    screen.style('color: rgba('+red+', '+green+', '+blue+', 1)');
+    isAlphaOn = !isAlphaOn;
   } else {
-    screen.style('transform: rotateY(180deg)');
-    isMirrored = !isMirrored;
+    screen = select('body');
+    screen.style('color: rgba('+red+', '+green+', '+blue+', 0)');
+    isAlphaOn = !isAlphaOn;
   }
-  console.log("is text mirrored? " + isMirrored);
 }
 
-function displayCursor() {
+function toggleCursor() {
   if (isCursorDisplayed === false) {
-    // noCursor();
-    screen = select('body');
-    screen.style('cursor: auto')
-  } else {
-    // cursor();
     screen = select('body');
     screen.style('cursor: none')
+    isCursorDisplayed = !isCursorDisplayed;
+  } else {
+    screen = select('body');
+    screen.style('cursor: auto')
+    isCursorDisplayed = !isCursorDisplayed;
+  }
+}
+
+function toggleMirror() {
+  screen = select('body'); // TODO: cleaner to mirror a div wrapped around the multiple <p>'s?
+  // screen = select('div');
+  if (isScreenMirrored === true) {
+    screen.style('transform: none');
+    isScreenMirrored = !isScreenMirrored;
+  } else {
+    screen.style('transform: rotateY(180deg)');
+    isScreenMirrored = !isScreenMirrored;
   }
 }
 
@@ -142,6 +155,7 @@ function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
   setupScreen(scene, tone);
+  resetCursor();
   // displayScreen()
   // let div = createDiv();
   // text = setupScreen(scene, tone);
