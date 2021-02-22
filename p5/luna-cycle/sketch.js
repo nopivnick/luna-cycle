@@ -13,10 +13,36 @@ let loopCounter = 0;
 
 let tone = 'bliss';
 
-let isMirrored = false;
+// let characters = [];
+let charIndex;
+// let previousCharIndex;
+// let highestCharIndex;
+
+let encoder;
+let previousEncoder;
+
+// TODO: pull variables out of trackpad.js
+// let isSpinning = false;
+// let isSpinningFwd = false;
+// let isSpinningBkwd = false;
+
+let isFading = false;
+let isFadingIn = false;
+let isFadingOut = false;
+let isProceeding = false;
+
+let isAlphaOn = true;
+// let alphaValue = 1;
+let alphaFade = 0.005;
+
+let isCursorDisplayed = false;
+let isEncoderDisplayed = false;
+
+let isScreenMirrored = false;
 
 function setup() {
   setupCanvas();
+  toggleCursor();
   setupSceneManager();
   setInterval("updateSamples()", 100);
 }
@@ -70,8 +96,12 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
+  // toggleAlpha();
   updateSpinState();
   // displaySpinState();
+  updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
+  displayEncoder();
+  displayScreen();
 }
 
 function windowResized() {
@@ -79,17 +109,41 @@ function windowResized() {
   console.log("window size: " + windowWidth + " x " + windowHeight);
 }
 
-function mirrorScreen() {
+
+function toggleAlpha() {
+  if (isAlphaOn === false) {
+    screen = select('body');
+    screen.style('color: rgba('+red+', '+green+', '+blue+', 1)');
+    isAlphaOn = !isAlphaOn;
+  } else {
+    screen = select('body');
+    screen.style('color: rgba('+red+', '+green+', '+blue+', 0)');
+    isAlphaOn = !isAlphaOn;
+  }
+}
+
+function toggleCursor() {
+  if (isCursorDisplayed === false) {
+    screen = select('body');
+    screen.style('cursor: none')
+    isCursorDisplayed = !isCursorDisplayed;
+  } else {
+    screen = select('body');
+    screen.style('cursor: auto')
+    isCursorDisplayed = !isCursorDisplayed;
+  }
+}
+
+function toggleMirror() {
   screen = select('body'); // TODO: cleaner to mirror a div wrapped around the multiple <p>'s?
   // screen = select('div');
-  if (isMirrored === true) {
+  if (isScreenMirrored === true) {
     screen.style('transform: none');
-    isMirrored = !isMirrored;
+    isScreenMirrored = !isScreenMirrored;
   } else {
     screen.style('transform: rotateY(180deg)');
-    isMirrored = !isMirrored;
+    isScreenMirrored = !isScreenMirrored;
   }
-  console.log("is text mirrored? " + isMirrored);
 }
 
 function getSceneNum() { // TODO: this is a hack, how do I get the scenes[i] from sceneManager?
@@ -101,6 +155,8 @@ function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
   setupScreen(scene, tone);
+  resetCursor();
+  // displayScreen()
   // let div = createDiv();
   // text = setupScreen(scene, tone);
   // div.child(text);

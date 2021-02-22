@@ -10,7 +10,7 @@
   max-width: 450px;
   margin: 50px auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* TODO: example code has this as column but it's stacking the <span>char</span>s*/
 }
 
 .message {
@@ -19,26 +19,26 @@
   margin-bottom: 12px;
   line-height: 24px;
   position: relative;
-  padding:10px 20px;
+  padding: 10px 20px;
   border-radius:25px;
 }
 
 .message:before, .message:after {
   content: "";
-  position:absolute;
+  position: absolute;
   bottom: -2px;
   height: 20px;
 }
 
 .message-sent {
-  color: black; 
+  /* color: black;  */
   background: limegreen;
   align-self: flex-end;
 }
 
 .message-sent:before {
-  right:-7px;
-  border-right:20px solid limegreen;
+  right: -7px;
+  border-right: 20px solid limegreen;
   border-bottom-left-radius: 16px 14px;
   transform: translate(0, -2px);
   }
@@ -52,13 +52,13 @@
 }
 	
 .message-recd {
-  background: limegreen;
+  background: yellow;
   color: black;
 }
 
 .message-recd:before {
   left: -7px;
-  border-left: 20px solid limegreen;
+  border-left: 20px solid yellow;
   border-bottom-right-radius: 16px 14px;
   transform: translate(0, -2px);
 }
