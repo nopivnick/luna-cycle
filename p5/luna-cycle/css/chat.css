@@ -21,6 +21,7 @@
   position: relative;
   padding: 10px 20px;
   border-radius:25px;
+  /* width: fit-content; TODO: why does this center-justify the elements? */
 }
 
 .message:before, .message:after {
