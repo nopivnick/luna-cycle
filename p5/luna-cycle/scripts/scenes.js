@@ -1,5 +1,4 @@
 function scene0() {
-
   /**
    * p5.SceneManager setup function
    * 
@@ -462,9 +461,6 @@ function scene10() {
 }
 
 function scene11() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 
@@ -507,9 +503,6 @@ function scene11() {
 }
 
 function scene12() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 
@@ -552,9 +545,6 @@ function scene12() {
 }
 
 function scene13() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 
@@ -597,9 +587,6 @@ function scene13() {
 }
 
 function scene14() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 
@@ -642,9 +629,6 @@ function scene14() {
 }
 
 function scene15() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 
@@ -687,9 +671,6 @@ function scene15() {
 }
 
 function scene16() {
-
-  let paragraph;
-
   /**
    * p5.SceneManager setup function
    * 
