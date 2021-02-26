@@ -1,4 +1,4 @@
-function scene0() {
+function scene0() { // TODO: turn this into executeScene() or something similar? 
   /**
    * p5.SceneManager setup function
    * 
