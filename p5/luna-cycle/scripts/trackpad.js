@@ -18,12 +18,6 @@ let trackpadSamples = [
 
 let cross = 0;
 
-let isSpinning = false;
-let isSpinningFwd = false;
-let isSpinningBkwd = false;
-
-let counter = 0;
-
 // Uncomment below for p5-friendly code
 // function setup() {
 //   setInterval("updateSamples()", 100);

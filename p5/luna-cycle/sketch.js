@@ -1,9 +1,11 @@
+let canvas;
+
 let screen;
 
 let scene = 0;
 let sceneManager;
 let sceneIndex;
-let sceneCount;
+let sceneCount = 17;
 
 let loopCounter = 0;
 
@@ -21,10 +23,9 @@ let charIndex;
 let encoder;
 let previousEncoder;
 
-// TODO: pull variables out of trackpad.js
-// let isSpinning = false;
-// let isSpinningFwd = false;
-// let isSpinningBkwd = false;
+let isSpinning = false;
+let isSpinningFwd = false;
+let isSpinningBkwd = false;
 
 let isFading = false;
 let isFadingIn = false;
@@ -52,7 +53,7 @@ function draw() {
 }
 
 function setupCanvas() {
-  let canvas = createCanvas(windowWidth, windowHeight);
+  canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
 }
@@ -81,10 +82,9 @@ function setupSceneManager() {
   sceneManager.addScene(scene14);
   sceneManager.addScene(scene15);
   sceneManager.addScene(scene16);
-  // TODO: preload scenes with a for loop
-  // for (let i = 0; i < sceneCount; i++) {
-  //   sceneManager.addScene("scene" + i);
-  //   print("scene" + i + " preloaded!");
+  // for (i = 0; i < sceneCount; i++) { // TODO: preload scenes with a for loop
+  // sceneManager.addScene(`scene${i}`);
+  // print(`scene${i} preloaded!`);
   // }
   sceneManager.showScene(scene0);
 }
@@ -113,11 +113,11 @@ function windowResized() {
 function toggleAlpha() {
   if (isAlphaOn === false) {
     screen = select('body');
-    screen.style('color: rgba('+red+', '+green+', '+blue+', 1)');
+    screen.style(`color: rgba(${red}, ${green}, ${blue}, 1)`);
     isAlphaOn = !isAlphaOn;
   } else {
     screen = select('body');
-    screen.style('color: rgba('+red+', '+green+', '+blue+', 0)');
+    screen.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
     isAlphaOn = !isAlphaOn;
   }
 }
@@ -139,27 +139,39 @@ function toggleMirror() {
   // screen = select('div');
   if (isScreenMirrored === true) {
     screen.style('transform: none');
+    // canvas.style('transform: none');
     isScreenMirrored = !isScreenMirrored;
   } else {
     screen.style('transform: rotateY(180deg)');
+    // canvas.style('transform: rotateY(180deg)');
     isScreenMirrored = !isScreenMirrored;
   }
+  // paragraphs = selectAll('p');
+  // if (isScreenMirrored === true) {
+  //   for (i = 0; i < paragraphs.length; i++) {
+  //     this.style('transform: none');
+  //   }
+  //   isScreenMirrored = !isScreenMirrored;
+  // } else {
+  //   for (i = 0; i < paragraphs.length; i++) {
+  //     this.style('transform: rotateY(180deg)');
+  //   }
+  //   isScreenMirrored = !isScreenMirrored;
+  // }
 }
 
-function getSceneNum() { // TODO: this is a hack, how do I get the scenes[i] from sceneManager?
-  scene = sceneManager.scene.fnScene.name;
-  scene = scene.slice(5);
+function getSceneNum() {
+  scene = sceneManager.findSceneIndex(sceneManager.scene.fnScene);
 }
 
 function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
-  setupScreen(scene, tone);
-  resetCursor();
-  // displayScreen()
-  // let div = createDiv();
+  // let div = createDiv(); // TODO: fix this
   // text = setupScreen(scene, tone);
   // div.child(text);
+  setupScreen(scene, tone);
+  resetCursor();
 }
 
 function onExitScene() {
