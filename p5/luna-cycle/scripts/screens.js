@@ -5,7 +5,10 @@ let green;
 let blue;
 
 function setupScreen(scene, tone) {
-  // getBase(); // TODO: should this be it's own function?
+  base = getBase(scene, tone);
+}
+
+function getBase(scene, tone) {
   for (i = 0; i < lunaData.scenes[scene].paragraphs.length; i++) { // for every paragraph of the current scene ...
     if (lunaData.scenes[scene].paragraphs[i].snippets === null) { // if there are no tone variants ...
       base = lunaData.scenes[scene].paragraphs[i].base; // get the base sentence ...
@@ -16,28 +19,14 @@ function setupScreen(scene, tone) {
       }
     }
     console.log(base);
-    setCSS(setupCharacters(base)); // and apply any CSS ...
+    setCSS(setupCharacters(base, i), i);
   }
-  // resetCursor();
+  return base;
 }
 
-// function getBase() { // TODO: perhaps this function should have the `scene` & `tone` parameters?
-//   for (i = 0; i < lunaData.scenes[scene].paragraphs.length; i++) { // for every paragraph of the current scene ...
-//     if (lunaData.scenes[scene].paragraphs[i].snippets === null) { // if there are no tone variants ...
-//       base = lunaData.scenes[scene].paragraphs[i].base; // get the base sentence ...
-//     } else { // otherwise ...
-//       base = lunaData.scenes[scene].paragraphs[i].base;
-//       for (j = 0; j < lunaData.scenes[scene].paragraphs[i].snippets.length; j++) {
-//         base = base.replace('{' + j + '}', lunaData.scenes[scene].paragraphs[i].snippets[j][tone]);
-//       }
-//     }
-//     console.log(base);
-//   }
-// }
-
-function setupCharacters(base) {
+function setupCharacters(base, i) {
   let paragraph = createP();
-  setColor();
+  setColor(i);
   if (lunaData.scenes[scene].paragraphs[i].cssClass === null) {
     for (k = 0; k < base.length; k++) {
       let character = base.charAt(k);
@@ -54,13 +43,13 @@ function setupCharacters(base) {
   }
 }
 
-function setCSS(paragraph) {
+function setCSS(paragraph, i) {
   if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
     paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
   }
 }
 
-function setColor() {
+function setColor(i) {
   if ((lunaData.scenes[scene].paragraphs[i].cssClass !== null)) {
     red = 0;
     green = 0;
@@ -74,9 +63,10 @@ function setColor() {
 
 function setAlpha(span) {
   if (isAlphaOn === true) {
-    span.style('color: rgba(' + red + ', ' + green + ', ' + blue + ', 0)'); // TODO: possible to handle alpha with a class in css? 
+    // TODO: possible to handle alpha with a class in css?
+    span.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
   } else {
-    span.style('color: rgba(' + red + ', ' + green + ', ' + blue + ', 1)');
+    span.style(`color: rgba(${red}, ${green}, ${blue}, 1)`);
   }
 }
 
