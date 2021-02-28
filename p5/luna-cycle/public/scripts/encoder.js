@@ -1,21 +1,26 @@
 function updateEncoder() {
+  let isTrackpadEncoder = false
+  if (trackpadDistance % ENCODER_INTERVAL < prevTrackpadDistance % ENCODER_INTERVAL) {
+    isTrackpadEncoder = true
+    console.log('Encoder step')
+  }
   previousEncoder = encoder
   if (keyIsDown(RIGHT_ARROW) || cross > 0) {
     isSpinning = true;
     isSpinningFwd = true;
     isSpinningBkwd = false;
-    encoder++;
+    if (isTrackpadEncoder) encoder++;
   } else if (keyIsDown(LEFT_ARROW) || cross < 0) {
     isSpinning = true;
     isSpinningFwd = false;
     isSpinningBkwd = true;
-    encoder--;
+    if (isTrackpadEncoder) encoder--;
   } else {
     isSpinning = false;
     isSpinningFwd = false;
     isSpinningBkwd = false;
   }
-  if (isSpinning) {
+  if (isSpinning && isTrackpadEncoder) {
     updateCharIndex();
   }
   isFadingOut = (isSpinningBkwd && encoder < charIndex) || (isSpinningFwd && encoder > characters.length);

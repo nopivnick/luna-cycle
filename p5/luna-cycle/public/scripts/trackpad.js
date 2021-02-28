@@ -32,10 +32,11 @@ let cross = 0;
 function updateSamples() {
   trackpadSamples.shift();
   trackpadSamples.push([mouseX, mouseY]);
-  calculateCrossProduct();
+  calcTrackpadCrossProd();
+  calcTrackpadDistance();
 }
 
-function calculateCrossProduct() {
+function calcTrackpadCrossProd() {
   // Calculate B-A vector
   let x1 = trackpadSamples[1][0] - trackpadSamples[0][0];
   let y1 = trackpadSamples[1][1] - trackpadSamples[0][1];
@@ -44,6 +45,20 @@ function calculateCrossProduct() {
   let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
   // Calculate the cross product of the two vectors (B-A) x (C-B)
   cross = (x1 * y2) - (y1 * x2);
+}
+
+function calcTrackpadDistance() {
+  let trackpadSample3 = {
+    x: trackpadSamples[2][0],
+    y: trackpadSamples[2][1]
+  }
+  let trackpadSample2 = {
+    x: trackpadSamples[1][0],
+    y: trackpadSamples[1][1]
+  }
+  prevTrackpadDistance = trackpadDistance;
+  trackpadDistance += Math.sqrt((trackpadSample3.x - trackpadSample2.x) ** 2 + (trackpadSample3.y - trackpadSample2.y) ** 2)
+  console.log('Distance: ', trackpadDistance);
 }
 
 function updateSpinState() {

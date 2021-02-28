@@ -23,6 +23,10 @@ let charIndex;
 let encoder;
 let previousEncoder;
 
+let trackpadDistance = 0;
+let prevTrackpadDistance = 0;
+const ENCODER_INTERVAL = 20;
+
 let isSpinning = false;
 let isSpinningFwd = false;
 let isSpinningBkwd = false;
@@ -45,7 +49,11 @@ function setup() {
   setupCanvas();
   toggleCursor();
   setupSceneManager();
-  setInterval("updateSamples()", 100);
+  // setInterval("updateSamples()", 100);
+  setInterval(() => {
+    updateSamples()
+    updateEncoder() // TODO: should the serial communication baud be a multiple of this interval?
+  }, 100);
 }
 
 function draw() {
@@ -99,7 +107,6 @@ function drawScene() {
   // toggleAlpha();
   updateSpinState();
   // displaySpinState();
-  updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
   displayEncoder();
   displayScreen();
 }
