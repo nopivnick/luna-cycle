@@ -1,5 +1,5 @@
-function playtestKeyPressed() {
-  print("We're in the playtestKeyPressed() function!");
+function hotKeyPressed() {
+  print("We're in the hotKeyPressed() function!");
   if (key === 'a') {
     toggleAlpha();
   } else if (key === 'c') {

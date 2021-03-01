@@ -36,7 +36,7 @@ function scene0() { // TODO: turn this into executeScene() or something similar?
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -78,7 +78,7 @@ function scene1() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -120,7 +120,7 @@ function scene2() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -162,7 +162,7 @@ function scene3() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -204,7 +204,7 @@ function scene4() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -246,7 +246,7 @@ function scene5() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -288,7 +288,7 @@ function scene6() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -330,7 +330,7 @@ function scene7() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -372,7 +372,7 @@ function scene8() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -414,7 +414,7 @@ function scene9() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -456,7 +456,7 @@ function scene10() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -498,7 +498,7 @@ function scene11() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -540,7 +540,7 @@ function scene12() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -582,7 +582,7 @@ function scene13() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -624,7 +624,7 @@ function scene14() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -666,7 +666,7 @@ function scene15() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
@@ -708,7 +708,7 @@ function scene16() {
   }
 
   this.keyPressed = function () {
-    playtestKeyPressed();
+    hotKeyPressed();
   }
 }
 
