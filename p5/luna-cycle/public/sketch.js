@@ -103,8 +103,7 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
-  // toggleAlpha();
-  updateSpinState();
+  // updateSpinState();
   // displaySpinState();
   displayEncoder();
   displayScreen();
