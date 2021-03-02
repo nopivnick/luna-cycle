@@ -32,10 +32,11 @@ let cross = 0;
 function updateSamples() {
   trackpadSamples.shift();
   trackpadSamples.push([mouseX, mouseY]);
-  calculateCrossProduct();
+  calcTrackpadCrossProd();
+  // calcTrackpadAngle(x1, y1, x2, y2);
 }
 
-function calculateCrossProduct() {
+function calcTrackpadCrossProd() {
   // Calculate B-A vector
   let x1 = trackpadSamples[1][0] - trackpadSamples[0][0];
   let y1 = trackpadSamples[1][1] - trackpadSamples[0][1];
@@ -44,6 +45,18 @@ function calculateCrossProduct() {
   let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
   // Calculate the cross product of the two vectors (B-A) x (C-B)
   cross = (x1 * y2) - (y1 * x2);
+  return {
+    x1,
+    y1,
+    x2,
+    y2
+  };
+}
+
+function calcTrackpadAngle(x1, y1, x2, y2) {
+  // Calculate the angle between the two vectors
+  trackpadAngle = atan2(y2, x2) - atan2(y1, x1);
+  console.log("Trackpad Angle: ", trackpadAngle);
 }
 
 function updateSpinState() {
@@ -70,27 +83,17 @@ function displaySpinState() {
     // fill(255, 0, 0);
     // text("Forward", windowWidth / 2, 10);
     // document.body.innerHTML = "Forward";
-    // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinningFwd is " + isSpinningFwd);
-    // Uncomment below for p5-friendly code
-    // print("isSpinningFwd is " + isSpinningFwd);
-    // } else if (isSpinningBkwd === true) {
+  } else if (isSpinningBkwd === true) {
     //   // textAlign(CENTER);
     //   // fill(255, 0, 0);
     //   // text("Backward", windowWidth / 2, 10);
     //   // document.body.innerHTML = "Backward";
-    //   // Uncomment below for vanilla javascript-friendly code
-    // console.log("isSpinningBkwd is " + isSpinningBkwd);
-    //   // Uncomment below for p5-friendly code
-    //   // print("isSpinningBkwd is " + isSpinningBkwd);
+    console.log("isSpinningBkwd is " + isSpinningBkwd);
   } else {
     //   // document.body.innerHTML = "Stopped";
-    //   // Uncomment below for vanilla javascript-friendly code
     console.log("isSpinning is " + isSpinning);
-    // Uncomment below for p5-friendly code
-    // print("isSpinning is " + isSpinning);
   }
-  // console.log("Hello?");
 }
 
 // Uncomment below for p5-friendly code
