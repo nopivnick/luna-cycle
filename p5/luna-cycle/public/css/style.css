@@ -15,6 +15,7 @@
 }
 
 html {
+  /* background: black; TODO: this is a hack to fix the white band when mirroring the screen */
   color: limegreen;
   box-sizing: border-box;
   font-family: "Inconsolata";
