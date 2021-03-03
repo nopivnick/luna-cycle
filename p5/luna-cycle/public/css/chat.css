@@ -53,13 +53,14 @@
 }
 	
 .message-recd {
-  background: yellow;
   color: black;
+  background: mediumseagreen;
+  align-self: flex-start;
 }
 
 .message-recd:before {
   left: -7px;
-  border-left: 20px solid yellow;
+  border-left: 20px solid mediumseagreen;
   border-bottom-right-radius: 16px 14px;
   transform: translate(0, -2px);
 }

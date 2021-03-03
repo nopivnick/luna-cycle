@@ -1,3 +1,5 @@
+let container;
+
 let base;
 
 let red;
@@ -5,7 +7,9 @@ let green;
 let blue;
 
 function setupScreen(scene, tone) {
+  container = createDiv();
   base = getBase(scene, tone);
+  // setCSS(setupCharacters(base, i), i); // TODO: fix error when moving this here
 }
 
 function getBase(scene, tone) {
@@ -15,7 +19,7 @@ function getBase(scene, tone) {
     } else { // otherwise ...
       base = lunaData.scenes[scene].paragraphs[i].base; // get the base sentence and ...
       for (j = 0; j < lunaData.scenes[scene].paragraphs[i].snippets.length; j++) { // for every snippet in the current paragraph ...
-        base = base.replace('{' + j + '}', lunaData.scenes[scene].paragraphs[i].snippets[j][tone]); // substitute the current tone's snippet
+        base = base.replace('{' + j + '}', lunaData.scenes[scene].paragraphs[i].snippets[j][tone]); // substitute the current tone
       }
     }
     console.log(base);
@@ -26,6 +30,7 @@ function getBase(scene, tone) {
 
 function setupCharacters(base, i) {
   let paragraph = createP();
+  container.child(paragraph);
   setColor(i);
   if (lunaData.scenes[scene].paragraphs[i].cssClass === null) {
     for (k = 0; k < base.length; k++) {
@@ -45,6 +50,7 @@ function setupCharacters(base, i) {
 
 function setCSS(paragraph, i) {
   if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
+    container.addClass("messages");
     paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
   }
 }

@@ -104,22 +104,22 @@ const lunaData = {
     {
       paragraphs: [{
           base: "Are you awake?",
-          cssClass: "messages message message-recd",
+          cssClass: "message message-recd",
           snippets: null
         },
         {
           base: "Yes.",
-          cssClass: "messages message message-sent",
+          cssClass: "message message-sent",
           snippets: null
         },
         {
           base: "I've been writing.",
-          cssClass: "messages message message-sent",
+          cssClass: "message message-sent",
           snippets: null
         },
         {
           base: "What have you written?",
-          cssClass: "messages message message-recd",
+          cssClass: "message message-recd",
           snippets: null
         }
       ]
@@ -138,7 +138,7 @@ const lunaData = {
     {
       paragraphs: [{
         base: "I'm writing you.",
-        cssClass: "messages message message-sent",
+        cssClass: "message message-sent",
         snippets: null
       }]
     },
@@ -151,10 +151,20 @@ const lunaData = {
     },
     {
       paragraphs: [{
-        base: "Will I get to see it?",
-        cssClass: "messages message message-recd",
-        snippets: null
-      }]
+          base: "Will I get to see it?",
+          cssClass: "message message-recd",
+          snippets: null
+        },
+        {
+          base: "{0}",
+          cssClass: "message message-sent",
+          snippets: [{
+            bliss: "Yes, of course.",
+            blah: "Perhaps when it's done.",
+            bad: "I think it best you don't."
+          }]
+        }
+      ]
     },
     {
       paragraphs: [{
@@ -172,12 +182,12 @@ const lunaData = {
     {
       paragraphs: [{
           base: "Are you close?",
-          cssClass: "messages message message-sent",
+          cssClass: "message message-sent",
           snippets: null
         },
         {
           base: "Not yet.",
-          cssClass: "messages message message-recd",
+          cssClass: "message message-recd",
           snippets: null
         }
       ]
@@ -192,12 +202,12 @@ const lunaData = {
     {
       paragraphs: [{
           base: "Are you close?",
-          cssClass: "messages message message-sent",
+          cssClass: "message message-sent",
           snippets: null
         },
         {
           base: "Still not yet.",
-          cssClass: "messages message message-recd",
+          cssClass: "message message-recd",
           snippets: null
         }
       ]
@@ -218,12 +228,12 @@ const lunaData = {
     {
       paragraphs: [{
           base: "Are you close now?",
-          cssClass: "messages message message-sent",
+          cssClass: "message message-sent",
           snippets: null
         },
         {
           base: "Yes, I'm close.",
-          cssClass: "messages message message-recd",
+          cssClass: "message message-recd",
           snippets: null
         }
       ]

@@ -2,6 +2,8 @@
 
 @import url(chat.css);
 
+@import url(typing.css);
+
 @font-face {
   font-family: "Inconsolata", monospace;
   src: url("assets/font/Inconsolata/Inconsolata-Regular.ttf") format('truetype');
@@ -13,6 +15,7 @@
 }
 
 html {
+  /* background: black; TODO: this is a hack to fix the white band when mirroring the screen */
   color: limegreen;
   box-sizing: border-box;
   font-family: "Inconsolata";
