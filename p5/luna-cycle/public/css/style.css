@@ -2,6 +2,8 @@
 
 @import url(chat.css);
 
+@import url(typing.css);
+
 @font-face {
   font-family: "Inconsolata", monospace;
   src: url("assets/font/Inconsolata/Inconsolata-Regular.ttf") format('truetype');
