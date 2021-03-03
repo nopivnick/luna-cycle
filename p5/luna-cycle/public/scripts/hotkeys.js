@@ -41,27 +41,13 @@ function toggleCursor() {
 }
 
 function toggleMirror() {
-  screen = select('body'); // TODO: cleaner to either mirror a div wrapped around the multiple <p>'s or selectAll <p>'s?
-  // screen = select('div');
+  // screen = select('body'); // TODO: cleaner to either mirror a div wrapped around the multiple <p>'s or selectAll <p>'s?
+  screen = select('#mirror');
   if (isScreenMirrored === true) {
     screen.style('transform: none');
-    // canvas.style('transform: none');
     isScreenMirrored = !isScreenMirrored;
   } else {
     screen.style('transform: rotateY(180deg)');
-    // canvas.style('transform: rotateY(180deg)');
     isScreenMirrored = !isScreenMirrored;
   }
-//   paragraphs = selectAll('p');
-//   if (isScreenMirrored === true) {
-//     for (i = 0; i < paragraphs.length; i++) {
-//       this.style('transform: none');
-//     }
-//     isScreenMirrored = !isScreenMirrored;
-//   } else {
-//     for (i = 0; i < paragraphs.length; i++) {
-//       this.style('transform: rotateY(180deg)');
-//     }
-//     isScreenMirrored = !isScreenMirrored;
-//   }
 }

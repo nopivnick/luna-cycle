@@ -8,6 +8,7 @@ let blue;
 
 function setupScreen(scene, tone) {
   container = createDiv();
+  container.parent('mirror');
   base = getBase(scene, tone);
   // setCSS(setupCharacters(base, i), i); // TODO: fix error when moving this here
 }
