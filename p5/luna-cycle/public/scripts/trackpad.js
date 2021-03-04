@@ -29,11 +29,15 @@ let cross = 0;
 //   mouseY = event.clientY;
 // }
 
+// let smoothedTrackpadDist = 0;
+
 function updateSamples() {
   trackpadSamples.shift();
   trackpadSamples.push([mouseX, mouseY]);
+  // Uncomment below for p5-friendly code
+  // trackpadSamples.push(createVector(mouseX, mouseY));
   calcTrackpadCrossProd();
-  // calcTrackpadAngle(x1, y1, x2, y2);
+  calcTrackpadDist();
 }
 
 function calcTrackpadCrossProd() {
@@ -45,18 +49,31 @@ function calcTrackpadCrossProd() {
   let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
   // Calculate the cross product of the two vectors (B-A) x (C-B)
   cross = (x1 * y2) - (y1 * x2);
-  return {
-    x1,
-    y1,
-    x2,
-    y2
-  };
+  console.log("Trackpad Cross Product: " + cross);
 }
 
-function calcTrackpadAngle(x1, y1, x2, y2) {
-  // Calculate the angle between the two vectors
+function calcTrackpadAngle() {
+  // Calculate B-A vector
+  let x1 = trackpadSamples[1][0] - trackpadSamples[0][0];
+  let y1 = trackpadSamples[1][1] - trackpadSamples[0][1];
+  // Calculate C-B vector
+  let x2 = trackpadSamples[2][0] - trackpadSamples[1][0];
+  let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
+  // Calculate the angle between the two vectors (B-A) x (C-B)
   trackpadAngle = atan2(y2, x2) - atan2(y1, x1);
-  console.log("Trackpad Angle: ", trackpadAngle);
+  // console.log("Trackpad Angle: ", trackpadAngle);
+}
+
+function calcTrackpadDist() {
+  let x0 = trackpadSamples[0][0]; // x position of the 1st sample
+  let y0 = trackpadSamples[0][1]; // y position of the 1st sample
+
+  let x2 = trackpadSamples[1][0]; // x position of the 3rd sample
+  let y2 = trackpadSamples[2][1]; // y position of the 3rd sample
+  // Calculate the distance between the 1st sample and the 3rd sample
+  let trackpadDist = dist(x0, y0, x2, y2);
+  // console.log("Distance: " + trackpadDist);
+  // smoothedTrackpadDist = lerp(smoothedTrackpadSpeed, trackpadDist, 0.1);
 }
 
 function updateSpinState() {
