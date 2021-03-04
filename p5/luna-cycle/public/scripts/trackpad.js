@@ -56,7 +56,7 @@ function calcTrackpadDistance() {
     x: trackpadSamples[1][0],
     y: trackpadSamples[1][1]
   }
-  prevTrackpadDistance = trackpadDistance;
+  prevTrackpadDist = trackpadDistance;
   trackpadDistance += Math.sqrt((trackpadSample3.x - trackpadSample2.x) ** 2 + (trackpadSample3.y - trackpadSample2.y) ** 2)
   console.log('Distance: ', trackpadDistance);
 }

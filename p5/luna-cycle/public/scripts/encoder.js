@@ -1,6 +1,6 @@
 function updateEncoder() {
   let isTrackpadEncoder = false
-  if (trackpadDistance % ENCODER_INTERVAL < prevTrackpadDistance % ENCODER_INTERVAL) {
+  if (trackpadDistance % ENCODER_INTERVAL < prevTrackpadDist % ENCODER_INTERVAL) {
     isTrackpadEncoder = true
     console.log('Encoder step')
   }

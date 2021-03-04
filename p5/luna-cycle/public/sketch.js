@@ -24,7 +24,7 @@ let encoder;
 let previousEncoder;
 
 let trackpadDistance = 0;
-let prevTrackpadDistance = 0;
+let prevTrackpadDist = 0;
 const ENCODER_INTERVAL = 20;
 
 let isSpinning = false;
