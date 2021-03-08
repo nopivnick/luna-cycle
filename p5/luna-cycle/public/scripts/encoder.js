@@ -1,3 +1,5 @@
+console.log("encoder.js FOUND");
+
 function updateEncoder() {
   previousEncoder = encoder
   if (keyIsDown(RIGHT_ARROW) || cross > 0) {
@@ -37,3 +39,5 @@ function displayEncoder() {
     // counter.style('color: red');
   }
 }
+
+console.log("encoder.js lOADED");

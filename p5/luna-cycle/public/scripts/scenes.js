@@ -1,3 +1,5 @@
+console.log("scenes.js FOUND");
+
 function scene0() { // TODO: turn this into executeScene() or something similar? 
   /**
    * p5.SceneManager setup function
@@ -712,3 +714,4 @@ function scene16() {
   }
 }
 
+console.log("scenes.js LOADED");
