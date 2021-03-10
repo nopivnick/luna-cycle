@@ -1,5 +1,18 @@
 var socket = io();
 
+// Listen for confirmation of connection
+socket.on('connect', function() {
+  console.log("Connected to server.");
+  console.log("Socket id: ", socket.id);
+});
+
+socket.on("state", (data) => {
+  state = data;
+  console.log(data);
+});
+
+let state;
+
 let canvas;
 
 let screen;
@@ -24,6 +37,8 @@ let charIndex;
 
 let encoder;
 let previousEncoder;
+
+let isMyTurn = false;
 
 let isSpinning = false;
 let isSpinningFwd = false;
@@ -84,11 +99,6 @@ function setupSceneManager() {
   sceneManager.addScene(scene9);
   sceneManager.addScene(scene10);
   sceneManager.addScene(scene11);
-  sceneManager.addScene(scene12);
-  sceneManager.addScene(scene13);
-  sceneManager.addScene(scene14);
-  sceneManager.addScene(scene15);
-  sceneManager.addScene(scene16);
   // for (i = 0; i < sceneCount; i++) { // TODO: preload scenes with a for loop
   // sceneManager.addScene(`scene${i}`);
   // print(`scene${i} preloaded!`);
@@ -136,7 +146,7 @@ function onExitScene() {
   }
 }
 
-function updateTone() {
+function updateTone() { // TODO: not working
   if (loopCounter % 4 === 3) {
     /* Bad */
     tone = 'bad';
