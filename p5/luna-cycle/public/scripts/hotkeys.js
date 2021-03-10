@@ -1,3 +1,5 @@
+console.log("hotkeys.js FOUND");
+
 function hotKeyPressed() {
   print("We're in the hotKeyPressed() function!");
   if (key === 'a') {
@@ -51,3 +53,5 @@ function toggleMirror() {
     isScreenMirrored = !isScreenMirrored;
   }
 }
+
+console.log("hotkeys.js LOADED");

@@ -1,3 +1,5 @@
+console.log("progress.js FOUND");
+
 function updateCharIndex() {
   if (encoder > charIndex) {
     charIndex = encoder;
@@ -46,3 +48,5 @@ function displayScreen() {
     updateScene();
   }
 }
+
+console.log("progress.js LOADED");

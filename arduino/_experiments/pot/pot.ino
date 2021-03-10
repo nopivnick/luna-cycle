@@ -1,3 +1,6 @@
+const int potUserA = A0;
+const int potUserB = A1;
+
 void setup() {
   // put your setup code here, to run once:
 

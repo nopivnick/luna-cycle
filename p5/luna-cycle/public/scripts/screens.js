@@ -1,3 +1,5 @@
+console.log("scenes.js FOUND");
+
 let container;
 
 let base;
@@ -83,3 +85,5 @@ function resetCursor() {
   encoder = -1;
   previousEncoder = 0;
 }
+
+console.log("scenes.js LOADED");
