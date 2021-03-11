@@ -99,9 +99,9 @@ function setupSceneManager() {
   sceneManager.addScene(scene9);
   sceneManager.addScene(scene10);
   sceneManager.addScene(scene11);
-  // for (i = 0; i < sceneCount; i++) { // TODO: preload scenes with a for loop
-  // sceneManager.addScene(`scene${i}`);
-  // print(`scene${i} preloaded!`);
+  // for (i = 0; i < scenes.length; i++) { // TODO: preload scenes with a for loop
+  // sceneManager.addScene(scenes[i]);
+  // print(`scenes${i} preloaded!`);
   // }
   sceneManager.showScene(scene0);
 }
