@@ -6,17 +6,17 @@
 /**
  * To run server.js with serial communication type the following on the command line:
  * $ node index.js <portName>
- * where <portName> is the name of the serial port connected to the Arduino, e.g. /dev/tty.usbserial-xxxx (on OSX)
+ * where <portName> is the name of the serial port connected to the Arduino, e.g. /dev/cu.usbmodemXXXXX (on OSX)
  */
 
 const SerialPort = require('serialport'); // include the serialport library
 const portName = process.argv[2]; // get the port name from the command line
-var myPort = new SerialPort(portName, { // open the port ...
+const mySerialPort = new SerialPort(portName, { // open the port ...
   baudRate: 115200 // and set baud.
 });
 var Readline = SerialPort.parsers.Readline; // make instance of Readline parser
 var parser = new Readline(); // make a new parser to read ASCII lines
-myPort.pipe(parser); // pipe the serial stream to the parser
+mySerialPort.pipe(parser); // pipe the serial stream to the parser
 
 const express = require("express");
 const app = express();
@@ -37,7 +37,8 @@ let state = {
   // charIndex: 0
 }
 
-let scene = 0;
+let isLampUserA = false;
+let isLampUserB = false;
 
 app.use(express.static("public"));
 
@@ -50,9 +51,9 @@ io.on('connection', (socket) => {
     console.log("There are already two users.");
     console.log('a user disconnected: ' + socket.id);
   } else if (!users.userA) { // otherwise check if the first slot is available ...
-    users.userA = socket.id; // and add socket to users object ...
+    users.userA = socket.id; // and add socket to userA slot ...
   } else {
-    users.userB = socket.id; // otherwise add socket to second slot.
+    users.userB = socket.id; // otherwise add socket to userB slot.
   }
 
   console.log(users);
@@ -74,19 +75,33 @@ const listener = server.listen(3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
+function sendBrowserEncoder(data) {
+  io.emit("encoder", data);
+}
 
+/**
+ * SerialPort stuff
+ * 
+ * Definitions for the serial events and the functions called when those serial events occur.
+ */
 
+function sendArduinoLamp() {
+  if (isLampUserA) {
+    mySerialPort.write("lampUserA");
+  }
+  if (isLampUserB) {
+    mySerialPort.write("lampUserB");
+  }
+}
 
-// these are the definitions for the serial events:
-myPort.on('open', showPortOpen); // called when the serial port opens
-myPort.on('close', showPortClose); // called when the serial port closes
-myPort.on('error', showPortError); // called when there's an error with the serial port
-parser.on('data', readSerialData); // called when there's new data incoming
+mySerialPort.on('open', showPortOpen);
+parser.on('data', readSerialData);
+mySerialPort.on('close', showPortClose);
+mySerialPort.on('error', showPortError);
 
-// these are the functions called when the serial events occur:
 function showPortOpen() {
   console.log("Serial port OPEN.");
-  console.log("Data rate: " + myPort.baudRate);
+  console.log("Data rate: " + mySerialPort.baudRate);
 }
 
 function showPortClose() {
@@ -99,6 +114,9 @@ function showPortError(error) {
 
 function readSerialData(data) {
   console.log(data);
+  if (data === "tick++" || "tick--") {
+    sendBrowserEncoder(data);
+  }
 }
 
 // // ------------------------ Server function
