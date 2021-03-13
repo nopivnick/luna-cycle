@@ -8,8 +8,19 @@ socket.on('connect', function() {
 
 socket.on("state", (data) => {
   state = data;
-  console.log(data);
+  console.log(state);
 });
+
+socket.on("encoder", (data) => {
+  if (data === "tick++") {
+    encoder++;
+    console.log(data);
+  } else if (data === "tick--") {
+    encoder--;
+    console.log(data);
+  }
+});
+
 
 let state;
 
