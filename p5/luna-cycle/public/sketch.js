@@ -1,4 +1,4 @@
-var socket = io();
+const socket = io();
 
 // Listen for confirmation of connection
 socket.on('connect', function() {
@@ -12,7 +12,10 @@ socket.on("state", (data) => {
 });
 
 socket.on("encoder", (data) => {
-  if (data === "tick++") {
+  // console.log(data);
+  data = data.trim();
+  if (data === 'tick++') {
+    isProceeding === true;
     encoder++;
     console.log(data);
   } else if (data === "tick--") {

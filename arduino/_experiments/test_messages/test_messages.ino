@@ -8,7 +8,8 @@ void setup() {
 
 void loop() {
   digitalWrite(LED_BUILTIN, HIGH);
-  Serial.println("tick++");
+  Serial.print("tick++"); // NOTE: if Serial.println() the string includes the /r when it gets to the browser
+  Serial.println();
   digitalWrite(LED_BUILTIN, LOW);
   delay(pauseDuration);
 }
