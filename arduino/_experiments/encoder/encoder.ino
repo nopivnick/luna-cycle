@@ -4,15 +4,30 @@
 // Good Performance: only the first pin has interrupt capability
 // Low Performance:  neither pin has interrupt capability
 
-Encoder encoderUserA(2, 3); // Interrupt pins on the UNO are 2 & 3
+Encoder ENCODER(2, 3); // Interrupt pins on the UNO are 2 & 3
 
-long counter = 0;
+//const int ENCODER_BUTTON = 4;
+//int encoderButtonState = 0;
 
 void setup() {
   Serial.begin(115200);
-  pinMode(
+//  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  Serial.println("Basic Encoder Test:");
 }
 
-void loop() {
+long previousEncoder = -999;
 
+void loop() {
+  long encoder = ENCODER.read();
+  long tempEncoder = (encoder / 4);
+  if (tempEncoder != previousEncoder) {
+    previousEncoder = tempEncoder;
+    Serial.println(tempEncoder);
+  }
+  if (Serial.available() > 0) {
+    char input = Serial.read();
+    if (input == 'r') {
+      ENCODER.write(0);
+    }
+  }
 }
