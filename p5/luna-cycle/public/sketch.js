@@ -12,8 +12,6 @@ socket.on("state", (data) => {
 });
 
 socket.on("encoder", (data) => {
-  // console.log(data);
-  data = data.trim();
   if (data === 'tick++') {
     isProceeding === true;
     encoder++;
