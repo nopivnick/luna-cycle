@@ -1,5 +1,8 @@
-const int lampUserA = 8;
-const int lampUserB = 9;
+const int LAMP_USER_A = 8;
+const int LAMP_USER_B = 9;
+
+bool isUserA_lampOn = false;
+bool isUserB_lampOn = false;
 
 void setup() {
   Serial.begin(115200);
@@ -9,18 +12,18 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0) { // If there's data in the serial buffer ...
-    char input = Serial.read(); // read it and assign it to a variable.
+    char input = Serial.read(); // ... read it and assign it to a variable.
     if (input == 'A') {
-      digitalWrite(lampUserA, HIGH);
+      digitalWrite(LAMP_USER_A, HIGH);
     }
     if (input == 'a') {
-      digitalWrite(lampUserA, LOW);
+      digitalWrite(LAMP_USER_A, LOW);
     }
     if (input == 'B') {
-      digitalWrite(lampUserB, HIGH);
+      digitalWrite(LAMP_USER_B, HIGH);
     }
     if (input == 'b') {
-      digitalWrite(lampUserB, LOW);
+      digitalWrite(LAMP_USER_B, LOW);
     }
   }
 }
