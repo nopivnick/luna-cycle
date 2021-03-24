@@ -18,17 +18,16 @@ unsigned long previousTimeStamp = 0;
 bool isSpinning = false;
 bool isSpinningFwd = false;
 bool isSpinningBkwd = false;
+
 bool isGoTime = false;
 
 void setup() {
   Serial.begin(115200);
-  //  Serial.flush();
-  //  delay(10);
   //  timeStamp = millis();
   //  prevEncoderPulse = millis();
-  Serial.print(isSpinning);
-  Serial.print(" ");
-  Serial.println(isGoTime);
+  //  Serial.print(isSpinning);
+  //  Serial.print(" ");
+  //  Serial.println(isGoTime);
 }
 
 void loop() {
@@ -40,9 +39,9 @@ void loop() {
 void updateEncoder() {
   encoder = ENCODER.read();
   long tempEncoder = (encoder / 4); // TODO: should this just be encoder = (encoder / 4)?
-//  Serial.print(tempEncoder);
-//  Serial.print(" ");
-//  Serial.println(previousEncoder);
+  //  Serial.print(tempEncoder);
+  //  Serial.print(" ");
+  //  Serial.println(previousEncoder);
   if (tempEncoder != previousEncoder) {
     Serial.println(tempEncoder);
     prevEncoderPulse = timeStamp;
@@ -77,9 +76,9 @@ void resetEncoder() {
 }
 
 void updateState() {
-  Serial.print(isSpinning);
-  Serial.print(" ");
-  Serial.println(isGoTime);
+  //  Serial.print(isSpinning);
+  //  Serial.print(" ");
+  //  Serial.println(isGoTime);
   isGoTime = isSpinning;
   if (isGoTime == true) {
     Serial.println("GO!");
