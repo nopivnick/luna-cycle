@@ -63,7 +63,7 @@ void loop() {
   updateMPR121();
   updatePlates();
   updateEncoder();
-  updateState();
+  updateStatus();
 }
 
 void updateMPR121() {
@@ -118,21 +118,21 @@ void updatePlates() {
 
 void updateEncoder() {
   encoder = ENCODER.read();
-  long tempEncoder = (encoder / 4); // TODO: should this just be encoder = (encoder / 4)?
-  //  Serial.print(tempEncoder);
+  encoder = (encoder / 4); // TODO: should this just be encoder = (encoder / 4)?
+  //  Serial.print(encoder);
   //  Serial.print(" ");
   //  Serial.println(previousEncoder);
-  if (tempEncoder != previousEncoder) {
-    Serial.println(tempEncoder);
+  if (encoder != previousEncoder) {
+    Serial.println(encoder);
     prevEncoderPulse = timeStamp;
-    if (tempEncoder > previousEncoder) {
+    if (encoder > previousEncoder) {
       bool isSpinningFwd = true;
       bool isSpinningBkwd = false;
-    } else if (tempEncoder < previousEncoder) {
+    } else if (encoder < previousEncoder) {
       bool isSpinningFwd = false;
       bool isSpinningBkwd = true;
     }
-    previousEncoder = tempEncoder;
+    previousEncoder = encoder;
   }
   if (timeStamp - prevEncoderPulse <= encoderPulseInterval) { // TODO: this is true at boot!
     isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
@@ -155,7 +155,7 @@ void resetEncoder() {
   }
 }
 
-void updateState() {
+void updateStatus() {
   //  Serial.print(isSpinning);
   //  Serial.print(" ");
   //  Serial.println(isGoTime);
