@@ -10,6 +10,8 @@ function hotKeyPressed() {
     isEncoderDisplayed = !isEncoderDisplayed;
   } else if (key === 'm') {
     toggleMirror();
+  } else if (key === 't') {
+    toggleTrackpad();
   } else if ((keyIsDown(SHIFT)) && ((keyCode === RIGHT_ARROW))) {
     sceneManager.showNextScene();
   } else if ((keyIsDown(SHIFT)) && ((keyCode === LEFT_ARROW))) {
@@ -51,6 +53,15 @@ function toggleMirror() {
   } else {
     screen.style('transform: rotateY(180deg)');
     isScreenMirrored = !isScreenMirrored;
+  }
+}
+
+function toggleTrackpad() {
+  if (isTrackpadEncoder === true) {
+    // TODO: trackpad acts as encoder
+    isTrackpadEncoder = !isTrackpadEncoder;
+  } else {
+    isTrackpadEncoder = !isTrackpadEncoder;
   }
 }
 

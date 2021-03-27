@@ -66,6 +66,7 @@ let alphaFade = 0.005;
 
 let isCursorDisplayed = false;
 let isEncoderDisplayed = false;
+let isTrackpadEncoder = false;
 
 let isScreenMirrored = false;
 
