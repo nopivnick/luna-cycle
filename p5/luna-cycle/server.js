@@ -9,12 +9,14 @@
  * where <portName> is the name of the serial port connected to the Arduino, e.g. /dev/cu.usbmodemXXXXX (on OSX)
  */
 
+const environment = "local" // "local" or "hosted";
+
 const SerialPort = require('serialport'); // include the serialport library
 const portName = process.argv[2]; // get the port name from the command line
 const mySerialPort = new SerialPort(portName, { // open the port ...
-  baudRate: 115200 // and set baud.
+  baudRate: 115200 // ...  and set baud.
 });
-var Readline = SerialPort.parsers.Readline; // make instance of Readline parser
+var Readline = SerialPort.parsers.Readline; // make an instance of Readline parser
 var parser = new Readline(); // make a new parser to read ASCII lines
 mySerialPort.pipe(parser); // pipe the serial stream to the parser
 
@@ -29,16 +31,27 @@ let users = {
 }
 
 let state = {
+  isUserA_myTurn: true,
+  isUserB_myTurn: true,
   scene: 0,
   tone: "bliss",
-  turn: "userA"
-  // encoder: -1,
-  // previousEncoder: -1,
-  // charIndex: 0
+  encoder: -999,
+  previousEncoder: -999,
+  isGoTime: false
 }
 
-let isLampUserA = false;
-let isLampUserB = false;
+let isUserA_touchingPlate = false;
+let isUserB_touchingPlate = false;
+let isAandB_touchingPlates = false;
+let isSpinning = false;
+let isSpinningFwd = false;
+let isSpinningBkwd = false;
+
+let isUserA_lampOn = false;
+let isUserB_lampOn = false;
+
+let isUserA_myTurn = false;
+let isUserB_myTurn = false;
 
 app.use(express.static("public"));
 
@@ -52,8 +65,10 @@ io.on('connection', (socket) => {
     console.log('a user disconnected: ' + socket.id);
   } else if (!users.userA) { // otherwise check if the first slot is available ...
     users.userA = socket.id; // and add socket to userA slot ...
+    // TODO: tell user what their state should be
   } else {
     users.userB = socket.id; // otherwise add socket to userB slot.
+    // TODO: tell user what their state should be
   }
 
   console.log(users);
@@ -86,10 +101,10 @@ function sendBrowserEncoder(data) {
  */
 
 function sendArduinoLamp() {
-  if (isLampUserA) {
+  if (isUserA_lampOn) {
     mySerialPort.write("lampUserA");
   }
-  if (isLampUserB) {
+  if (isUserB_lampOn) {
     mySerialPort.write("lampUserB");
   }
 }
@@ -113,10 +128,15 @@ function showPortError(error) {
 }
 
 function readSerialData(data) {
-  console.log(data);
-  if (data === "tick++" || "tick--") {
-    sendBrowserEncoder(data);
-  }
+  // data = data.trim();
+  // if (data === "tick++" || "tick--") {
+  //   sendBrowserEncoder(data);
+  //   console.log(data);
+  // }
+  // console.log(data);
+  state = data;
+  console.log(state);
+  io.emit("state", state);
 }
 
 // // ------------------------ Server function
