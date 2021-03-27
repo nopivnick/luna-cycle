@@ -43,8 +43,8 @@ const long encoderPulseInterval = 1000;
 unsigned long prevEncoderPulse = 0;
 int encoderResolution = 10;
 
-long encoder = -999;
-long previousEncoder = -999;
+long encoder = 0;
+long previousEncoder = 0;
 
 unsigned long timeStamp = 0;
 unsigned long previousTimeStamp = 0;
