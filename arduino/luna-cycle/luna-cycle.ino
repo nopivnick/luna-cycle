@@ -1,6 +1,22 @@
-#include <Wire.h>
+/*
+  Attribution:
+  - https://github.com/tigoe/html-for-conndev/blob/main/serialport/ArduinoSendJSON/ArduinoSendJSON.ino
+*/
+
 #include "Adafruit_MPR121.h"
+#include <Arduino_JSON.h>
 #include <Encoder.h>
+#include <Wire.h>
+
+// Set input pins:
+const int POT_PADDLE_USER_A = A0;
+const int POT_PADDLE_USER_B = A1;
+const int LED_PLATE_USER_A = 6;
+const int LED_PLATE_USER_B = 7;
+const int LED_PADDLE_USER_A = 8;
+const int LED_PADDLE_USER_B = 9;
+const int LED_LAMP_USER_A = 10;
+const int LED_LAMP_USER_B = 11;
 
 #ifndef _BV
 #define _BV(bit) (1 << (bit))
@@ -25,6 +41,7 @@ Encoder ENCODER(2, 3); // Interrupt pins on the UNO are 2 & 3
 
 const long encoderPulseInterval = 1000;
 unsigned long prevEncoderPulse = 0;
+int encoderResolution = 10;
 
 long encoder = -999;
 long previousEncoder = -999;
@@ -42,6 +59,11 @@ bool isSpinningBkwd = false;
 
 bool isGoTime = false;
 
+bool isStateChanged = false;
+
+// a JSON object to hold the data to send:
+JSONVar state;
+
 void setup() {
   Serial.begin(115200);
 
@@ -56,6 +78,20 @@ void setup() {
     while (1);
   }
   Serial.println("MPR121 found!");
+
+  // initialize values in JSON object:
+  state["encoder"] = encoder;
+  state["previousEncoder"] = previousEncoder;
+
+  state["isUserA_touchingPlate"] = isUserA_touchingPlate;
+  state["isUserB_touchingPlate"] = isUserB_touchingPlate;
+  state["isAandB_touchingPlates"] = isAandB_touchingPlates;
+
+  state["isSpinning"] = isSpinning;
+  state["isSpinningFwd"] = isSpinningFwd;
+  state["isSpinningBkwd"] = isSpinningBkwd;
+
+  state["isGoTime"] = isGoTime;
 }
 
 void loop() {
@@ -64,6 +100,7 @@ void loop() {
   updatePlates();
   updateEncoder();
   updateStatus();
+  updateState();
 }
 
 void updateMPR121() {
@@ -90,10 +127,13 @@ void updatePlates() {
     isUserA_touchingPlate = true; // ... user A is considered to be touching their plate.
     //    Serial.print("isUserA_touchingPlate is ");
     //    Serial.println(isUserA_touchingPlate);
+    state["isUserA_touchingPlate"] = isUserA_touchingPlate;
+    isStateChanged = true;
   } else {
     isUserA_touchingPlate = false;
     //    Serial.print("isUserA_touchingPlate is ");
     //    Serial.println(isUserA_touchingPlate);
+    state["isUserA_touchingPlate"] = isUserA_touchingPlate;
   }
   if (MPR121.touched() & (1 << 1)) { // If capacitive sensor 1 is touched ...
     prevCapTouchPlateUserB = timeStamp;
@@ -103,16 +143,22 @@ void updatePlates() {
     isUserB_touchingPlate = true; // ... user B is considered to be touching their plate.
     //    Serial.print("isUserB_touchingPlate is ");
     //    Serial.println(isUserB_touchingPlate);
+    state["isUserB_touchingPlate"] = isUserB_touchingPlate;
+    isStateChanged = true;
   } else {
     isUserB_touchingPlate = false;
     //    Serial.print("isUserB_touchingPlate is ");
     //    Serial.println(isUserB_touchingPlate);
+    state["isUserB_touchingPlate"] = isUserB_touchingPlate;
   }
   if (isUserA_touchingPlate && isUserB_touchingPlate) {
     isAandB_touchingPlates = true;
     //    Serial.println("Both plates are touched!");
+    state["isAandB_touchingPlates"] = isAandB_touchingPlates;
+    isStateChanged = true;
   } else {
     isAandB_touchingPlates = false;
+    state["isAandB_touchingPlates"] = isAandB_touchingPlates;
   }
 }
 
@@ -123,25 +169,39 @@ void updateEncoder() {
   //  Serial.print(" ");
   //  Serial.println(previousEncoder);
   if (encoder != previousEncoder) {
-    Serial.println(encoder);
+    //    Serial.println(encoder);
     prevEncoderPulse = timeStamp;
     if (encoder > previousEncoder) {
       bool isSpinningFwd = true;
+      state["isSpinningFwd"] = isSpinningFwd;
       bool isSpinningBkwd = false;
+      state["isSpinningBkwd"] = isSpinningBkwd;
+      isStateChanged = true;
     } else if (encoder < previousEncoder) {
       bool isSpinningFwd = false;
+      state["isSpinningFwd"] = isSpinningFwd;
       bool isSpinningBkwd = true;
+      state["isSpinningBkwd"] = isSpinningBkwd;
+      isStateChanged = true;
     }
+    state["encoder"] = encoder;
+    state["previousEncoder"] = previousEncoder;
     previousEncoder = encoder;
   }
   if (timeStamp - prevEncoderPulse <= encoderPulseInterval) { // TODO: this is true at boot!
     isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
     //    Serial.println("SPINNING!");
+    state["isSpinning"] = isSpinning;
+    isStateChanged = true;
   } else {
     isSpinning = false;
+    state["isSpinning"] = isSpinning;
     bool isSpinningFwd = false;
+    state["isSpinningFwd"] = isSpinningFwd;
     bool isSpinningBkwd = false;
+    state["isSpinningBkwd"] = isSpinningBkwd;
     //    Serial.println("NOT SPINNING!");
+    
   }
   resetEncoder();
 }
@@ -159,10 +219,21 @@ void updateStatus() {
   //  Serial.print(isSpinning);
   //  Serial.print(" ");
   //  Serial.println(isGoTime);
-  isGoTime = isAandB_touchingPlates && isSpinning;
+  isGoTime = isSpinning; // 1 Player
+  //  isGoTime = isAandB_touchingPlates && isSpinning; // 2 player
   if (isGoTime) {
-    Serial.println("GO!");
+    //    Serial.println("GO!");
   } else if (!isGoTime) {
-    Serial.println("NO!");
+    //    Serial.println("NO!");
+  }
+  state["isGoTime"] = isGoTime;
+}
+
+void updateState() {
+  // if anything has changed, send new data to the server:
+  if (isStateChanged) {
+    Serial.println(state);
+    // clear the change flag:
+    isStateChanged = false;
   }
 }
