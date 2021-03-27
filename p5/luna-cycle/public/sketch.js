@@ -7,21 +7,20 @@ socket.on('connect', function() {
 });
 
 socket.on("state", (data) => {
-  state = data;
+  state = JSON.parse(data);
   console.log(state);
 });
 
-socket.on("encoder", (data) => {
-  if (data === 'tick++') {
-    isProceeding === true;
-    encoder++;
-    console.log(data);
-  } else if (data === "tick--") {
-    encoder--;
-    console.log(data);
-  }
-});
-
+// socket.on("encoder", (data) => {
+//   if (data === 'tick++') {
+//     isProceeding === true;
+//     encoder++;
+//     console.log(data);
+//   } else if (data === "tick--") {
+//     encoder--;
+//     console.log(data);
+//   }
+// });
 
 let state;
 
