@@ -49,7 +49,7 @@ function calcTrackpadCrossProd() {
   let y2 = trackpadSamples[2][1] - trackpadSamples[1][1];
   // Calculate the cross product of the two vectors (B-A) x (C-B)
   cross = (x1 * y2) - (y1 * x2);
-  console.log("Trackpad Cross Product: " + cross);
+  // console.log("Trackpad Cross Product: " + cross);
 }
 
 function calcTrackpadAngle() {

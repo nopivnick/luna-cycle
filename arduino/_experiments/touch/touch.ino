@@ -1,5 +1,3 @@
-
-
 #include <Wire.h>
 #include "Adafruit_MPR121.h"
 
@@ -7,23 +5,24 @@
 #define _BV(bit) (1 << (bit))
 #endif
 
-// You can have up to 4 on one i2c bus but one is enough for testing!
-Adafruit_MPR121 touchSensor = Adafruit_MPR121();
+Adafruit_MPR121 MPR121 = Adafruit_MPR121();
 
 // Keeps track of the last pins touched
 // so we know when buttons are 'released'
-uint16_t lastTouched = 0;
-uint16_t currTouched = 0;
+uint16_t touchState = 0;
+uint16_t prevTouchState = 0;
 
-const int plateUserA = 1;
-const int plateUserB = 2;
+const long capPlateInterval = 1000;
+unsigned long prevCapTouchPlateUserA = 0;
+unsigned long prevCapTouchPlateUserB = 0;
 
-const int paddleUserA = 3;
-const int paddleUserB = 4;
+unsigned long timeStamp = 0;
+unsigned long previousTimeStamp = 0;
 
-bool isPlatesReady = false;
-bool isPaddlesReady = false;
-bool isReady = false;
+bool isUserA_touchingPlate = false;
+bool isUserB_touchingPlate = false;
+bool isAandB_touchingPlates = false;
+bool isGoTime = false;
 
 void setup() {
   Serial.begin(115200);
@@ -36,7 +35,7 @@ void setup() {
 
   // Default address is 0x5A, if tied to 3.3V its 0x5B
   // If tied to SDA its 0x5C and if SCL then 0x5D
-  if (!touchSensor.begin(0x5A)) {
+  if (!MPR121.begin(0x5A)) {
     Serial.println("MPR121 not found, check wiring?");
     while (1);
   }
@@ -44,71 +43,67 @@ void setup() {
 }
 
 void loop() {
-  // Get the currently touched pads
-  currTouched = touchSensor.touched();
+  timeStamp = millis();
+  updateMPR121();
+  updatePlates();
+  updateState();
+}
 
+void updateMPR121() {
+  touchState = MPR121.touched(); // Get the currently touched pads
   for (uint8_t i = 0; i < 12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
-    if ((currTouched & _BV(i)) && !(lastTouched & _BV(i)) ) {
+    if ((touchState & _BV(i)) && !(prevTouchState & _BV(i)) ) {
       Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
-    if (!(currTouched & _BV(i)) && (lastTouched & _BV(i)) ) {
+    if (!(touchState & _BV(i)) && (prevTouchState & _BV(i)) ) {
       Serial.print(i); Serial.println(" released");
     }
   }
-
-  // reset our state
-  lastTouched = currTouched;
-
-  // comment out this line for detailed data from the sensor!
-  return;
-
-  // debugging info, what
-  Serial.print("\t\t\t\t\t\t\t\t\t\t\t\t\t 0x"); Serial.println(touchSensor.touched(), HEX);
-  Serial.print("Filt: ");
-  for (uint8_t i = 0; i < 12; i++) {
-    Serial.print(touchSensor.filteredData(i)); Serial.print("\t");
-  }
-  Serial.println();
-  Serial.print("Base: ");
-  for (uint8_t i = 0; i < 12; i++) {
-    Serial.print(touchSensor.baselineData(i)); Serial.print("\t");
-  }
-  Serial.println();
-
-  // put a delay so it isn't overwhelming
-  delay(100); // TODO: delays are bad for interrupts?
+  prevTouchState = touchState; // Reset state
 }
 
 void updatePlates() {
-  if (touchSensor.touched() & (1 << paddleUserA) & (1 << paddleUserB)) { // TODO: please explain '&' and '<<'
-    isPlatesReady = true;
-    Serial.println("isPlatesReady is " + isPlatesReady);
-  } else if (touchSensor.touched() & (!(1 << paddleUserA) & (1 << paddleUserB)) || ((1 << paddleUserA) & !(1 << paddleUserB)) { 
-    isPlatesReady = false
-    Serial.println("isPlatesReady is " + isPlatesReady);
-    Serial.println("Only 1 of 2 plates are touched.");
+  if (MPR121.touched() & (1 << 0)) { // If capacitive sensor 0 is touched ...
+    prevCapTouchPlateUserA = timeStamp;
+    //    Serial.println(prevCapTouchPlateUserA);
+  }
+  if (timeStamp - prevCapTouchPlateUserA <= capPlateInterval) { // ... and it's been less than a certain interval ...
+    isUserA_touchingPlate = true; // ... user A is considered to be touching their plate.
+//    Serial.print("isUserA_touchingPlate is ");
+//    Serial.println(isUserA_touchingPlate);
   } else {
-    isPlatesReady = false;
-    Serial.println("isPlatesReady is " + isPlatesReady);
+    isUserA_touchingPlate = false;
+//    Serial.print("isUserA_touchingPlate is ");
+//    Serial.println(isUserA_touchingPlate);
+  }
+  if (MPR121.touched() & (1 << 1)) { // If capacitive sensor 1 is touched ...
+    prevCapTouchPlateUserB = timeStamp;
+    //    Serial.println(prevCapTouchPlateUserB);
+  }
+  if (timeStamp - prevCapTouchPlateUserB <= capPlateInterval) { // ... and it's been less than a certain interval ...
+    isUserB_touchingPlate = true; // ... user B is considered to be touching their plate.
+    //    Serial.print("isUserB_touchingPlate is ");
+    //    Serial.println(isUserB_touchingPlate);
+  } else {
+    isUserB_touchingPlate = false;
+    //    Serial.print("isUserB_touchingPlate is ");
+    //    Serial.println(isUserB_touchingPlate);
+  }
+  if (isUserA_touchingPlate && isUserB_touchingPlate) {
+    isAandB_touchingPlates = true;
+    //    Serial.println("Both plates are touched!");
+  } else {
+    isAandB_touchingPlates = false;
   }
 }
 
-void updatePaddles() {
-  if (touchSensor.touched() & (1 << plateUserA) & (1 << plateUserB)) { // TODO: please explain '&' and '<<'
-    isPaddlesReady = true;
-    Serial.println("isPaddlesReady is " + isPaddlesReady);
-  } else if (touchSensor.touched() & (!(1 << plateUserA) & (1 << plateUserB)) || ((1 << plateUserA) & !(1 << plateUserB)) { 
-    isPaddlesReady = false
-    Serial.println("isPaddlesReady is " + isPaddlesReady);
-    Serial.println("Only 1 of 2 plates are touched.");
-  } else {
-    isPaddlesReady = false;
-    Serial.println("isPaddlesReady is " + isPaddlesReady);
+void updateState() {
+  isGoTime = isAandB_touchingPlates;
+  if (isGoTime) {
+    Serial.println("GO!");
+  } else if (!isGoTime) {
+    Serial.println("NO!");
   }
-}
-
-void updateState () {
-  isReady = isPlatesReady && isPaddlesReady;
 }
