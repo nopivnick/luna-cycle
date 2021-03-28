@@ -76,24 +76,6 @@ function calcTrackpadDist() {
   // smoothedTrackpadDist = lerp(smoothedTrackpadSpeed, trackpadDist, 0.1);
 }
 
-function updateSpinState() {
-  // if (cross > 0) {
-  //   isSpinning = true;
-  //   isSpinningFwd = true;
-  //   isSpinningBkwd = false;
-  //   encoder++;
-  // } else if (cross < 0) {
-  //   isSpinning = true;
-  //   isSpinningFwd = false;
-  //   isSpinningBkwd = true;
-  //   encoder--;
-  // } else {
-  //   isSpinning = false;
-  //   isSpinningFwd = false;
-  //   isSpinningBkwd = false;
-  // }
-}
-
 function displaySpinState() {
   if (isSpinningFwd === true) {
     // textAlign(CENTER);

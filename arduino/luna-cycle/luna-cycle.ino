@@ -91,7 +91,7 @@ void setup() {
   state["isSpinningFwd"] = isSpinningFwd;
   state["isSpinningBkwd"] = isSpinningBkwd;
 
-  state["isGoTime"] = isGoTime;
+  //  state["isGoTime"] = isGoTime;
 }
 
 void loop() {
@@ -99,8 +99,8 @@ void loop() {
   updateMPR121();
   updatePlates();
   updateEncoder();
-  updateStatus();
-  updateState();
+  //  updateStatus();
+  sendState();
 }
 
 void updateMPR121() {
@@ -201,7 +201,7 @@ void updateEncoder() {
     bool isSpinningBkwd = false;
     state["isSpinningBkwd"] = isSpinningBkwd;
     //    Serial.println("NOT SPINNING!");
-    
+
   }
   resetEncoder();
 }
@@ -229,11 +229,11 @@ void updateStatus() {
   state["isGoTime"] = isGoTime;
 }
 
-void updateState() {
+void sendState() {
   // if anything has changed, send new data to the server:
-  if (isStateChanged) {
+//  if (isStateChanged) {
     Serial.println(state);
     // clear the change flag:
-    isStateChanged = false;
-  }
+//    isStateChanged = false;
+//  }
 }

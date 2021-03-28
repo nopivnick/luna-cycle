@@ -1,6 +1,6 @@
 console.log("encoder.js FOUND");
 
-function updateEncoder() {
+function updateTrackpadEncoder() {
   previousEncoder = encoder
   if (keyIsDown(RIGHT_ARROW) || cross > 0) {
     isSpinning = true;
@@ -25,19 +25,14 @@ function updateEncoder() {
   isFading = isFadingOut || isFadingOut;
   isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
   updateAlpha();
+  // console.log("isSpinning: " + isSpinning);
+  // console.log("encoder: " + encoder);
+  // console.log("cross: " + cross);
 }
 
-function displayEncoder() {
-  if (isEncoderDisplayed === true) {
-    fill(255, 0, 0);
-    text(("Encoder: " + encoder), windowWidth / 2, windowHeight / 2);
-    // let counter = createP("Encoder: " + encoder); // TODO: do this in the DOM instead but canvas is -1 on the Z plane
-    // counter.style('position: fixed');
-    // counter.style('top: 50%');
-    // counter.style('left: 50%');
-    // counter.style('transform: translate(-50%, -50%)');
-    // counter.style('color: red');
-  }
+function resetEncoder() {
+  encoder = -1;
+  previousEncoder = 0;
 }
 
 console.log("encoder.js lOADED");

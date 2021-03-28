@@ -25,8 +25,8 @@ function updateEncoder() {
   updateAlpha();
 }
 
-function displayEncoder() {
-  if (isEncoderDisplayed === true) {
+function displayCounter() {
+  if (isCounterDisplayed === true) {
     fill(255, 0, 0);
     text(("Encoder: " + encoder), windowWidth / 2, windowHeight / 2);
   }
