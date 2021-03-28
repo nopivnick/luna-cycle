@@ -8,7 +8,8 @@ socket.on('connect', function() {
 
 socket.on("state", (data) => {
   state = JSON.parse(data);
-  console.log(state);
+  // console.log(state);
+  updateState();
 });
 
 // socket.on("encoder", (data) => {
@@ -49,11 +50,15 @@ let charIndex;
 let encoder;
 let previousEncoder;
 
-let isMyTurn = false;
+let isUserA_touchingPlate = false;
+let isUserB_touchingPlate = false;
+let isAandB_touchingPlates = false;
 
 let isSpinning = false;
 let isSpinningFwd = false;
 let isSpinningBkwd = false;
+
+let isGoTime = false;
 
 let isFading = false;
 let isFadingIn = false;
@@ -169,4 +174,19 @@ function updateTone() { // TODO: not working
     /* Bliss */
     tone = 'bliss';
   }
+}
+
+function updateState() {
+  encoder = state.encoder; // TODO: is there a smarter way to do this ...
+  console.log("encoder: " + encoder);
+  previousEncoder = state.previousEncoder; // ... and this ...
+  console.log("previousEncoder: " + previousEncoder);
+  isUserA_touchingPlate = state.isUserA_touchingPlate; // ... and this, etc.?
+  isUserB_touchingPlate = state.isUserB_touchingPlate;
+  isAandB_touchingPlates = state.isAandB_touchingPlates;
+  isSpinning = state.isSpinning;
+  isSpinningFwd = state.isSpinningFwd;
+  isSpinningBkwd = state.isSpinningBkwd;
+  isGoTime = state.isGoTime;
+  console.log("isGoTime: " + isGoTime);
 }
