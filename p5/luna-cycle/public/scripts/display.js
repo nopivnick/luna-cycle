@@ -1,10 +1,12 @@
+console.log("display.js FOUND");
+
 let isFading = false;
 let isFadingIn = false;
 let isFadingOut = false;
 let isProceeding = false;
 
 let isAlphaOn = true;
-// let alphaValue = 1;
+let alphaValue = 1;
 let alphaFade = 0.005;
 
 let isCursorDisplayed = false;
@@ -41,6 +43,10 @@ function updateDisplay() {
   updateAlpha();
 }
 
+function resetDisplay() {
+  alphaValue = 1; // otherwise characters on a new screen fade in incrementally rather than turn opaque
+  charIndex = -1;
+}
 
 function updateAlpha() {
   if (isAlphaOn === false) {
@@ -96,7 +102,7 @@ function updateScene() {
 function displayCounter() {
   if (isCounterDisplayed === true) {
     fill(255, 0, 0);
-    text(("Counter: " + counter), windowWidth / 2, windowHeight / 2);
+    text(("Encoder: " + encoder + "    " + "Counter: " + counter + "    " + "CharIndex: " + charIndex + "    " + "AlphaValue: " + alphaValue), windowWidth / 2, windowHeight / 2);
     // let counter = createP("Encoder: " + encoder); // TODO: do this in the DOM instead but canvas is -1 on the Z plane
     // counter.style('position: fixed');
     // counter.style('top: 50%');
@@ -105,3 +111,5 @@ function displayCounter() {
     // counter.style('color: red');
   }
 }
+
+console.log("display.js lOADED");
