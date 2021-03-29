@@ -33,17 +33,6 @@ let loopCounter = 0;
 
 let tone = 'bliss';
 
-// let characters = [];
-let charIndex;
-// let previousCharIndex;
-// let highestCharIndex;
-
-let counter = 0;
-let previousCounter = 0;
-
-let tempEncoder = 0;
-let tempPreviousEncoder = 0;
-
 let encoder;
 let previousEncoder;
 
@@ -134,9 +123,6 @@ function getSceneNum() {
 function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
-  // let div = createDiv(); // TODO: fix this
-  // text = setupScreen(scene, tone);
-  // div.child(text);
   setupScreen(scene, tone);
   resetDisplay();
   // resetEncoder(); TODO: incorporate trackpadEncoder 

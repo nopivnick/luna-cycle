@@ -1,5 +1,16 @@
 console.log("progress.js FOUND");
 
+let characters = [];
+let charIndex;
+// let previousCharIndex;
+// let highestCharIndex;
+
+let counter = 0;
+let previousCounter = 0;
+
+let tempEncoder = 0;
+let tempPreviousEncoder = 0;
+
 function updateCharIndex() {
   if (counter > charIndex) {
     charIndex = counter;
