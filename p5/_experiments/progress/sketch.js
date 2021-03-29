@@ -22,7 +22,7 @@ let isAlphaOn = true;
 let alphaValue = 1;
 let alphaFade = 0.005;
 
-let isEncoderDisplayed = true;
+let isCounterDisplayed = true;
 
 function preload() {
   scene0 = loadStrings('assets/text/scene0.txt');
@@ -52,5 +52,5 @@ function draw() {
   background(0);
   updateEncoder(); // TODO: should this be tied to time (or serialIn?) rather than framerate?
   displayScreen();
-  displayEncoder();
+  displayCounter();
 }

@@ -59,7 +59,8 @@ bool isSpinningBkwd = false;
 
 bool isGoTime = false;
 
-bool isStateChanged = false;
+bool isTouchStrict = false;
+bool isSpinStrict = false;
 
 // a JSON object to hold the data to send:
 JSONVar state;
@@ -91,7 +92,7 @@ void setup() {
   state["isSpinningFwd"] = isSpinningFwd;
   state["isSpinningBkwd"] = isSpinningBkwd;
 
-  state["isGoTime"] = isGoTime;
+  //  state["isGoTime"] = isGoTime;
 }
 
 void loop() {
@@ -99,8 +100,8 @@ void loop() {
   updateMPR121();
   updatePlates();
   updateEncoder();
-  updateStatus();
-  updateState();
+  //  updateStatus();
+  sendState();
 }
 
 void updateMPR121() {
@@ -121,41 +122,27 @@ void updateMPR121() {
 void updatePlates() {
   if (MPR121.touched() & (1 << 0)) { // If capacitive sensor 0 is touched ...
     prevCapTouchPlateUserA = timeStamp;
-    //    Serial.println(prevCapTouchPlateUserA);
   }
   if (timeStamp - prevCapTouchPlateUserA <= capPlateInterval) { // ... and it's been less than a certain interval ...
     isUserA_touchingPlate = true; // ... user A is considered to be touching their plate.
-    //    Serial.print("isUserA_touchingPlate is ");
-    //    Serial.println(isUserA_touchingPlate);
     state["isUserA_touchingPlate"] = isUserA_touchingPlate;
-    isStateChanged = true;
   } else {
     isUserA_touchingPlate = false;
-    //    Serial.print("isUserA_touchingPlate is ");
-    //    Serial.println(isUserA_touchingPlate);
     state["isUserA_touchingPlate"] = isUserA_touchingPlate;
   }
   if (MPR121.touched() & (1 << 1)) { // If capacitive sensor 1 is touched ...
     prevCapTouchPlateUserB = timeStamp;
-    //    Serial.println(prevCapTouchPlateUserB);
   }
   if (timeStamp - prevCapTouchPlateUserB <= capPlateInterval) { // ... and it's been less than a certain interval ...
     isUserB_touchingPlate = true; // ... user B is considered to be touching their plate.
-    //    Serial.print("isUserB_touchingPlate is ");
-    //    Serial.println(isUserB_touchingPlate);
     state["isUserB_touchingPlate"] = isUserB_touchingPlate;
-    isStateChanged = true;
   } else {
     isUserB_touchingPlate = false;
-    //    Serial.print("isUserB_touchingPlate is ");
-    //    Serial.println(isUserB_touchingPlate);
     state["isUserB_touchingPlate"] = isUserB_touchingPlate;
   }
   if (isUserA_touchingPlate && isUserB_touchingPlate) {
     isAandB_touchingPlates = true;
-    //    Serial.println("Both plates are touched!");
     state["isAandB_touchingPlates"] = isAandB_touchingPlates;
-    isStateChanged = true;
   } else {
     isAandB_touchingPlates = false;
     state["isAandB_touchingPlates"] = isAandB_touchingPlates;
@@ -164,45 +151,57 @@ void updatePlates() {
 
 void updateEncoder() {
   encoder = ENCODER.read();
-  encoder = (encoder / 4); // TODO: should this just be encoder = (encoder / 4)?
-  //  Serial.print(encoder);
-  //  Serial.print(" ");
-  //  Serial.println(previousEncoder);
+  encoder = (encoder / 4); // TODO: Consider reading encoder on CHANGE instead?
   if (encoder != previousEncoder) {
-    //    Serial.println(encoder);
     prevEncoderPulse = timeStamp;
     if (encoder > previousEncoder) {
       bool isSpinningFwd = true;
       state["isSpinningFwd"] = isSpinningFwd;
       bool isSpinningBkwd = false;
       state["isSpinningBkwd"] = isSpinningBkwd;
-      isStateChanged = true;
     } else if (encoder < previousEncoder) {
       bool isSpinningFwd = false;
       state["isSpinningFwd"] = isSpinningFwd;
       bool isSpinningBkwd = true;
       state["isSpinningBkwd"] = isSpinningBkwd;
-      isStateChanged = true;
     }
     state["encoder"] = encoder;
     state["previousEncoder"] = previousEncoder;
     previousEncoder = encoder;
   }
-  if (timeStamp - prevEncoderPulse <= encoderPulseInterval) { // TODO: this is true at boot!
-    isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
-    //    Serial.println("SPINNING!");
-    state["isSpinning"] = isSpinning;
-    isStateChanged = true;
-  } else {
-    isSpinning = false;
-    state["isSpinning"] = isSpinning;
-    bool isSpinningFwd = false;
-    state["isSpinningFwd"] = isSpinningFwd;
-    bool isSpinningBkwd = false;
-    state["isSpinningBkwd"] = isSpinningBkwd;
-    //    Serial.println("NOT SPINNING!");
-    
+
+  if (isSpinStrict) { // TODO: fix this!
+//    Serial.print("isSpinStrict: "); Serial.println(isSpinStrict);
+//    Serial.print(isSpinningFwd); Serial.println(isSpinningBkwd);
+    if (isSpinningFwd == true || isSpinningBkwd == true) {
+      isSpinning = true;
+      state["isSpinning"] = isSpinning;
+    } else {
+      isSpinning = false;
+      state["isSpinning"] = isSpinning;
+      bool isSpinningFwd = false;
+      state["isSpinningFwd"] = isSpinningFwd;
+      bool isSpinningBkwd = false;
+      state["isSpinningBkwd"] = isSpinningBkwd;
+    }
   }
+  
+  if (!isSpinStrict) {
+//    Serial.print("isSpinStrict: "); Serial.println(isSpinStrict);
+//    Serial.print(isSpinningFwd); Serial.println(isSpinningBkwd);
+    if (timeStamp - prevEncoderPulse <= encoderPulseInterval) { // TODO: this is true at boot!
+      isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
+      state["isSpinning"] = isSpinning;
+    } else {
+      isSpinning = false;
+      state["isSpinning"] = isSpinning;
+      bool isSpinningFwd = false;
+      state["isSpinningFwd"] = isSpinningFwd;
+      bool isSpinningBkwd = false;
+      state["isSpinningBkwd"] = isSpinningBkwd;
+    }
+  }
+
   resetEncoder();
 }
 
@@ -216,24 +215,15 @@ void resetEncoder() {
 }
 
 void updateStatus() {
-  //  Serial.print(isSpinning);
-  //  Serial.print(" ");
-  //  Serial.println(isGoTime);
-  isGoTime = isSpinning; // 1 Player
+  isGoTime = isSpinning; // 1 Player w/ spinning
+  isGoTime = isSpinning && isUserA_touchingPlate; // 1 Player w/ spinning + touch
   //  isGoTime = isAandB_touchingPlates && isSpinning; // 2 player
   if (isGoTime) {
-    //    Serial.println("GO!");
   } else if (!isGoTime) {
-    //    Serial.println("NO!");
   }
   state["isGoTime"] = isGoTime;
 }
 
-void updateState() {
-  // if anything has changed, send new data to the server:
-  if (isStateChanged) {
-    Serial.println(state);
-    // clear the change flag:
-    isStateChanged = false;
-  }
+void sendState() {
+  Serial.println(state);
 }

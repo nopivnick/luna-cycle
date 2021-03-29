@@ -15,10 +15,10 @@ function setupScreen(scene) {
       paragraph.child(span);
     }
   }
-  resetCursor();
+  resetScreen();
 }
 
-function resetCursor() {
+function resetScreen() {
   alphaValue = 1; // otherwise characters on a new screen fade in incrementally rather than turn opaque
   charIndex = -1;
   encoder = -1;

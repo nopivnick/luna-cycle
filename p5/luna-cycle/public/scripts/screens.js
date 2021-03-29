@@ -4,10 +4,6 @@ let container;
 
 let base;
 
-let red;
-let green;
-let blue;
-
 function setupScreen(scene, tone) {
   container = createDiv();
   container.parent('mirror');
@@ -49,41 +45,6 @@ function setupCharacters(base, i) {
     paragraph.child(span);
     return paragraph;
   }
-}
-
-function setCSS(paragraph, i) {
-  if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
-    container.addClass("messages");
-    paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
-  }
-}
-
-function setColor(i) {
-  if ((lunaData.scenes[scene].paragraphs[i].cssClass !== null)) {
-    red = 0;
-    green = 0;
-    blue = 0;
-  } else {
-    red = 50;
-    green = 205;
-    blue = 50;
-  }
-}
-
-function setAlpha(span) {
-  if (isAlphaOn === true) {
-    // TODO: possible to handle alpha with a class in css?
-    span.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
-  } else {
-    span.style(`color: rgba(${red}, ${green}, ${blue}, 1)`);
-  }
-}
-
-function resetCursor() {
-  alphaValue = 1; // otherwise characters on a new screen fade in incrementally rather than turn opaque
-  charIndex = -1;
-  encoder = -1;
-  previousEncoder = 0;
 }
 
 console.log("scenes.js LOADED");

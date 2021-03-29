@@ -76,43 +76,6 @@ function calcTrackpadDist() {
   // smoothedTrackpadDist = lerp(smoothedTrackpadSpeed, trackpadDist, 0.1);
 }
 
-function updateSpinState() {
-  // if (cross > 0) {
-  //   isSpinning = true;
-  //   isSpinningFwd = true;
-  //   isSpinningBkwd = false;
-  //   encoder++;
-  // } else if (cross < 0) {
-  //   isSpinning = true;
-  //   isSpinningFwd = false;
-  //   isSpinningBkwd = true;
-  //   encoder--;
-  // } else {
-  //   isSpinning = false;
-  //   isSpinningFwd = false;
-  //   isSpinningBkwd = false;
-  // }
-}
-
-function displaySpinState() {
-  if (isSpinningFwd === true) {
-    // textAlign(CENTER);
-    // fill(255, 0, 0);
-    // text("Forward", windowWidth / 2, 10);
-    // document.body.innerHTML = "Forward";
-    console.log("isSpinningFwd is " + isSpinningFwd);
-  } else if (isSpinningBkwd === true) {
-    //   // textAlign(CENTER);
-    //   // fill(255, 0, 0);
-    //   // text("Backward", windowWidth / 2, 10);
-    //   // document.body.innerHTML = "Backward";
-    console.log("isSpinningBkwd is " + isSpinningBkwd);
-  } else {
-    //   // document.body.innerHTML = "Stopped";
-    console.log("isSpinning is " + isSpinning);
-  }
-}
-
 // Uncomment below for p5-friendly code
 // function mouseMoved() {
 //   print("Mouse is moving!");
@@ -126,5 +89,40 @@ function displaySpinState() {
 // document.addEventListener("mousemove", handleMouseEvent);
 // setInterval("updateSamples()", 100);
 // }
+
+function updateTrackpadEncoder() {
+  previousEncoder = encoder
+  if (keyIsDown(RIGHT_ARROW) || cross > 0) {
+    isSpinning = true;
+    isSpinningFwd = true;
+    isSpinningBkwd = false;
+    encoder++;
+  } else if (keyIsDown(LEFT_ARROW) || cross < 0) {
+    isSpinning = true;
+    isSpinningFwd = false;
+    isSpinningBkwd = true;
+    encoder--;
+  } else {
+    isSpinning = false;
+    isSpinningFwd = false;
+    isSpinningBkwd = false;
+  }
+  if (isSpinning) {
+    updateCharIndex();
+  }
+  isFadingOut = (isSpinningBkwd && encoder < charIndex) || (isSpinningFwd && encoder > characters.length);
+  isFadingIn = isSpinningFwd && encoder < charIndex;
+  isFading = isFadingOut || isFadingOut;
+  isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
+  updateAlpha();
+  // console.log("isSpinning: " + isSpinning);
+  // console.log("encoder: " + encoder);
+  // console.log("cross: " + cross);
+}
+
+function resetTrackpadEncoder() {
+  encoder = -1;
+  previousEncoder = 0;
+}
 
 console.log("trackpad.js LOADED.");

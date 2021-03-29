@@ -9,7 +9,7 @@
  * where <portName> is the name of the serial port connected to the Arduino, e.g. /dev/cu.usbmodemXXXXX (on OSX)
  */
 
-const environment = "local" // "local" or "hosted";
+const hosted = false; // "physical" or "hosted"
 
 const SerialPort = require('serialport'); // include the serialport library
 const portName = process.argv[2]; // get the port name from the command line
@@ -72,6 +72,8 @@ io.on('connection', (socket) => {
   }
 
   console.log(users);
+
+  // socket.emit("hosted", hosted);
 
   socket.emit("state", state);
 

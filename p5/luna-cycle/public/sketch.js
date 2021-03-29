@@ -1,7 +1,7 @@
 const socket = io();
 
 // Listen for confirmation of connection
-socket.on('connect', function() {
+socket.on('connect', function () {
   console.log("Connected to server.");
   console.log("Socket id: ", socket.id);
 });
@@ -10,18 +10,9 @@ socket.on("state", (data) => {
   state = JSON.parse(data);
   // console.log(state);
   updateState();
+  updateCounter();
+  updateDisplay();
 });
-
-// socket.on("encoder", (data) => {
-//   if (data === 'tick++') {
-//     isProceeding === true;
-//     encoder++;
-//     console.log(data);
-//   } else if (data === "tick--") {
-//     encoder--;
-//     console.log(data);
-//   }
-// });
 
 let state;
 
@@ -42,11 +33,6 @@ let loopCounter = 0;
 
 let tone = 'bliss';
 
-// let characters = [];
-let charIndex;
-// let previousCharIndex;
-// let highestCharIndex;
-
 let encoder;
 let previousEncoder;
 
@@ -60,31 +46,21 @@ let isSpinningBkwd = false;
 
 let isGoTime = false;
 
-let isFading = false;
-let isFadingIn = false;
-let isFadingOut = false;
-let isProceeding = false;
-
-let isAlphaOn = true;
-// let alphaValue = 1;
-let alphaFade = 0.005;
-
-let isCursorDisplayed = false;
-let isEncoderDisplayed = false;
 let isTrackpadEncoder = false;
-
-let isScreenMirrored = false;
 
 function setup() {
   setupCanvas();
   toggleCursor();
   setupSceneManager();
-  setInterval(() => {
-    updateSamples()
-  }, 100);
-  setInterval(() => {
-    updateEncoder() // TODO: should the serial communication baud be a multiple of this interval?
-  }, 25);
+  hosted = true; // TODO: how do I get this from the server?
+  if (hosted === true) {
+    setInterval(() => {
+      updateSamples()
+    }, 100);
+    setInterval(() => {
+      updateTrackpadEncoder() // TODO: should the serial communication baud be a multiple of this interval?
+    }, 25);
+  }
 }
 
 function draw() {
@@ -130,9 +106,8 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
-  // updateSpinState();
   // displaySpinState();
-  displayEncoder();
+  displayCounter();
   displayScreen();
 }
 
@@ -148,11 +123,10 @@ function getSceneNum() {
 function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
-  // let div = createDiv(); // TODO: fix this
-  // text = setupScreen(scene, tone);
-  // div.child(text);
   setupScreen(scene, tone);
-  resetCursor();
+  resetDisplay();
+  // resetTrackpadEncoder(); TODO: incorporate trackpadEncoder 
+  resetCounter();
 }
 
 function onExitScene() {
@@ -178,15 +152,16 @@ function updateTone() { // TODO: not working
 
 function updateState() {
   encoder = state.encoder; // TODO: is there a smarter way to do this ...
-  console.log("encoder: " + encoder);
+  // console.log("encoder: " + encoder);
   previousEncoder = state.previousEncoder; // ... and this ...
-  console.log("previousEncoder: " + previousEncoder);
+  // console.log("previousEncoder: " + previousEncoder);
   isUserA_touchingPlate = state.isUserA_touchingPlate; // ... and this, etc.?
   isUserB_touchingPlate = state.isUserB_touchingPlate;
   isAandB_touchingPlates = state.isAandB_touchingPlates;
   isSpinning = state.isSpinning;
+  // console.log("isSpinning: " + isSpinning);
   isSpinningFwd = state.isSpinningFwd;
   isSpinningBkwd = state.isSpinningBkwd;
   isGoTime = state.isGoTime;
-  console.log("isGoTime: " + isGoTime);
+  // console.log("isGoTime: " + isGoTime);
 }

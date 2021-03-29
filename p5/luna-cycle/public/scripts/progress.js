@@ -1,52 +1,36 @@
 console.log("progress.js FOUND");
 
+let characters = [];
+let charIndex;
+// let previousCharIndex;
+// let highestCharIndex;
+
+let counter = 0;
+let previousCounter = 0;
+
+let tempEncoder = 0;
+let tempPreviousEncoder = 0;
+
 function updateCharIndex() {
-  if (encoder > charIndex) {
-    charIndex = encoder;
+  if (counter > charIndex) {
+    charIndex = counter;
   }
   charIndex = constrain(charIndex, 0, characters.length - 1);
+  // console.log("encoder: " + encoder);
+  // console.log("charIndex: " + charIndex);
 }
 
-function updateAlpha() {
-  if (isAlphaOn === false) {
-    alphaValue = 1;
-  } else if (isFadingOut) {
-    decreaseAlpha();
-  } else if (isFadingIn) {
-    encoder = charIndex;
-    increaseAlpha();
-  }
+function updateCounter() {
+  counter = (encoder - tempEncoder);
+  previousCounter = (previousEncoder - tempPreviousEncoder)
+  // console.log(counter);
 }
 
-function decreaseAlpha() {
-  alphaValue -= alphaFade;
-}
-
-function increaseAlpha() {
-  alphaValue += alphaFade;
-}
-
-function updateScene() {
-  sceneManager.showNextScene();
-}
-
-function displayScreen() {
-  characters = selectAll('span');
-  if (isProceeding) {
-    if (alphaValue < 1) {
-      increaseAlpha();
-    }
-    for (i = 0; i <= charIndex; i++) {
-      characters[i].style(`color: rgba(${red}, ${green}, ${blue}, ${alphaValue})`);
-    }
-  } else if (isFading) {
-    for (i = 0; i <= charIndex; i++) {
-      characters[i].style(`color: rgba(${red}, ${green}, ${blue}, ${alphaValue})`);
-    }
-  }
-  if (alphaValue < 0 && isSpinningFwd) {
-    updateScene();
-  }
+function resetCounter() {
+  tempEncoder = encoder;
+  tempPreviousEncoder = previousEncoder;
+  counter = 0;
+  previousCounter = 0;
 }
 
 console.log("progress.js LOADED");
