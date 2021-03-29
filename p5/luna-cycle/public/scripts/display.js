@@ -40,9 +40,9 @@ function updateDisplay() {
   if (isSpinning) {
     updateCharIndex();
   }
-  isFadingOut = (isSpinningBkwd && encoder < charIndex) || (isSpinningFwd && encoder > characters.length);
-  isFadingIn = isSpinningFwd && encoder < charIndex;
-  isFading = isFadingOut || isFadingOut;
+  isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && counter > characters.length);
+  isFadingIn = isSpinningFwd && counter < charIndex;
+  isFading = isFadingIn || isFadingOut;
   isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
   updateAlpha();
 }
