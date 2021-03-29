@@ -14,7 +14,7 @@ let alphaValue = 1;
 let alphaFade = 0.005;
 
 let isCursorDisplayed = false;
-let isCounterDisplayed = false;
+let isEncoderDisplayed = false;
 let isScreenMirrored = false;
 
 function displayScreen() {
@@ -104,7 +104,7 @@ function updateScene() {
 }
 
 function displayCounter() {
-  if (isCounterDisplayed === true) {
+  if (isEncoderDisplayed === true) {
     fill(255, 0, 0);
     text(("Encoder: " + encoder + "    " + "Counter: " + counter + "    " + "CharIndex: " + charIndex + "    " + "AlphaValue: " + alphaValue), windowWidth / 2, windowHeight / 2);
     // let counter = createP("Encoder: " + encoder); // TODO: do this in the DOM instead but canvas is -1 on the Z plane

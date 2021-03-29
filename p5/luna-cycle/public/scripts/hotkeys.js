@@ -7,7 +7,7 @@ function hotKeyPressed() {
   } else if (key === 'c') {
     toggleCursor();
   } else if (key === 'e') {
-    isCounterDisplayed = !isCounterDisplayed;
+    isEncoderDisplayed = !isEncoderDisplayed;
   } else if (key === 'm') {
     toggleMirror();
   } else if (key === 't') {
