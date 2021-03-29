@@ -33,7 +33,7 @@ let loopCounter = 0;
 
 let tone = 'bliss';
 
-let encoder;
+let encoder = 0;
 let previousEncoder;
 
 let isUserA_touchingPlate = false;
