@@ -110,14 +110,6 @@ function updateTrackpadEncoder() {
   if (isSpinning) {
     updateCharIndex();
   }
-  isFadingOut = (isSpinningBkwd && encoder < charIndex) || (isSpinningFwd && encoder > characters.length);
-  isFadingIn = isSpinningFwd && encoder < charIndex;
-  isFading = isFadingOut || isFadingOut;
-  isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
-  updateAlpha();
-  // console.log("isSpinning: " + isSpinning);
-  // console.log("encoder: " + encoder);
-  // console.log("cross: " + cross);
 }
 
 function resetTrackpadEncoder() {
