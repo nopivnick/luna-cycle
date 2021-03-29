@@ -4,10 +4,6 @@ let container;
 
 let base;
 
-let red;
-let green;
-let blue;
-
 function setupScreen(scene, tone) {
   container = createDiv();
   container.parent('mirror');

@@ -125,7 +125,7 @@ function onEnterScene() {
   getSceneNum();
   setupScreen(scene, tone);
   resetDisplay();
-  // resetEncoder(); TODO: incorporate trackpadEncoder 
+  // resetTrackpadEncoder(); TODO: incorporate trackpadEncoder 
   resetCounter();
 }
 

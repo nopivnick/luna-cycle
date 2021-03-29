@@ -23,7 +23,7 @@ function updateCharIndex() {
 function updateCounter() {
   counter = (encoder - tempEncoder);
   previousCounter = (previousEncoder - tempPreviousEncoder)
-  console.log(counter);
+  // console.log(counter);
 }
 
 function resetCounter() {

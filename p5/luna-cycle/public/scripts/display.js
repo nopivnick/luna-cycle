@@ -1,5 +1,9 @@
 console.log("display.js FOUND");
 
+let red;
+let green;
+let blue;
+
 let isFading = false;
 let isFadingIn = false;
 let isFadingOut = false;
@@ -109,6 +113,25 @@ function displayCounter() {
     // counter.style('left: 50%');
     // counter.style('transform: translate(-50%, -50%)');
     // counter.style('color: red');
+  }
+}
+
+function displaySpinState() {
+  if (isSpinningFwd === true) {
+    // textAlign(CENTER);
+    // fill(255, 0, 0);
+    // text("Forward", windowWidth / 2, 10);
+    // document.body.innerHTML = "Forward";
+    console.log("isSpinningFwd is " + isSpinningFwd);
+  } else if (isSpinningBkwd === true) {
+    //   // textAlign(CENTER);
+    //   // fill(255, 0, 0);
+    //   // text("Backward", windowWidth / 2, 10);
+    //   // document.body.innerHTML = "Backward";
+    console.log("isSpinningBkwd is " + isSpinningBkwd);
+  } else {
+    //   // document.body.innerHTML = "Stopped";
+    console.log("isSpinning is " + isSpinning);
   }
 }
 
