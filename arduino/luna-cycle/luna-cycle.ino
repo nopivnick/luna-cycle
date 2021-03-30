@@ -60,7 +60,7 @@ bool isSpinningBkwd = false;
 bool isGoTime = false;
 
 bool isTouchStrict = false;
-bool isSpinStrict = false;
+bool isSpinStrict = true;
 
 // a JSON object to hold the data to send:
 JSONVar state;
@@ -169,38 +169,26 @@ void updateEncoder() {
     state["previousEncoder"] = previousEncoder;
     previousEncoder = encoder;
   }
+  long encoderPulseIntervalStrict;
+  if (isSpinStrict) {
+    encoderPulseIntervalStrict = 100;
+  } else {
+    encoderPulseIntervalStrict = encoderPulseInterval;
+  }
+  //    Serial.print("isSpinStrict: "); Serial.println(isSpinStrict);
+  //    Serial.print(isSpinningFwd); Serial.println(isSpinningBkwd);
+  if (timeStamp - prevEncoderPulse <= encoderPulseIntervalStrict) { // TODO: this is true at boot!
+    isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
+    state["isSpinning"] = isSpinning;
+  } else {
+    isSpinning = false;
+    state["isSpinning"] = isSpinning;
+    bool isSpinningFwd = false;
+    state["isSpinningFwd"] = isSpinningFwd;
+    bool isSpinningBkwd = false;
+    state["isSpinningBkwd"] = isSpinningBkwd;
+  }
 
-  if (isSpinStrict) { // TODO: fix this!
-//    Serial.print("isSpinStrict: "); Serial.println(isSpinStrict);
-//    Serial.print(isSpinningFwd); Serial.println(isSpinningBkwd);
-    if (isSpinningFwd == true || isSpinningBkwd == true) {
-      isSpinning = true;
-      state["isSpinning"] = isSpinning;
-    } else {
-      isSpinning = false;
-      state["isSpinning"] = isSpinning;
-      bool isSpinningFwd = false;
-      state["isSpinningFwd"] = isSpinningFwd;
-      bool isSpinningBkwd = false;
-      state["isSpinningBkwd"] = isSpinningBkwd;
-    }
-  }
-  
-  if (!isSpinStrict) {
-//    Serial.print("isSpinStrict: "); Serial.println(isSpinStrict);
-//    Serial.print(isSpinningFwd); Serial.println(isSpinningBkwd);
-    if (timeStamp - prevEncoderPulse <= encoderPulseInterval) { // TODO: this is true at boot!
-      isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
-      state["isSpinning"] = isSpinning;
-    } else {
-      isSpinning = false;
-      state["isSpinning"] = isSpinning;
-      bool isSpinningFwd = false;
-      state["isSpinningFwd"] = isSpinningFwd;
-      bool isSpinningBkwd = false;
-      state["isSpinningBkwd"] = isSpinningBkwd;
-    }
-  }
 
   resetEncoder();
 }
