@@ -5,13 +5,13 @@ const lunaChat = {
         cssClass: "message message-recd",
         snippets: null
       },
+      // {
+      //   base: "Yes.",
+      //   cssClass: "message message-sent",
+      //   snippets: null
+      // },
       {
-        base: "Yes.",
-        cssClass: "message message-sent",
-        snippets: null
-      },
-      {
-        base: "I've been writing.",
+        base: "I was just writing you.",
         cssClass: "message message-sent",
         snippets: null
       },
@@ -19,9 +19,10 @@ const lunaChat = {
         base: "What are you writing?",
         cssClass: "message message-recd",
         snippets: null
-      },
-      {
-        base: "I'm writing you.",
+      }
+    ],
+    paragraphs: [{
+        base: "I suppose it depends on your perspective.",
         cssClass: "message message-sent",
         snippets: null
       },
@@ -29,8 +30,9 @@ const lunaChat = {
         base: "Will I get to see it?",
         cssClass: "message message-recd",
         snippets: null
-      },
-      {
+      }
+    ],
+    paragraphs: [{
         base: "Are you close?",
         cssClass: "message message-sent",
         snippets: null
@@ -39,8 +41,9 @@ const lunaChat = {
         base: "Not yet.",
         cssClass: "message message-recd",
         snippets: null
-      },
-      {
+      }
+    ],
+    paragraphs: [{
         base: "Are you close?",
         cssClass: "message message-sent",
         snippets: null
@@ -49,8 +52,9 @@ const lunaChat = {
         base: "Still not yet.",
         cssClass: "message message-recd",
         snippets: null
-      },
-      {
+      }
+    ],
+    paragraphs: [{
         base: "Are you close now?",
         cssClass: "message message-sent",
         snippets: null
