@@ -91,7 +91,7 @@ const lunaData = {
           snippets: null
         },
         {
-          base: "And the words {0} as you type them on the screen:",
+          base: "And the words {0} as you type them on the screen ...",
           cssClass: null,
           snippets: [{
             bliss: "come effortlessly",
@@ -99,7 +99,8 @@ const lunaData = {
             bad: "feel scripted"
           }]
         }
-      ]
+      ],
+      chatIsNext: true
     },
     // {
     //   paragraphs: [{
@@ -133,7 +134,8 @@ const lunaData = {
           blah: "I'm no longer sure.",
           bad: "I prefer not to say."
         }]
-      }]
+      }],
+      chatIsNext: true
     },
     // {
     //   paragraphs: [{
@@ -147,7 +149,8 @@ const lunaData = {
         base: "Though I'm fairly certain you meant specifically what about you.",
         cssClass: null,
         snippets: null
-      }]
+      }],
+      chatIsNext: false
     },
     // {
     //   paragraphs: [{
@@ -178,7 +181,8 @@ const lunaData = {
           cssClass: null,
           snippets: null
         }
-      ]
+      ],
+      chatIsNext: true
     },
     // {
     //   paragraphs: [{
@@ -198,7 +202,8 @@ const lunaData = {
         base: "And so I wait and ask again.",
         cssClass: null,
         snippets: null
-      }]
+      }],
+      chatIsNext: true
     },
     // {
     //   paragraphs: [{
@@ -224,7 +229,8 @@ const lunaData = {
           cssClass: null,
           snippets: null
         }
-      ]
+      ],
+      chatIsNext: false
     },
     // {
     //   paragraphs: [{
