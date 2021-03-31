@@ -109,11 +109,11 @@ void updateMPR121() {
   for (uint8_t i = 0; i < 12; i++) {
     // it if *is* touched and *wasnt* touched before, alert!
     if ((touchState & _BV(i)) && !(prevTouchState & _BV(i)) ) {
-      Serial.print(i); Serial.println(" touched");
+      //      Serial.print(i); Serial.println(" touched");
     }
     // if it *was* touched and now *isnt*, alert!
     if (!(touchState & _BV(i)) && (prevTouchState & _BV(i)) ) {
-      Serial.print(i); Serial.println(" released");
+      //      Serial.print(i); Serial.println(" released");
     }
   }
   prevTouchState = touchState; // Reset state
