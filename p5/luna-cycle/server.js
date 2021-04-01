@@ -92,10 +92,6 @@ const listener = server.listen(3000, () => {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
-function sendBrowserEncoder(data) {
-  io.emit("encoder", data);
-}
-
 /**
  * SerialPort stuff
  * 
