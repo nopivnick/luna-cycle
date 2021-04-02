@@ -40,7 +40,7 @@ function updateDisplay() {
   if (isSpinning) {
     updateCharIndex();
   }
-  isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && counter > characters.length);
+  isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
   isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
@@ -48,8 +48,8 @@ function updateDisplay() {
 }
 
 function resetDisplay() {
-  alphaValue = 1; // otherwise characters on a new screen fade in incrementally rather than turn opaque
-  charIndex = -1;
+  alphaValue = 0; // 0 = characters on a new screen fade in incrementally, 1 = they turn opaque
+  charIndex = 0;
 }
 
 function updateAlpha() {
@@ -71,15 +71,8 @@ function increaseAlpha() {
   alphaValue += alphaFade;
 }
 
-function setCSS(paragraph, i) {
-  if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
-    container.addClass("messages");
-    paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
-  }
-}
-
 function setColor(i) {
-  if ((lunaData.scenes[scene].paragraphs[i].cssClass !== null)) {
+  if (sceneManager.scene.fnScene.name === "sceneChat") {
     red = 0;
     green = 0;
     blue = 0;
@@ -88,6 +81,20 @@ function setColor(i) {
     green = 205;
     blue = 50;
   }
+}
+
+function setCSS(paragraph, i) {
+
+  // if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
+  //   container.addClass("messages");
+  //   paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
+  // }
+
+  if (sceneManager.scene.fnScene.name === "sceneChat") { // if this is the text exchange scene ...
+    container.addClass("messages");
+    paragraph.addClass(lunaChat.scenes[0].paragraphs[i].cssClass); // ... apply the specified CSS class.
+  }
+
 }
 
 function setAlpha(span) {
@@ -100,7 +107,12 @@ function setAlpha(span) {
 }
 
 function updateScene() {
-  sceneManager.showNextScene();
+  if (lunaData.scenes[scene].chatIsNext) {
+    sceneManager.showScene(sceneChat);
+  } else {
+    // console.log("HELP!");
+    sceneManager.showNextScene();
+  }
 }
 
 function displayCounter() {
@@ -116,23 +128,9 @@ function displayCounter() {
   }
 }
 
-function displaySpinState() {
-  if (isSpinningFwd === true) {
-    // textAlign(CENTER);
-    // fill(255, 0, 0);
-    // text("Forward", windowWidth / 2, 10);
-    // document.body.innerHTML = "Forward";
-    console.log("isSpinningFwd is " + isSpinningFwd);
-  } else if (isSpinningBkwd === true) {
-    //   // textAlign(CENTER);
-    //   // fill(255, 0, 0);
-    //   // text("Backward", windowWidth / 2, 10);
-    //   // document.body.innerHTML = "Backward";
-    console.log("isSpinningBkwd is " + isSpinningBkwd);
-  } else {
-    //   // document.body.innerHTML = "Stopped";
-    console.log("isSpinning is " + isSpinning);
-  }
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  console.log("window size: " + windowWidth + " x " + windowHeight);
 }
 
 console.log("display.js lOADED");
