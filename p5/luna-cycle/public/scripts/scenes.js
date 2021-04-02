@@ -11,6 +11,48 @@ console.log("scenes.js FOUND");
 // }
 // // etc.
 
+function sceneTitle() {
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    hotKeyPressed();
+  }
+}
+
 function scene0() {
   /**
    * p5.SceneManager setup function
@@ -724,5 +766,47 @@ function scene11() {
 //     hotKeyPressed();
 //   }
 // }
+
+function sceneChat() {
+  /**
+   * p5.SceneManager setup function
+   * 
+   * Runs *once* the first time the scene is run and never again
+   */
+  this.setup = function () {
+
+  }
+
+  /**
+   * p5.SceneManager enter function
+   *
+   * Runs each time the scene manager returns to this scene
+   */
+  this.enter = function () {
+    onEnterScene();
+  }
+
+  /**
+   * p5.SceneManager draw function
+   *
+   * Runs once per frame
+   */
+  this.draw = function () {
+
+  }
+
+  /**
+   * p5.SceneManager exit function
+   * 
+   * Runs each time the scene manager leaves this scene
+   */
+  this.exit = function () {
+    onExitScene();
+  }
+
+  this.keyPressed = function () {
+    hotKeyPressed();
+  }
+}
 
 console.log("scenes.js LOADED");
