@@ -11,7 +11,7 @@ let isFading = false;
 let isFadingIn = false;
 let isFadingOut = false;
 
-let isAlpha = true;
+let isAlphaUsed = true;
 let alphaValue = 1;
 let alphaFade = 0.005;
 
@@ -65,7 +65,7 @@ function resetDisplay() {
 }
 
 function updateAlpha() {
-  if (isAlpha === false) {
+  if (isAlphaUsed === false) {
     alphaValue = 1;
   } else if (isFadingOut) {
     decreaseAlpha()
@@ -111,7 +111,7 @@ function setCSS(paragraph, i) {
 }
 
 function setAlpha(span) {
-  if (isAlpha === true) {
+  if (isAlphaUsed === true) {
     // TODO: possible to handle alpha with a class in css?
     span.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
   } else {
