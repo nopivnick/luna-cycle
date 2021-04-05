@@ -1,35 +1,13 @@
-const socket = io();
-
-// Listen for confirmation of connection
-socket.on('connect', function () {
-  console.log("Connected to server.");
-  console.log("Socket id: ", socket.id);
-});
-
-socket.on("state", (data) => {
-  state = JSON.parse(data);
-  // console.log(state);
-  updateState();
-  updateCounter();
-  updateDisplay();
-});
-
 let state;
 
 let canvas;
 
-let screen;
-
 let scene = 0;
+let previousScene = 0;
 let sceneManager;
 let sceneIndex;
-let sceneCount = 17;
 
 let loopCounter = 0;
-
-// const bliss = 'bliss';
-// const blah = 'blah';
-// const bad = 'bad';
 
 let tone = 'bliss';
 
@@ -63,9 +41,13 @@ function setup() {
   }
 }
 
-function draw() {
-
-}
+// Standard p5 draw() function
+// 
+// not used when using p5.SceneManager
+//
+//function draw() {
+//
+// }
 
 function setupCanvas() {
   canvas = createCanvas(windowWidth, windowHeight);
@@ -92,10 +74,20 @@ function setupSceneManager() {
   sceneManager.addScene(scene9);
   sceneManager.addScene(scene10);
   sceneManager.addScene(scene11);
-  // for (i = 0; i < scenes.length; i++) { // TODO: preload scenes with a for loop
-  // sceneManager.addScene(scenes[i]);
-  // print(`scenes${i} preloaded!`);
-  // }
+  sceneManager.addScene(scene12);
+  sceneManager.addScene(scene13);
+  sceneManager.addScene(scene14);
+  sceneManager.addScene(scene15);
+// TODO: consider storing scenes as anonymous functions in an array 
+//       in order to preload in sketch.js with a for loop
+// scenes = [];
+// scene[0] = function () {
+//   // p5.SceneManager functions go here
+// }
+// scene[1] = function () {
+//   // p5.SceneManager functions go here
+// }
+// // etc.
   sceneManager.showScene(scene0);
 }
 
@@ -106,18 +98,9 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
-  // displaySpinState();
-  displayCounter();
-  displayScreen();
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
-  console.log("window size: " + windowWidth + " x " + windowHeight);
-}
-
-function getSceneNum() {
-  scene = sceneManager.findSceneIndex(sceneManager.scene.fnScene);
+  displayEncoder();
+  animateScreen();
+  updateScene();
 }
 
 function onEnterScene() {
@@ -137,6 +120,22 @@ function onExitScene() {
   }
 }
 
+function getSceneNum() {
+  scene = sceneManager.findSceneIndex(sceneManager.scene.fnScene);
+}
+
+function updateState() {
+  encoder = state.encoder; // TODO: is there a smarter way to do this ...
+  previousEncoder = state.previousEncoder; // ... and this ...
+  isUserA_touchingPlate = state.isUserA_touchingPlate; // ... and this, etc.?
+  isUserB_touchingPlate = state.isUserB_touchingPlate;
+  isAandB_touchingPlates = state.isAandB_touchingPlates;
+  isSpinning = state.isSpinning;
+  isSpinningFwd = state.isSpinningFwd;
+  isSpinningBkwd = state.isSpinningBkwd;
+  isGoTime = state.isGoTime;
+}
+
 function updateTone() { // TODO: not working
   if (loopCounter % 4 === 3) {
     /* Bad */
@@ -148,20 +147,4 @@ function updateTone() { // TODO: not working
     /* Bliss */
     tone = 'bliss';
   }
-}
-
-function updateState() {
-  encoder = state.encoder; // TODO: is there a smarter way to do this ...
-  // console.log("encoder: " + encoder);
-  previousEncoder = state.previousEncoder; // ... and this ...
-  // console.log("previousEncoder: " + previousEncoder);
-  isUserA_touchingPlate = state.isUserA_touchingPlate; // ... and this, etc.?
-  isUserB_touchingPlate = state.isUserB_touchingPlate;
-  isAandB_touchingPlates = state.isAandB_touchingPlates;
-  isSpinning = state.isSpinning;
-  // console.log("isSpinning: " + isSpinning);
-  isSpinningFwd = state.isSpinningFwd;
-  isSpinningBkwd = state.isSpinningBkwd;
-  isGoTime = state.isGoTime;
-  // console.log("isGoTime: " + isGoTime);
 }

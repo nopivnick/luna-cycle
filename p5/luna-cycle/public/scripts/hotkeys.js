@@ -1,5 +1,7 @@
 console.log("hotkeys.js FOUND");
 
+let screen;
+
 function hotKeyPressed() {
   print("We're in the hotKeyPressed() function!");
   if (key === 'a') {
@@ -13,6 +15,7 @@ function hotKeyPressed() {
   } else if (key === 't') {
     toggleTrackpad();
   } else if ((keyIsDown(SHIFT)) && ((keyCode === RIGHT_ARROW))) {
+    // TODO: add logic to accommodate whether the next scene is the text exchange
     sceneManager.showNextScene();
   } else if ((keyIsDown(SHIFT)) && ((keyCode === LEFT_ARROW))) {
     sceneManager.showPreviousScene();
@@ -21,14 +24,14 @@ function hotKeyPressed() {
 }
 
 function toggleAlpha() {
-  if (isAlphaOn === false) {
+  if (isAlpha === false) {
     screen = select('body');
     screen.style(`color: rgba(${red}, ${green}, ${blue}, 1)`);
-    isAlphaOn = !isAlphaOn;
+    isAlpha = !isAlpha;
   } else {
     screen = select('body');
     screen.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
-    isAlphaOn = !isAlphaOn;
+    isAlpha = !isAlpha;
   }
 }
 
@@ -45,7 +48,6 @@ function toggleCursor() {
 }
 
 function toggleMirror() {
-  // screen = select('body'); // TODO: cleaner to either mirror a div wrapped around the multiple <p>'s or selectAll <p>'s?
   screen = select('#mirror');
   if (isScreenMirrored === true) {
     screen.style('transform: none');
