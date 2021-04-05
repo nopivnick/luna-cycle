@@ -33,7 +33,7 @@ function setup() {
   hosted = true; // TODO: how do I get this from the server?
   if (hosted === true) {
     setInterval(() => {
-      updateSamples()
+      updateTrackpadSamples()
     }, 100);
     setInterval(() => {
       updateTrackpadEncoder() // TODO: should the serial communication baud be a multiple of this interval?

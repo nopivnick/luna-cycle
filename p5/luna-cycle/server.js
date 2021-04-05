@@ -135,12 +135,6 @@ function showPortError(error) {
 }
 
 function readSerialData(data) {
-  // data = data.trim();
-  // if (data === "tick++" || "tick--") {
-  //   sendBrowserEncoder(data);
-  //   console.log(data);
-  // }
-  // console.log(data);
   input = data;
   console.log(input);
   io.emit("input", input);

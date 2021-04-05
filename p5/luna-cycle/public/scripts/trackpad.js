@@ -20,7 +20,7 @@ let cross = 0;
 
 // Uncomment below for p5-friendly code
 // function setup() {
-//   setInterval("updateSamples()", 100);
+//   setInterval("updateTrackpadSamples()", 100);
 // }
 
 // Uncomment below for vanilla javascript-friendly code
@@ -31,7 +31,7 @@ let cross = 0;
 
 // let smoothedTrackpadDist = 0;
 
-function updateSamples() {
+function updateTrackpadSamples() {
   trackpadSamples.shift();
   trackpadSamples.push([mouseX, mouseY]);
   // Uncomment below for p5-friendly code
@@ -79,7 +79,7 @@ function calcTrackpadDist() {
 // Uncomment below for p5-friendly code
 // function mouseMoved() {
 //   print("Mouse is moving!");
-//   setInterval("updateSamples()", 100);
+//   setInterval("updateTrackpadSamples()", 100);
 //   // prevent default
 //   return false;
 // }
@@ -87,11 +87,10 @@ function calcTrackpadDist() {
 // Uncomment below for vanilla javascript-friendly code
 // function initTrackpad() {
 // document.addEventListener("mousemove", handleMouseEvent);
-// setInterval("updateSamples()", 100);
+// setInterval("updateTrackpadSamples()", 100);
 // }
 
 function updateTrackpadEncoder() {
-  previousEncoder = encoder
   if (keyIsDown(RIGHT_ARROW) || cross > 0) {
     isSpinning = true;
     isSpinningFwd = true;
@@ -110,6 +109,7 @@ function updateTrackpadEncoder() {
   if (isSpinning) {
     updateCharIndex();
   }
+  previousEncoder = encoder;
 }
 
 function resetTrackpadEncoder() {
