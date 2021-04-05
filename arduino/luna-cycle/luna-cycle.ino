@@ -45,6 +45,7 @@ int encoderResolution = 10;
 
 long encoder = 0;
 long previousEncoder = 0;
+int encoderDivisor = 10;
 
 unsigned long timeStamp = 0;
 unsigned long previousTimeStamp = 0;
@@ -151,7 +152,7 @@ void updatePlates() {
 
 void updateEncoder() {
   encoder = ENCODER.read();
-  encoder = (encoder / 4); // TODO: Consider reading encoder on CHANGE instead?
+  encoder = round((encoder / 4) / encoderDivisor); // TODO: Consider reading encoder on CHANGE instead?
   if (encoder != previousEncoder) {
     prevEncoderPulse = timeStamp;
     if (encoder > previousEncoder) {
@@ -202,7 +203,7 @@ void resetEncoder() {
   }
 }
 
-void updateStatus() {
+void updateStatus() { // TODO: move this logic to server.js
   isGoTime = isSpinning; // 1 Player w/ spinning
   isGoTime = isSpinning && isUserA_touchingPlate; // 1 Player w/ spinning + touch
   //  isGoTime = isAandB_touchingPlates && isSpinning; // 2 player
