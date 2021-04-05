@@ -48,15 +48,11 @@ function animateScreen() {
 }
 
 function updateDisplay() {
-  if (isSpinning) {
-    updateCharIndex();
-  }
   isProgressing = isSpinningFwd && charIndex < characters.length && !isFading;
   isRegressing = isSpinningBkwd && charIndex < characters.length && !isFading;
   isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
-  updateAlpha();
 }
 
 function resetDisplay() {

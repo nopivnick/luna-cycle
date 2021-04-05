@@ -14,6 +14,10 @@ socket.on("state", (data) => {
   updateState();
   updateCounter();
   updateDisplay();
+  if (isSpinning) {
+    updateCharIndex(); // TODO: why does this throw an error if not in the conditional?
+  }
+  updateAlpha();
 });
 
 console.log("sockets.js LOADED");
