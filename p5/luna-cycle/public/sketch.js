@@ -3,6 +3,7 @@ let state;
 let canvas;
 
 let scene = 0;
+let previousScene = 0;
 let sceneManager;
 let sceneIndex;
 
@@ -73,6 +74,10 @@ function setupSceneManager() {
   sceneManager.addScene(scene9);
   sceneManager.addScene(scene10);
   sceneManager.addScene(scene11);
+  sceneManager.addScene(scene12);
+  sceneManager.addScene(scene13);
+  sceneManager.addScene(scene14);
+  sceneManager.addScene(scene15);
 // TODO: consider storing scenes as anonymous functions in an array 
 //       in order to preload in sketch.js with a for loop
 // scenes = [];
@@ -93,8 +98,9 @@ function setupSceneManager() {
  */
 function drawScene() {
   background(0);
-  displayCounter();
-  displayScreen();
+  displayEncoder();
+  animateScreen();
+  updateScene();
 }
 
 function onEnterScene() {
@@ -120,18 +126,14 @@ function getSceneNum() {
 
 function updateState() {
   encoder = state.encoder; // TODO: is there a smarter way to do this ...
-  // console.log("encoder: " + encoder);
   previousEncoder = state.previousEncoder; // ... and this ...
-  // console.log("previousEncoder: " + previousEncoder);
   isUserA_touchingPlate = state.isUserA_touchingPlate; // ... and this, etc.?
   isUserB_touchingPlate = state.isUserB_touchingPlate;
   isAandB_touchingPlates = state.isAandB_touchingPlates;
   isSpinning = state.isSpinning;
-  // console.log("isSpinning: " + isSpinning);
   isSpinningFwd = state.isSpinningFwd;
   isSpinningBkwd = state.isSpinningBkwd;
   isGoTime = state.isGoTime;
-  // console.log("isGoTime: " + isGoTime);
 }
 
 function updateTone() { // TODO: not working

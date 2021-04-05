@@ -24,14 +24,14 @@ function hotKeyPressed() {
 }
 
 function toggleAlpha() {
-  if (isAlphaOn === false) {
+  if (isAlpha === false) {
     screen = select('body');
     screen.style(`color: rgba(${red}, ${green}, ${blue}, 1)`);
-    isAlphaOn = !isAlphaOn;
+    isAlpha = !isAlpha;
   } else {
     screen = select('body');
     screen.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
-    isAlphaOn = !isAlphaOn;
+    isAlpha = !isAlpha;
   }
 }
 

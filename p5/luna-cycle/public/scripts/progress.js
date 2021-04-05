@@ -3,21 +3,21 @@ console.log("progress.js FOUND");
 let counter = 0;
 let previousCounter = 0;
 
-let tempEncoder = 0;
-let tempPreviousEncoder = 0;
+let encoderDelta = 0;
+let previousEncoderDelta = 0;
 
 let characters = [];
 let charIndex;
-let charIndexDelay = 100;
+let charIndexDelay = 0;
 
 function updateCounter() {
-  counter = (encoder - tempEncoder);
-  previousCounter = (previousEncoder - tempPreviousEncoder)
+  counter = (encoder - encoderDelta);
+  previousCounter = (previousEncoder - previousEncoderDelta)
 }
 
 function resetCounter() {
-  tempEncoder = encoder;
-  tempPreviousEncoder = previousEncoder;
+  encoderDelta = encoder;
+  previousEncoderDelta = previousEncoder;
   counter = 0;
   previousCounter = 0;
 }

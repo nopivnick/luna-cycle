@@ -31,13 +31,22 @@ let users = {
 }
 
 let state = {
+  encoder: -999,
+  previousEncoder: -999,
+  isUserA_touchingPlate: false,
+  isUserB_touchingPlate: false,
+  isAandB_touchingPlates: false,
+  isSpinning: false,
+  isSpinningFwd: false,
+  isSpinningBkwd: false
+}
+
+let status = {
+  isGoTime: false,
   isUserA_myTurn: true,
   isUserB_myTurn: true,
   scene: 0,
-  tone: "bliss",
-  encoder: -999,
-  previousEncoder: -999,
-  isGoTime: false
+  tone: "bliss"
 }
 
 let isUserA_touchingPlate = false;
@@ -99,11 +108,11 @@ const listener = server.listen(3000, () => {
  */
 
 function sendArduinoLamp() {
-  if (isUserA_lampOn) {
-    mySerialPort.write("lampUserA");
+  if (isUserA_myTurn) {
+    mySerialPort.write(status.isUserA_lampOn = true);
   }
-  if (isUserB_lampOn) {
-    mySerialPort.write("lampUserB");
+  if (isUserB_myTurn) {
+    mySerialPort.write(status.isUserB_lampOn = true);
   }
 }
 

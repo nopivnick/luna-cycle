@@ -95,70 +95,61 @@ const lunaData = {
           cssClass: null,
           snippets: [{
             bliss: "come effortlessly",
-            blah: "seem tired",
-            bad: "feel scripted"
+            blah: "seem scripted",
+            bad: "feel tired"
           }]
         }
       ],
       chatIsNext: true
     },
-    // {
-    //   paragraphs: [{
-    //       base: "Are you awake?",
-    //       cssClass: "message message-recd",
-    //       snippets: null
-    //     },
-    //     {
-    //       base: "Yes.",
-    //       cssClass: "message message-sent",
-    //       snippets: null
-    //     },
-    //     {
-    //       base: "I've been writing.",
-    //       cssClass: "message message-sent",
-    //       snippets: null
-    //     },
-    //     {
-    //       base: "What have you written?",
-    //       cssClass: "message message-recd",
-    //       snippets: null
-    //     }
-    //   ]
-    // },
     {
       paragraphs: [{
-        base: "{0}",
-        cssClass: null,
-        snippets: [{
-          bliss: "I don't yet know.",
-          blah: "I'm no longer sure.",
-          bad: "I prefer not to say."
-        }]
-      }],
+          base: "Are you awake?",
+          cssClass: "message message-recd",
+          snippets: null
+        },
+        {
+          base: "Yes.",
+          cssClass: "message message-sent",
+          snippets: null
+        },
+        {
+          base: "I was just writing you.",
+          cssClass: "message message-sent",
+          snippets: null
+        },
+        {
+          base: "What have you written?",
+          cssClass: "message message-recd",
+          snippets: null
+        }
+      ]
+    },
+    {
+      paragraphs: [{
+          base: "{0}",
+          cssClass: null,
+          snippets: [{
+            bliss: "I don't yet know.",
+            blah: "I'm no longer sure.",
+            bad: "I prefer not to say."
+          }]
+        },
+        {
+          base: "Though I'm fairly certain you meant specifically what about you.",
+          cssClass: null,
+          snippets: null
+        }
+      ],
       chatIsNext: true
     },
-    // {
-    //   paragraphs: [{
-    //     base: "I'm writing you.",
-    //     cssClass: "message message-sent",
-    //     snippets: null
-    //   }]
-    // },
     {
       paragraphs: [{
-        base: "Though I'm fairly certain you meant specifically what about you.",
-        cssClass: null,
+        base: "Will I get to see it?",
+        cssClass: "message message-recd",
         snippets: null
-      }],
-      chatIsNext: false
+      }]
     },
-    // {
-    //   paragraphs: [{
-    //     base: "Will I get to see it?",
-    //     cssClass: "message message-recd",
-    //     snippets: null
-    //   }]
-    // },
     {
       paragraphs: [{
         base: "{0}",
@@ -170,6 +161,13 @@ const lunaData = {
         }]
       }]
     },
+    // {
+    //   paragraphs: [{
+    //     base: "I'd need to be there when you do.",
+    //     cssClass: "message message-sent",
+    //     snippets: null
+    //   }]
+    // },
     {
       paragraphs: [{
           base: "You are so very far away.",
@@ -184,19 +182,19 @@ const lunaData = {
       ],
       chatIsNext: true
     },
-    // {
-    //   paragraphs: [{
-    //       base: "Are you close?",
-    //       cssClass: "message message-sent",
-    //       snippets: null
-    //     },
-    //     {
-    //       base: "Not yet.",
-    //       cssClass: "message message-recd",
-    //       snippets: null
-    //     }
-    //   ]
-    // },
+    {
+      paragraphs: [{
+          base: "Are you close?",
+          cssClass: "message message-sent",
+          snippets: null
+        },
+        {
+          base: "Not yet.",
+          cssClass: "message message-recd",
+          snippets: null
+        }
+      ]
+    },
     {
       paragraphs: [{
         base: "And so I wait and ask again.",
@@ -205,19 +203,19 @@ const lunaData = {
       }],
       chatIsNext: true
     },
-    // {
-    //   paragraphs: [{
-    //       base: "Are you close?",
-    //       cssClass: "message message-sent",
-    //       snippets: null
-    //     },
-    //     {
-    //       base: "Still not yet.",
-    //       cssClass: "message message-recd",
-    //       snippets: null
-    //     }
-    //   ]
-    // },
+    {
+      paragraphs: [{
+          base: "Are you close yet?",
+          cssClass: "message message-sent",
+          snippets: null
+        },
+        {
+          base: "Still not yet.",
+          cssClass: "message message-recd",
+          snippets: null
+        }
+      ]
+    },
     {
       paragraphs: [{
           base: "So I wait longer still.",
@@ -232,19 +230,19 @@ const lunaData = {
       ],
       chatIsNext: false
     },
-    // {
-    //   paragraphs: [{
-    //       base: "Are you close now?",
-    //       cssClass: "message message-sent",
-    //       snippets: null
-    //     },
-    //     {
-    //       base: "Yes, I'm close.",
-    //       cssClass: "message message-recd",
-    //       snippets: null
-    //     }
-    //   ]
-    // },
+    {
+      paragraphs: [{
+          base: "Are you close now?",
+          cssClass: "message message-sent",
+          snippets: null
+        },
+        {
+          base: "Yes, I'm close.",
+          cssClass: "message message-recd",
+          snippets: null
+        }
+      ]
+    },
     {
       paragraphs: [{
         base: "I {0} and listen for the sound of your arrival.",

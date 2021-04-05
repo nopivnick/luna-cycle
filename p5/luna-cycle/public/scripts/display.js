@@ -4,12 +4,14 @@ let red;
 let green;
 let blue;
 
+let isProgressing = false;
+let isRegressing = false;
+
 let isFading = false;
 let isFadingIn = false;
 let isFadingOut = false;
-let isProceeding = false;
 
-let isAlphaOn = true;
+let isAlpha = true;
 let alphaValue = 1;
 let alphaFade = 0.005;
 
@@ -17,9 +19,21 @@ let isCursorDisplayed = false;
 let isEncoderDisplayed = false;
 let isScreenMirrored = false;
 
-function displayScreen() {
+function updateScene() {
+  if (alphaValue < 0 && isSpinningFwd) {
+    // if (lunaData.scenes[scene].chatIsNext) {
+    //   // TODO: save the value of the current scene here in previousScene
+    //   previousScene = scene;
+    //   sceneManager.showScene(sceneChat);
+    // } else {
+      sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
+    // }
+  }
+}
+
+function animateScreen() {
   characters = selectAll('span');
-  if (isProceeding) {
+  if (isProgressing) {
     if (alphaValue < 1) {
       increaseAlpha();
     }
@@ -31,19 +45,17 @@ function displayScreen() {
       characters[i].style(`color: rgba(${red}, ${green}, ${blue}, ${alphaValue})`);
     }
   }
-  if (alphaValue < 0 && isSpinningFwd) {
-    updateScene();
-  }
 }
 
 function updateDisplay() {
   if (isSpinning) {
     updateCharIndex();
   }
+  isProgressing = isSpinningFwd && charIndex < characters.length && !isFading;
+  isRegressing = isSpinningBkwd && charIndex < characters.length && !isFading;
   isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
-  isProceeding = isSpinningFwd && charIndex < characters.length && !isFading;
   updateAlpha();
 }
 
@@ -53,10 +65,10 @@ function resetDisplay() {
 }
 
 function updateAlpha() {
-  if (isAlphaOn === false) {
+  if (isAlpha === false) {
     alphaValue = 1;
   } else if (isFadingOut) {
-    decreaseAlpha();
+    decreaseAlpha()
   } else if (isFadingIn) {
     counter = charIndex;
     increaseAlpha();
@@ -72,7 +84,8 @@ function increaseAlpha() {
 }
 
 function setColor(i) {
-  if (sceneManager.scene.fnScene.name === "sceneChat") {
+  // if (sceneManager.scene.fnScene.name === "sceneChat") {
+    if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) {
     red = 0;
     green = 0;
     blue = 0;
@@ -85,20 +98,20 @@ function setColor(i) {
 
 function setCSS(paragraph, i) {
 
-  // if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
+  // if (sceneManager.scene.fnScene.name === "sceneChat") { // if this is the text exchange scene ...
   //   container.addClass("messages");
-  //   paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
+  //   paragraph.addClass(lunaChat.scenes[0].paragraphs[i].cssClass); // ... apply the specified CSS class.
   // }
 
-  if (sceneManager.scene.fnScene.name === "sceneChat") { // if this is the text exchange scene ...
+  if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
     container.addClass("messages");
-    paragraph.addClass(lunaChat.scenes[0].paragraphs[i].cssClass); // ... apply the specified CSS class.
+    paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
   }
 
 }
 
 function setAlpha(span) {
-  if (isAlphaOn === true) {
+  if (isAlpha === true) {
     // TODO: possible to handle alpha with a class in css?
     span.style(`color: rgba(${red}, ${green}, ${blue}, 0)`);
   } else {
@@ -106,16 +119,7 @@ function setAlpha(span) {
   }
 }
 
-function updateScene() {
-  if (lunaData.scenes[scene].chatIsNext) {
-    sceneManager.showScene(sceneChat);
-  } else {
-    // console.log("HELP!");
-    sceneManager.showNextScene();
-  }
-}
-
-function displayCounter() {
+function displayEncoder() {
   if (isEncoderDisplayed === true) {
     fill(255, 0, 0);
     text(("Encoder: " + encoder + "    " + "Counter: " + counter + "    " + "CharIndex: " + charIndex + "    " + "AlphaValue: " + alphaValue), windowWidth / 2, windowHeight / 2);
