@@ -30,7 +30,7 @@ let users = {
   userB: null
 }
 
-let state = {
+let input = {
   encoder: -999,
   previousEncoder: -999,
   isUserA_touchingPlate: false,
@@ -84,7 +84,7 @@ io.on('connection', (socket) => {
 
   // socket.emit("hosted", hosted);
 
-  socket.emit("state", state);
+  socket.emit("input", input);
 
   socket.on('disconnect', () => {
     console.log('a user disconnected: ' + socket.id);
@@ -141,9 +141,9 @@ function readSerialData(data) {
   //   console.log(data);
   // }
   // console.log(data);
-  state = data;
-  console.log(state);
-  io.emit("state", state);
+  input = data;
+  console.log(input);
+  io.emit("input", input);
 }
 
 // // ------------------------ Server function

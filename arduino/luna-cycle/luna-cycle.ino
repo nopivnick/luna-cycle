@@ -64,7 +64,7 @@ bool isTouchStrict = false;
 bool isSpinStrict = true;
 
 // a JSON object to hold the data to send:
-JSONVar state;
+JSONVar input;
 
 void setup() {
   Serial.begin(115200);
@@ -82,18 +82,18 @@ void setup() {
   Serial.println("MPR121 found!");
 
   // initialize values in JSON object:
-  state["encoder"] = encoder;
-  state["previousEncoder"] = previousEncoder;
+  input["encoder"] = encoder;
+  input["previousEncoder"] = previousEncoder;
 
-  state["isUserA_touchingPlate"] = isUserA_touchingPlate;
-  state["isUserB_touchingPlate"] = isUserB_touchingPlate;
-  state["isAandB_touchingPlates"] = isAandB_touchingPlates;
+  input["isUserA_touchingPlate"] = isUserA_touchingPlate;
+  input["isUserB_touchingPlate"] = isUserB_touchingPlate;
+  input["isAandB_touchingPlates"] = isAandB_touchingPlates;
 
-  state["isSpinning"] = isSpinning;
-  state["isSpinningFwd"] = isSpinningFwd;
-  state["isSpinningBkwd"] = isSpinningBkwd;
+  input["isSpinning"] = isSpinning;
+  input["isSpinningFwd"] = isSpinningFwd;
+  input["isSpinningBkwd"] = isSpinningBkwd;
 
-  //  state["isGoTime"] = isGoTime;
+  //  input["isGoTime"] = isGoTime;
 }
 
 void loop() {
@@ -102,7 +102,7 @@ void loop() {
   updatePlates();
   updateEncoder();
   //  updateStatus();
-  sendState();
+  sendInput();
 }
 
 void updateMPR121() {
@@ -126,27 +126,27 @@ void updatePlates() {
   }
   if (timeStamp - prevCapTouchPlateUserA <= capPlateInterval) { // ... and it's been less than a certain interval ...
     isUserA_touchingPlate = true; // ... user A is considered to be touching their plate.
-    state["isUserA_touchingPlate"] = isUserA_touchingPlate;
+    input["isUserA_touchingPlate"] = isUserA_touchingPlate;
   } else {
     isUserA_touchingPlate = false;
-    state["isUserA_touchingPlate"] = isUserA_touchingPlate;
+    input["isUserA_touchingPlate"] = isUserA_touchingPlate;
   }
   if (MPR121.touched() & (1 << 1)) { // If capacitive sensor 1 is touched ...
     prevCapTouchPlateUserB = timeStamp;
   }
   if (timeStamp - prevCapTouchPlateUserB <= capPlateInterval) { // ... and it's been less than a certain interval ...
     isUserB_touchingPlate = true; // ... user B is considered to be touching their plate.
-    state["isUserB_touchingPlate"] = isUserB_touchingPlate;
+    input["isUserB_touchingPlate"] = isUserB_touchingPlate;
   } else {
     isUserB_touchingPlate = false;
-    state["isUserB_touchingPlate"] = isUserB_touchingPlate;
+    input["isUserB_touchingPlate"] = isUserB_touchingPlate;
   }
   if (isUserA_touchingPlate && isUserB_touchingPlate) {
     isAandB_touchingPlates = true;
-    state["isAandB_touchingPlates"] = isAandB_touchingPlates;
+    input["isAandB_touchingPlates"] = isAandB_touchingPlates;
   } else {
     isAandB_touchingPlates = false;
-    state["isAandB_touchingPlates"] = isAandB_touchingPlates;
+    input["isAandB_touchingPlates"] = isAandB_touchingPlates;
   }
 }
 
@@ -157,17 +157,17 @@ void updateEncoder() {
     prevEncoderPulse = timeStamp;
     if (encoder > previousEncoder) {
       bool isSpinningFwd = true;
-      state["isSpinningFwd"] = isSpinningFwd;
+      input["isSpinningFwd"] = isSpinningFwd;
       bool isSpinningBkwd = false;
-      state["isSpinningBkwd"] = isSpinningBkwd;
+      input["isSpinningBkwd"] = isSpinningBkwd;
     } else if (encoder < previousEncoder) {
       bool isSpinningFwd = false;
-      state["isSpinningFwd"] = isSpinningFwd;
+      input["isSpinningFwd"] = isSpinningFwd;
       bool isSpinningBkwd = true;
-      state["isSpinningBkwd"] = isSpinningBkwd;
+      input["isSpinningBkwd"] = isSpinningBkwd;
     }
-    state["encoder"] = encoder;
-    state["previousEncoder"] = previousEncoder;
+    input["encoder"] = encoder;
+    input["previousEncoder"] = previousEncoder;
     previousEncoder = encoder;
   }
   long encoderPulseIntervalStrict;
@@ -180,14 +180,14 @@ void updateEncoder() {
   //    Serial.print(isSpinningFwd); Serial.println(isSpinningBkwd);
   if (timeStamp - prevEncoderPulse <= encoderPulseIntervalStrict) { // TODO: this is true at boot!
     isSpinning = true; // TODO: how not to flip this boolean until after 1 interval from boot?
-    state["isSpinning"] = isSpinning;
+    input["isSpinning"] = isSpinning;
   } else {
     isSpinning = false;
-    state["isSpinning"] = isSpinning;
+    input["isSpinning"] = isSpinning;
     bool isSpinningFwd = false;
-    state["isSpinningFwd"] = isSpinningFwd;
+    input["isSpinningFwd"] = isSpinningFwd;
     bool isSpinningBkwd = false;
-    state["isSpinningBkwd"] = isSpinningBkwd;
+    input["isSpinningBkwd"] = isSpinningBkwd;
   }
 
 
@@ -210,9 +210,9 @@ void updateStatus() { // TODO: move this logic to server.js
   if (isGoTime) {
   } else if (!isGoTime) {
   }
-  state["isGoTime"] = isGoTime;
+  input["isGoTime"] = isGoTime;
 }
 
-void sendState() {
-  Serial.println(state);
+void sendInput() {
+  Serial.println(input);
 }

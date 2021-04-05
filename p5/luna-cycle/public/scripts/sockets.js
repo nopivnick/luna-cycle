@@ -8,10 +8,10 @@ socket.on('connect', function () {
   console.log("Socket id: ", socket.id);
 });
 
-socket.on("state", (data) => {
-  state = JSON.parse(data);
-  // console.log(state);
-  updateState();
+socket.on("input", (data) => {
+  input = JSON.parse(data);
+  // console.log(input);
+  updateInput();
   updateCounter();
   updateDisplay();
   if (isSpinning) {

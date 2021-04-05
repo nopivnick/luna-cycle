@@ -1,4 +1,4 @@
-let state;
+let input;
 
 let canvas;
 
@@ -124,16 +124,16 @@ function getSceneNum() {
   scene = sceneManager.findSceneIndex(sceneManager.scene.fnScene);
 }
 
-function updateState() {
-  encoder = state.encoder; // TODO: is there a smarter way to do this ...
-  previousEncoder = state.previousEncoder; // ... and this ...
-  isUserA_touchingPlate = state.isUserA_touchingPlate; // ... and this, etc.?
-  isUserB_touchingPlate = state.isUserB_touchingPlate;
-  isAandB_touchingPlates = state.isAandB_touchingPlates;
-  isSpinning = state.isSpinning;
-  isSpinningFwd = state.isSpinningFwd;
-  isSpinningBkwd = state.isSpinningBkwd;
-  isGoTime = state.isGoTime;
+function updateInput() {
+  encoder = input.encoder; // TODO: is there a smarter way to do this ...
+  previousEncoder = input.previousEncoder; // ... and this ...
+  isUserA_touchingPlate = input.isUserA_touchingPlate; // ... and this, etc.?
+  isUserB_touchingPlate = input.isUserB_touchingPlate;
+  isAandB_touchingPlates = input.isAandB_touchingPlates;
+  isSpinning = input.isSpinning;
+  isSpinningFwd = input.isSpinningFwd;
+  isSpinningBkwd = input.isSpinningBkwd;
+  isGoTime = input.isGoTime;
 }
 
 function updateTone() { // TODO: not working
