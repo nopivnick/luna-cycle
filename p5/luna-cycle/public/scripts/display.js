@@ -31,7 +31,7 @@ function updateScene() {
   }
 }
 
-function animateScreen() {
+function displayProgress() {
   characters = selectAll('span');
   if (isProgressing) {
     if (alphaValue < 1) {
@@ -47,7 +47,7 @@ function animateScreen() {
   }
 }
 
-function updateDisplay() {
+function updateProgress() {
   isProgressing = isSpinningFwd && charIndex < characters.length && !isFading;
   isRegressing = isSpinningBkwd && charIndex < characters.length && !isFading;
   isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
@@ -55,7 +55,7 @@ function updateDisplay() {
   isFading = isFadingIn || isFadingOut;
 }
 
-function resetDisplay() {
+function resetProgress() {
   alphaValue = 0; // 0 = characters on a new screen fade in incrementally, 1 = they turn opaque
   charIndex = 0;
 }

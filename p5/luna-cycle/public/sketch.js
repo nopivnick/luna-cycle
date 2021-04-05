@@ -99,7 +99,7 @@ function setupSceneManager() {
 function drawScene() {
   background(0);
   displayEncoder();
-  animateScreen();
+  displayProgress();
   updateScene();
 }
 
@@ -107,7 +107,7 @@ function onEnterScene() {
   console.log(sceneManager.scene.fnScene.name);
   getSceneNum();
   setupScreen(scene, tone);
-  resetDisplay();
+  resetProgress();
   // resetTrackpadEncoder(); TODO: incorporate trackpadEncoder 
   resetCounter();
 }

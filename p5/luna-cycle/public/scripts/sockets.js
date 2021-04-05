@@ -13,10 +13,10 @@ socket.on("input", (data) => {
   // console.log(input);
   updateInput();
   updateCounter();
-  updateDisplay();
   if (isSpinning) {
     updateCharIndex(); // TODO: why does this throw an error if not in the conditional?
   }
+  updateProgress();
   updateAlpha();
 });
 
