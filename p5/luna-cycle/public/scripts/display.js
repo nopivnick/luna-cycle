@@ -56,7 +56,7 @@ function updateProgress() {
 }
 
 function resetProgress() {
-  alphaValue = 0; // 0 = characters on a new screen fade in incrementally, 1 = they turn opaque
+  alphaValue = 1; // 0 = characters on a new screen fade in incrementally, 1 = they turn opaque right away
   charIndex = 0;
 }
 

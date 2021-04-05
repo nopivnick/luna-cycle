@@ -7,7 +7,7 @@ let encoderDelta = 0;
 let previousEncoderDelta = 0;
 
 let characters = [];
-let charIndex;
+let charIndex = 0;
 let charIndexDelay = 0;
 
 function updateCounter() {

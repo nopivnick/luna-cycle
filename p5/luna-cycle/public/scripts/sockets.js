@@ -14,7 +14,7 @@ socket.on("input", (data) => {
   updateInput();
   updateCounter();
   if (isSpinning) {
-    updateCharIndex(); // TODO: why does this throw an error if not in the conditional?
+    updateCharIndex(); // TODO: why does this throw an error if not inside the conditional?
   }
   updateProgress();
   updateAlpha();
