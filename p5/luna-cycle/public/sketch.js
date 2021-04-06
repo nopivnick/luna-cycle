@@ -1,5 +1,7 @@
 let input;
 
+let isArduino = true;
+
 let canvas;
 
 let scene = 0;
@@ -30,8 +32,7 @@ function setup() {
   setupCanvas();
   toggleCursor();
   setupSceneManager();
-  hosted = true; // TODO: how do I get this from the server?
-  if (hosted === true) {
+  if (isArduino === false) {
     setInterval(() => {
       updateTrackpadSamples()
     }, 100);
@@ -99,6 +100,9 @@ function setupSceneManager() {
 function drawScene() {
   background(0);
   displayEncoder();
+  if (isArduino == false) {
+    updateOutput();
+  }
   displayProgress();
   updateScene();
 }
@@ -147,4 +151,13 @@ function updateTone() { // TODO: not working
     /* Bliss */
     tone = 'bliss';
   }
+}
+
+function updateOutput() {
+  updateCounter();
+  if (isSpinning) {
+    updateCharIndex(); // TODO: why does this throw an error if not inside the conditional?
+  }
+  updateProgress();
+  updateAlpha();
 }

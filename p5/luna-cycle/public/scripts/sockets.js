@@ -8,16 +8,19 @@ socket.on('connect', function () {
   console.log("Socket id: ", socket.id);
 });
 
+socket.on("isArduino", (data) => {
+  if (data === "false") {
+    isArduino = false;
+  } else if (data === "true") {
+    isArduino = true;
+  }
+  console.log("isArduino: " + isArduino);
+});
+
 socket.on("input", (data) => {
   input = JSON.parse(data);
-  // console.log(input);
   updateInput();
-  updateCounter();
-  if (isSpinning) {
-    updateCharIndex(); // TODO: why does this throw an error if not inside the conditional?
-  }
-  updateProgress();
-  updateAlpha();
+  updateOutput();
 });
 
 console.log("sockets.js LOADED");

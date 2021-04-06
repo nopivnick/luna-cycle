@@ -9,7 +9,7 @@
  * where <portName> is the name of the serial port connected to the Arduino, e.g. /dev/cu.usbmodemXXXXX (on OSX)
  */
 
-const hosted = false; // "physical" or "hosted"
+const isArduino = process.argv[3]; // get the context from the command line
 
 const SerialPort = require('serialport'); // include the serialport library
 const portName = process.argv[2]; // get the port name from the command line
@@ -30,16 +30,16 @@ let users = {
   userB: null
 }
 
-let input = {
-  encoder: -999,
-  previousEncoder: -999,
+let input = JSON.stringify({
+  encoder: 0,
+  previousEncoder: 0,
   isUserA_touchingPlate: false,
   isUserB_touchingPlate: false,
   isAandB_touchingPlates: false,
   isSpinning: false,
   isSpinningFwd: false,
   isSpinningBkwd: false
-}
+})
 
 let status = {
   isGoTime: false,
@@ -82,7 +82,9 @@ io.on('connection', (socket) => {
 
   console.log(users);
 
-  // socket.emit("hosted", hosted);
+  console.log("isArduino: " + isArduino);
+
+  socket.emit("isArduino", isArduino);
 
   socket.emit("input", input);
 
