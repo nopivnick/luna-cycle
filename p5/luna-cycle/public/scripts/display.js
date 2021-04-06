@@ -73,7 +73,7 @@ function increaseAlpha() {
   alphaValue += alphaFade;
 }
 
-function setColor(i) {
+function setTextColor(i) {
   // if (sceneManager.scene.fnScene.name === "sceneChat") {
     if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) {
     red = 0;

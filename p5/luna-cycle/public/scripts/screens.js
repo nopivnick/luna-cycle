@@ -30,7 +30,7 @@ function getBase(scene, tone) {
 function setupParagraphs(base, i) {
   let paragraph = createP();
   container.child(paragraph);
-  setColor(i);
+  setTextColor(i); // TODO: should this be applied with selectAll() *after* the loop finishes?
     for (k = 0; k < base.length; k++) {
       let character = base.charAt(k);
       let span = createSpan(character);
