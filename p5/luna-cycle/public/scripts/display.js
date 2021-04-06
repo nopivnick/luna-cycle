@@ -21,13 +21,7 @@ let isScreenMirrored = false;
 
 function updateScene() {
   if (alphaValue < 0 && isSpinningFwd) {
-    // if (lunaData.scenes[scene].chatIsNext) {
-    //   // TODO: save the value of the current scene here in previousScene
-    //   previousScene = scene;
-    //   sceneManager.showScene(sceneChat);
-    // } else {
       sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
-    // }
   }
 }
 
@@ -93,17 +87,10 @@ function setColor(i) {
 }
 
 function setCSS(paragraph, i) {
-
-  // if (sceneManager.scene.fnScene.name === "sceneChat") { // if this is the text exchange scene ...
-  //   container.addClass("messages");
-  //   paragraph.addClass(lunaChat.scenes[0].paragraphs[i].cssClass); // ... apply the specified CSS class.
-  // }
-
   if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
     container.addClass("messages");
     paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
   }
-
 }
 
 function setAlpha(span) {
