@@ -73,7 +73,7 @@ function increaseAlpha() {
   alphaValue += alphaFade;
 }
 
-function setTextColor(i) {
+function setTextColor(i) { // TODO: this should be getTextColor() and it should return the color instead of setting it
   // if (sceneManager.scene.fnScene.name === "sceneChat") {
     if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) {
     red = 0;
