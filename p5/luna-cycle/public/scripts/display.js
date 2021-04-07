@@ -19,10 +19,15 @@ let isCursorDisplayed = false;
 let isEncoderDisplayed = false;
 let isScreenMirrored = false;
 
+// let MSG_PARAGRAPHS
+
+
 function updateScene() {
   if (alphaValue < 0 && isSpinningFwd) {
       sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
+  
+//   MSG_PARAGRAPHS = selectAll('.message-class') // DOM elements 
 }
 
 function displayProgress() {
@@ -47,6 +52,15 @@ function updateProgress() {
   isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
+  
+//   for( let i=0; i < MSG_PARAGRAPHS.length ; i++) {
+//     // TXT_MESSAGE_LENGTHS {
+//     // 4: [0, 14, 18, 104, 123] --> cumulative 
+//     //}
+//     if( counter > TXT_MESSAGE_LENGTHS[scene][i] ) { // check the logic / direction
+//       MSG_PARAGRAHS.show()
+//     } 
+//   }
 }
 
 function resetProgress() {
