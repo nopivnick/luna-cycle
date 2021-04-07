@@ -4,6 +4,13 @@ let container;
 
 let base;
 
+// let TEXT_MESSAGE_SCENES = {
+//   0: [12, 14, 12, 100],
+//   4: [100, 16, 32],
+// }
+// key -> scene number
+// value -> array of paragraph lengths 
+
 function setupScreen(scene, tone) {
   container = createDiv();
   container.parent('mirror');
@@ -22,6 +29,16 @@ function getBase(scene, tone) {
         }
       }
       console.log(base);
+      
+//       if(istextmessagescreen) {
+//          const messegeCharLength = []
+//          for(each paragraph) {
+//            messegeCharLength.push(paragraph.length)
+//          }
+//          TEXT_MESSAGE_SCENES[scene] = messegeCharLength
+//       }
+      
+      
       setCSS(setupParagraphs(base, i), i); // TODO: move this to setupScreen()
     }
   return base;
