@@ -19,14 +19,18 @@ let isCursorDisplayed = false;
 let isEncoderDisplayed = false;
 let isScreenMirrored = false;
 
+let chatMessages = [];
+
 function updateScene() {
   if (alphaValue < 0 && isSpinningFwd) {
       sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
+  chatMessages = selectAll('.messages'); // TODO: this doesn't need to happen every draw loop, just on entering scene
+  // console.log(chatMessages);
 }
 
 function displayProgress() {
-  characters = selectAll('span');
+  characters = selectAll('span'); // TODO: this doesn't need to happen every draw loop, just on entering scene
   if (isProgressing) {
     if (alphaValue < 1) {
       increaseAlpha();
@@ -47,6 +51,13 @@ function updateProgress() {
   isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
+
+  for (i = 0; i < chatMessages.length; i++) {
+    if (counter > chatSceneCues[scene][i]) {
+      chatMessages[i].show();
+    }
+  }
+
 }
 
 function resetProgress() {

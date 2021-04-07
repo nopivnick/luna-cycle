@@ -4,6 +4,8 @@ let container;
 
 let base;
 
+let chatSceneCues = {};
+
 function setupScreen(scene, tone) {
   container = createDiv();
   container.parent('mirror');
@@ -22,6 +24,16 @@ function getBase(scene, tone) {
         }
       }
       console.log(base);
+
+      if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the scene is a chat transcript ...
+        let messageLength = []; // ... declare an array and ...
+        for (m = 0; m < lunaData.scenes[scene].paragraphs.length; m++) { // ... for every paragraph of the current scene ... // TODO: this should be a forEach loop
+          messageLength.push(lunaData.scenes[scene].paragraphs[m].base.length); // ... add the length of the base to the array and ...
+        }
+        chatSceneCues[scene] = messageLength; // ... add the array to the list of cues object
+      }
+      console.log(chatSceneCues);
+
       setCSS(setupParagraphs(base, i), i); // TODO: move this to setupScreen()
     }
   return base;
