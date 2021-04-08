@@ -23,14 +23,11 @@ let chatMessages = [];
 
 function updateScene() {
   if (alphaValue < 0 && isSpinningFwd) {
-      sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
+    sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
-  chatMessages = selectAll('.messages'); // TODO: this doesn't need to happen every draw loop, just on entering scene
-  // console.log(chatMessages);
 }
 
 function displayProgress() {
-  characters = selectAll('span'); // TODO: this doesn't need to happen every draw loop, just on entering scene
   if (isProgressing) {
     if (alphaValue < 1) {
       increaseAlpha();
@@ -51,13 +48,19 @@ function updateProgress() {
   isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
+}
 
-  for (i = 0; i < chatMessages.length; i++) {
-    if (counter > chatSceneCues[scene][i]) {
+function displayTypingIndicator() {
+  for (i = 0; i < chatMessages.length; i++) { // For every message in the chat transcript ...
+    if (counter <= chatSceneCues[scene][i] && chatMessages[i].elt.className === "message message-recd") {
+      typingIndicator.show();
+    } else {
+      typingIndicator.hide();
+    }
+    if (counter > chatSceneCues[scene][i]) { // TODO: is it counter or charIndex?
       chatMessages[i].show();
     }
   }
-
 }
 
 function resetProgress() {
@@ -86,7 +89,7 @@ function increaseAlpha() {
 
 function setTextColor(i) { // TODO: this should be getTextColor() and it should return the color instead of setting it
   // if (sceneManager.scene.fnScene.name === "sceneChat") {
-    if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) {
+  if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) {
     red = 0;
     green = 0;
     blue = 0;
