@@ -4,13 +4,23 @@ let container;
 
 let base;
 
+let typingIndicator;
+
 let chatSceneCues = {};
 
 function setupScreen(scene, tone) {
-  container = createDiv();
-  container.parent('mirror');
+  setupContainer();
   base = getBase(scene, tone);
+  if (lunaData.scenes[scene].isChat === true) {
+    setupTypingIndicator();
+  }
   // setCSS(setupParagraphs(base, i), i); // TODO: fix error when moving this here
+}
+
+function setupContainer() {
+  container = createDiv();
+  container.id('container');
+  container.parent('mirror');
 }
 
 function getBase(scene, tone) {
@@ -24,16 +34,18 @@ function getBase(scene, tone) {
         }
       }
       console.log(base);
-
-      if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the scene is a chat transcript ...
-        let messageLength = []; // ... declare an array and ...
-        for (m = 0; m < lunaData.scenes[scene].paragraphs.length; m++) { // ... for every paragraph of the current scene ... // TODO: this should be a forEach loop
-          messageLength.push(lunaData.scenes[scene].paragraphs[m].base.length); // ... add the length of the base to the array and ...
+      if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the current scene is a chat exchange ...
+        let sendMessageCues = []; // declare an array and ...
+        let sendMessageCue = 0;
+        let prevSendMessageCue = 0;
+        for (m = 0; m < lunaData.scenes[scene].paragraphs.length; m++) { // for every message in the chat transcript ...
+          sendMessageCue = (lunaData.scenes[scene].paragraphs[m].base.length + prevSendMessageCue); // add the length of each message to the previous and ...
+          sendMessageCues.push(sendMessageCue); // add the cue to the array and ...
+          prevSendMessageCue = sendMessageCue; // store the latest cue for the next loop and then ...
         }
-        chatSceneCues[scene] = messageLength; // ... add the array to the list of cues object
+        chatSceneCues[scene] = sendMessageCues; // ... add the array to the message-cues-by-scene object.
       }
       console.log(chatSceneCues);
-
       setCSS(setupParagraphs(base, i), i); // TODO: move this to setupScreen()
     }
   return base;
@@ -51,6 +63,17 @@ function setupParagraphs(base, i) {
       paragraph.child(span); // make each <span>char</span> a child of the paragraph
     }
     return paragraph;
+}
+
+function setupTypingIndicator() {
+  typingIndicator = createP();
+  for (i = 0; i < 3; i++) {
+    let span = createSpan();
+    span.parent(typingIndicator);
+  }
+  typingIndicator.parent('container')
+  typingIndicator.addClass("typing-indicator");
+  typingIndicator.hide();
 }
 
 console.log("scenes.js LOADED");
