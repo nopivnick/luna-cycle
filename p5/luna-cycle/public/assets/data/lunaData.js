@@ -1,5 +1,6 @@
 const lunaData = {
   scenes: [{
+      isChat: false,
       paragraphs: [{
           base: "They come while I write.",
           cssClass: null,
@@ -68,6 +69,7 @@ const lunaData = {
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
           base: "I've just closed the laptop lid when the screen on my phone grows bright.",
           cssClass: null,
@@ -85,13 +87,14 @@ const lunaData = {
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
           base: "We speak in text.",
           cssClass: null,
           snippets: null
         },
         {
-          base: "And the words {0} as you type them on the screen ...",
+          base: "The words {0} as you type them on the screen.",
           cssClass: null,
           snippets: [{
             bliss: "come effortlessly",
@@ -103,29 +106,31 @@ const lunaData = {
       chatIsNext: true
     },
     {
+      isChat: true,
       paragraphs: [{
           base: "Are you awake?",
           cssClass: "message message-recd",
           snippets: null
         },
-        {
-          base: "Yes.",
-          cssClass: "message message-sent",
-          snippets: null
-        },
+        // {
+        //   base: "Yes.",
+        //   cssClass: "message message-sent",
+        //   snippets: null
+        // },
         {
           base: "I was just writing you.",
           cssClass: "message message-sent",
           snippets: null
         },
         {
-          base: "What have you written?",
+          base: "What are you writing?",
           cssClass: "message message-recd",
           snippets: null
         }
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
           base: "{0}",
           cssClass: null,
@@ -143,25 +148,28 @@ const lunaData = {
       ],
       chatIsNext: true
     },
-    {
-      paragraphs: [{
-        base: "Will I get to see it?",
-        cssClass: "message message-recd",
-        snippets: null
-      }]
-    },
-    {
-      paragraphs: [{
-        base: "{0}",
-        cssClass: null,
-        snippets: [{
-          bliss: "Yes, of course.",
-          blah: "Perhaps when it's done.",
-          bad: "I think it best you don't."
-        }]
-      }]
-    },
     // {
+    //   isChat: true,
+    //   paragraphs: [{
+    //     base: "Will I get to see it?",
+    //     cssClass: "message message-recd",
+    //     snippets: null
+    //   }]
+    // },
+    // {
+    //   isChat: false,
+    //   paragraphs: [{
+    //     base: "{0}",
+    //     cssClass: null,
+    //     snippets: [{
+    //       bliss: "Yes, of course.",
+    //       blah: "Perhaps when it's done.",
+    //       bad: "I think it best you don't."
+    //     }]
+    //   }]
+    // },
+    // {
+    //   isChat: true,
     //   paragraphs: [{
     //     base: "I'd need to be there when you do.",
     //     cssClass: "message message-sent",
@@ -169,6 +177,7 @@ const lunaData = {
     //   }]
     // },
     {
+      isChat: false,
       paragraphs: [{
           base: "You are so very far away.",
           cssClass: null,
@@ -183,6 +192,7 @@ const lunaData = {
       chatIsNext: true
     },
     {
+      isChat: true,
       paragraphs: [{
           base: "Are you close?",
           cssClass: "message message-sent",
@@ -196,6 +206,7 @@ const lunaData = {
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
         base: "And so I wait and ask again.",
         cssClass: null,
@@ -204,6 +215,7 @@ const lunaData = {
       chatIsNext: true
     },
     {
+      isChat: true,
       paragraphs: [{
           base: "Are you close yet?",
           cssClass: "message message-sent",
@@ -217,6 +229,7 @@ const lunaData = {
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
           base: "So I wait longer still.",
           cssClass: null,
@@ -231,6 +244,7 @@ const lunaData = {
       chatIsNext: false
     },
     {
+      isChat: true,
       paragraphs: [{
           base: "Are you close now?",
           cssClass: "message message-sent",
@@ -244,6 +258,7 @@ const lunaData = {
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
         base: "I {0} and listen for the sound of your arrival.",
         cssClass: null,
@@ -255,6 +270,7 @@ const lunaData = {
       }]
     },
     {
+      isChat: false,
       paragraphs: [{
           base: "{0}",
           cssClass: null,
@@ -294,6 +310,7 @@ const lunaData = {
       ]
     },
     {
+      isChat: false,
       paragraphs: [{
         base: "And you wonder whether it's possible to go on like this forever.",
         cssClass: null,
