@@ -9,7 +9,7 @@ let previousScene = 0;
 let sceneManager;
 let sceneIndex;
 
-let loopCounter = 0;
+let loopCounter = 1;
 
 let tone = 'bliss';
 
@@ -79,16 +79,16 @@ function setupSceneManager() {
   sceneManager.addScene(scene13);
   sceneManager.addScene(scene14);
   sceneManager.addScene(scene15);
-// TODO: consider storing scenes as anonymous functions in an array 
-//       in order to preload in sketch.js with a for loop
-// scenes = [];
-// scene[0] = function () {
-//   // p5.SceneManager functions go here
-// }
-// scene[1] = function () {
-//   // p5.SceneManager functions go here
-// }
-// // etc.
+  // TODO: consider storing scenes as anonymous functions in an array 
+  //       in order to preload in sketch.js with a for loop
+  // scenes = [];
+  // scene[0] = function () {
+  //   // p5.SceneManager functions go here
+  // }
+  // scene[1] = function () {
+  //   // p5.SceneManager functions go here
+  // }
+  // // etc.
   sceneManager.showScene(scene0);
 }
 
@@ -104,6 +104,7 @@ function drawScene() {
     updateOutput();
   }
   displayProgress();
+  displayTypingIndicator();
   updateScene();
 }
 
@@ -113,6 +114,11 @@ function onEnterScene() {
   setupScreen(scene, tone);
   resetProgress();
   resetCounter();
+  chatMessages = selectAll('.message');
+  for (i = 0; i < chatMessages.length; i++) {
+    chatMessages[i].hide();
+  }
+  characters = selectAll('span');
 }
 
 function onExitScene() {
@@ -139,7 +145,7 @@ function updateInput() {
   isGoTime = input.isGoTime;
 }
 
-function updateTone() { // TODO: not working
+function updateTone() {
   if (loopCounter % 4 === 3) {
     /* Bad */
     tone = 'bad';
