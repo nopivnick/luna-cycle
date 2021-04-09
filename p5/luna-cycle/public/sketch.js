@@ -1,3 +1,5 @@
+let user;
+
 let input;
 
 let isArduino = true;
@@ -29,6 +31,8 @@ let isGoTime = false;
 let isTrackpadEncoder = false;
 
 function setup() {
+  let params = getURLParams();
+  user = params.user;
   setupCanvas();
   toggleCursor();
   setupSceneManager();
@@ -40,6 +44,7 @@ function setup() {
       updateTrackpadEncoder() // TODO: should the serial communication baud be a multiple of this interval?
     }, 25);
   }
+  console.log("I am: user " + user);
 }
 
 // Standard p5 draw() function
@@ -77,8 +82,8 @@ function setupSceneManager() {
   sceneManager.addScene(scene11);
   sceneManager.addScene(scene12);
   sceneManager.addScene(scene13);
-  sceneManager.addScene(scene14);
-  sceneManager.addScene(scene15);
+  // sceneManager.addScene(scene14);
+  // sceneManager.addScene(scene15);
   // TODO: consider storing scenes as anonymous functions in an array 
   //       in order to preload in sketch.js with a for loop
   // scenes = [];
