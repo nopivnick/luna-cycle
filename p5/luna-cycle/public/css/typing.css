@@ -42,9 +42,10 @@ body {
   width: auto;
   border-radius: 50px;
   padding: 20px;
-  /* display: table; */
+  display: table;
   margin: 0 auto;
   position: relative;
+  align-self: flex-start;
   -webkit-animation: 2s bulge infinite ease-out;
           animation: 2s bulge infinite ease-out;
 }
