@@ -94,7 +94,7 @@ const lunaData = {
           snippets: null
         },
         {
-          base: "The words {0} as you type them on the screen.",
+          base: "And the words {0} as you type them on the screen.",
           cssClass: null,
           snippets: [{
             bliss: "come effortlessly",
