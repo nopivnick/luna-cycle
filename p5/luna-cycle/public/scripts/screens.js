@@ -51,13 +51,13 @@ function getBase(scene, tone) {
           let prevTypingIndicatorCueIn = 0;
           let typingIndicatorCueOut = 0;
           let prevTypingIndicatorCueOut = 0;
-          for (n = 0; n < lunaData.scenes[scene].paragraphs[m].length; n++) {
-            typingIndicatorCueIn = (lunaData.scenes[scene].paragraphs[n].base.length + prevTypingIndicatorCueIn);
+          for (n = 0; n < lunaData.scenes[scene].paragraphs[m].base.length; n++) {
+            typingIndicatorCueIn = (lunaData.scenes[scene].paragraphs[m].base.length + prevTypingIndicatorCueIn);
             prevTypingIndicatorCueIn = typingIndicatorCueIn;
-            typingIndicatorCueOut = (lunaData.scenes[scene].paragraphs[n].base.length + prevTypingIndicatorCueOut);
+            typingIndicatorCueOut = (lunaData.scenes[scene].paragraphs[m].base.length + prevTypingIndicatorCueOut);
             prevTypingIndicatorCueOut = typingIndicatorCueOut;
-            tempCue = [typingIndicatorCueIn, typingIndicatorCueOut];
-            typingIndicatorCues.push(tempCue);
+            let tempCues = [typingIndicatorCueIn, typingIndicatorCueOut];
+            typingIndicatorCues.push(tempCues);
             typingIndicatorCuesByScene[scene] = typingIndicatorCues;
           }
         }
