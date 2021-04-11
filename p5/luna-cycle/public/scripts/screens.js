@@ -36,7 +36,7 @@ function getBase(scene, tone) {
       }
     }
     console.log(base);
-    if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the current scene is a chat exchange ...
+    if (lunaData.scenes[scene].isChat === true) { // if the current scene is a chat exchange ...
       let sendMessageCues = [];
       let sendMessageCue = 0;
       let prevSendMessageCue = 0;
