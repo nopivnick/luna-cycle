@@ -52,18 +52,16 @@ function getBase(scene, tone) {
         sendMessageCues.push(sendMessageCue); // add the cue to the array and ...
         prevSendMessageCue = sendMessageCue; // store the latest cue for the next loop and ...
 
-        if (lunaData.scenes[scene].paragraphs[m].cssClass === "message message-recd") {
-          typingIndicatorCueIn = sendMessageCue - lunaData.scenes[scene].paragraphs[m].base.length;
-          prevTypingIndicatorCueIn = typingIndicatorCueIn;
-          typingIndicatorCueOut = sendMessageCue;
-          prevTypingIndicatorCueOut = typingIndicatorCueOut;
-          let CuesInOut = [typingIndicatorCueIn, typingIndicatorCueOut];
-          typingIndicatorCues.push(CuesInOut);
-          typingIndicatorCuesByScene[scene] = typingIndicatorCues;
-        }
-
+        typingIndicatorCueIn = sendMessageCue - lunaData.scenes[scene].paragraphs[m].base.length;
+        prevTypingIndicatorCueIn = typingIndicatorCueIn;
+        typingIndicatorCueOut = sendMessageCue;
+        prevTypingIndicatorCueOut = typingIndicatorCueOut;
+        let CuesInOut = [typingIndicatorCueIn, typingIndicatorCueOut];
+        typingIndicatorCues.push(CuesInOut);
+        
       }
       sendMessageCuesByScene[scene] = sendMessageCues; // ... add the array to the message-cues-by-scene object.
+      typingIndicatorCuesByScene[scene] = typingIndicatorCues;
     }
     console.log(sendMessageCuesByScene);
     console.log(typingIndicatorCuesByScene);
