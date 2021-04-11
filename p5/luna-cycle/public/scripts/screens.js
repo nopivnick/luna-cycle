@@ -37,31 +37,31 @@ function getBase(scene, tone) {
     }
     console.log(base);
     if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the current scene is a chat exchange ...
-      let sendMessageCues = []; // declare an array and ...
+      let sendMessageCues = [];
       let sendMessageCue = 0;
       let prevSendMessageCue = 0;
+
+      let typingIndicatorCues = [];
+      let typingIndicatorCueIn = 0;
+      let prevTypingIndicatorCueIn = 0;
+      let typingIndicatorCueOut = 0;
+      let prevTypingIndicatorCueOut = 0;
+
       for (m = 0; m < lunaData.scenes[scene].paragraphs.length; m++) { // for every message in the chat transcript ...
         sendMessageCue = (lunaData.scenes[scene].paragraphs[m].base.length + prevSendMessageCue); // add the length of each message to the previous and ...
         sendMessageCues.push(sendMessageCue); // add the cue to the array and ...
-        prevSendMessageCue = sendMessageCue; // store the latest cue for the next loop and then ...
-      
+        prevSendMessageCue = sendMessageCue; // store the latest cue for the next loop and ...
+
         if (lunaData.scenes[scene].paragraphs[m].cssClass === "message message-recd") {
-          let typingIndicatorCues = [];
-          let typingIndicatorCueIn = 0;
-          let prevTypingIndicatorCueIn = 0;
-          let typingIndicatorCueOut = 0;
-          let prevTypingIndicatorCueOut = 0;
-          for (n = 0; n < lunaData.scenes[scene].paragraphs[m].base.length; n++) {
-            typingIndicatorCueIn = (lunaData.scenes[scene].paragraphs[m].base.length + prevTypingIndicatorCueIn);
-            prevTypingIndicatorCueIn = typingIndicatorCueIn;
-            typingIndicatorCueOut = (lunaData.scenes[scene].paragraphs[m].base.length + prevTypingIndicatorCueOut);
-            prevTypingIndicatorCueOut = typingIndicatorCueOut;
-            let tempCues = [typingIndicatorCueIn, typingIndicatorCueOut];
-            typingIndicatorCues.push(tempCues);
-            typingIndicatorCuesByScene[scene] = typingIndicatorCues;
-          }
+          typingIndicatorCueIn = sendMessageCue - lunaData.scenes[scene].paragraphs[m].base.length;
+          prevTypingIndicatorCueIn = typingIndicatorCueIn;
+          typingIndicatorCueOut = sendMessageCue;
+          prevTypingIndicatorCueOut = typingIndicatorCueOut;
+          let CuesInOut = [typingIndicatorCueIn, typingIndicatorCueOut];
+          typingIndicatorCues.push(CuesInOut);
+          typingIndicatorCuesByScene[scene] = typingIndicatorCues;
         }
-      
+
       }
       sendMessageCuesByScene[scene] = sendMessageCues; // ... add the array to the message-cues-by-scene object.
     }
