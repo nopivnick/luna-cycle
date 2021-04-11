@@ -52,7 +52,12 @@ function updateProgress() {
 
 function displayTypingIndicator() {
   for (i = 0; i < chatMessages.length; i++) { // For every message in the chat transcript ...
-    if (counter <= sendMessageCuesByScene[scene][i] && chatMessages[i].elt.className === "message message-recd") {
+    // if (counter <= sendMessageCuesByScene[scene][i] && chatMessages[i].elt.className === "message message-recd") {
+    //   typingIndicator.show();
+    // } else if (chatMessages[i].elt.className === "message message-sent") {
+    //   typingIndicator.hide();
+    // }
+    if (counter >= typingIndicatorCuesByScene[scene][i][0] && counter <= typingIndicatorCuesByScene[scene][i][1]) {
       typingIndicator.show();
     } else {
       typingIndicator.hide();
