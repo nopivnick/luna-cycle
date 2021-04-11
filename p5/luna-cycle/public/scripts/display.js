@@ -52,16 +52,16 @@ function updateProgress() {
 
 function displayTypingIndicator() {
   for (i = 0; i < chatMessages.length; i++) { // For every message in the chat transcript ...
-    // if (counter <= sendMessageCuesByScene[scene][i] && chatMessages[i].elt.className === "message message-recd") {
-    //   typingIndicator.show();
-    // } else if (chatMessages[i].elt.className === "message message-sent") {
-    //   typingIndicator.hide();
-    // }
-    if (counter >= typingIndicatorCuesByScene[scene][i][0] && counter <= typingIndicatorCuesByScene[scene][i][1]) {
+    if (counter <= sendMessageCuesByScene[scene][i] && chatMessages[i].elt.className === "message message-recd") {
       typingIndicator.show();
-    } else {
+    } else if (chatMessages[i].elt.className === "message message-sent") {
       typingIndicator.hide();
     }
+    // if (counter >= typingIndicatorCuesByScene[scene][i][0] && counter <= typingIndicatorCuesByScene[scene][i][1]) {
+    //   typingIndicator.show();
+    // } else {
+    //   typingIndicator.hide();
+    // }
     if (counter > sendMessageCuesByScene[scene][i]) { // TODO: is it counter or charIndex?
       chatMessages[i].show();
     }
@@ -94,7 +94,7 @@ function increaseAlpha() {
 
 function setTextColor(i) { // TODO: this should be getTextColor() and it should return the color instead of setting it
   // if (sceneManager.scene.fnScene.name === "sceneChat") {
-  if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) {
+  if (lunaData.scenes[scene].isChat === true) {
     red = 0;
     green = 0;
     blue = 0;
@@ -106,9 +106,9 @@ function setTextColor(i) { // TODO: this should be getTextColor() and it should 
 }
 
 function setCSS(paragraph, i) {
-  if (lunaData.scenes[scene].paragraphs[i].cssClass !== null) { // if the paragraph has special CSS styling ...
+  if (lunaData.scenes[scene].isChat === true) { // if the current scene is a chat exchange ...
     container.addClass("messages");
-    paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class.
+    paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class to the paragraph.
   }
 }
 
