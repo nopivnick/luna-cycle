@@ -36,8 +36,14 @@ function displayProgress() {
       characters[i].style(`color: rgba(${red}, ${green}, ${blue}, ${alphaValue})`);
     }
   } else if (isFading) {
-    for (i = 0; i <= charIndex; i++) {
-      characters[i].style(`color: rgba(${red}, ${green}, ${blue}, ${alphaValue})`);
+    if (lunaData.scenes[scene].isChat === true) {
+      for (i = 0; i < chatMessages.length; i++) {
+        chatMessages[i].style(`opacity: ${alphaValue}`);
+      }
+    } else {
+      for (i = 0; i <= charIndex; i++) {
+        characters[i].style(`color: rgba(${red}, ${green}, ${blue}, ${alphaValue})`);
+      }
     }
   }
 }
