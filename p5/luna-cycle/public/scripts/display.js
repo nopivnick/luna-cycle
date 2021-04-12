@@ -60,6 +60,7 @@ function displayTypingIndicator() {
   for (i = 0; i < chatMessages.length; i++) { // For every message in the chat transcript ...
     if (chatMessages[i].elt.className === "message message-recd" && charIndex >= typingIndicatorCuesByScene[scene][i][0] && charIndex <= typingIndicatorCuesByScene[scene][i][1]) {
       typingIndicator.show();
+      break;
     } else {
       typingIndicator.hide();
     }
@@ -67,6 +68,15 @@ function displayTypingIndicator() {
       chatMessages[i].show();
     }
   }
+
+  /**
+   * TODO: Sukanya's suggested approach to handling chat message cues
+   * - https://github.com/nopivnick/luna-cycle/issues/21#issuecomment-818135546
+   */
+  // for (i = 0; i < chatMessages.length; i++) { // For every message in the chat transcript ...
+  //   
+  // }
+
 }
 
 function resetProgress() {
