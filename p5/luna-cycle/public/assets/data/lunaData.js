@@ -102,8 +102,7 @@ const lunaData = {
             bad: "feel tired"
           }]
         }
-      ],
-      chatIsNext: true
+      ]
     },
     {
       isChat: true,
@@ -145,8 +144,7 @@ const lunaData = {
           cssClass: null,
           snippets: null
         }
-      ],
-      chatIsNext: true
+      ]
     },
     // {
     //   isChat: true,
@@ -188,8 +186,7 @@ const lunaData = {
           cssClass: null,
           snippets: null
         }
-      ],
-      chatIsNext: true
+      ]
     },
     {
       isChat: true,
@@ -211,8 +208,7 @@ const lunaData = {
         base: "And so I wait and ask again.",
         cssClass: null,
         snippets: null
-      }],
-      chatIsNext: true
+      }]
     },
     {
       isChat: true,
@@ -240,8 +236,7 @@ const lunaData = {
           cssClass: null,
           snippets: null
         }
-      ],
-      chatIsNext: false
+      ]
     },
     {
       isChat: true,
