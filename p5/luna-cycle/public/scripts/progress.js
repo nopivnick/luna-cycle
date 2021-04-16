@@ -11,8 +11,13 @@ let charIndex = 0;
 let charIndexDelay = 0;
 
 function updateCounter() {
-  counter = (encoder - encoderDelta);
-  previousCounter = (previousEncoder - previousEncoderDelta)
+  if (isGoTime) {
+    counter = (encoder - encoderDelta);
+    previousCounter = (previousEncoder - previousEncoderDelta)
+  } else {
+    encoderDelta = encoder;
+    previousEncoderDelta = previousEncoder;
+  }
 }
 
 function resetCounter() {
