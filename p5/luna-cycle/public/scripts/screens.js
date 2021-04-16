@@ -4,6 +4,8 @@ let container;
 
 let base;
 
+let letterByLetter = false;
+
 let typingIndicator;
 
 let sendMessageCuesByScene = {};
@@ -100,13 +102,21 @@ function setupParagraphs(base, i) {
   let paragraph = createP();
   container.child(paragraph);
   setTextColor(i); // TODO: should this be applied with selectAll() *after* the loop finishes?
-  for (k = 0; k < base.length; k++) {
-    let character = base.charAt(k);
-    let span = createSpan(character);
+  if (letterByLetter === true) {
+    for (k = 0; k < base.length; k++) {
+      let character = base.charAt(k);
+      let span = createSpan(character);
+      span.style('position: relative');
+      setAlpha(span);
+      paragraph.child(span); // make each <span>char</span> a child of the paragraph
+    }
+  } else {
+    let span = createSpan(base);
     span.style('position: relative');
     setAlpha(span);
-    paragraph.child(span); // make each <span>char</span> a child of the paragraph
+    paragraph.child(span);
   }
+  console.log("letterByLetter is: " + letterByLetter)
   return paragraph;
 }
 
