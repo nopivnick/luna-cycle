@@ -45,7 +45,7 @@ int encoderResolution = 10;
 
 long encoder = 0;
 long previousEncoder = 0;
-int encoderDivisor = 10;
+int encoderDivisor = 3;
 
 unsigned long timeStamp = 0;
 unsigned long previousTimeStamp = 0;
