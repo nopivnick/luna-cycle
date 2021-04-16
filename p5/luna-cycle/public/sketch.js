@@ -47,10 +47,11 @@ function setup() {
   console.log("I am: user " + user);
 }
 
-// Standard p5 draw() function
-// 
-// not used when using p5.SceneManager
-//
+/**
+ * Standard p5 draw() function
+ * 
+ * Superseded by drawScene() when using p5.SceneManager
+ */
 //function draw() {
 //
 // }
@@ -82,8 +83,8 @@ function setupSceneManager() {
   sceneManager.addScene(scene11);
   sceneManager.addScene(scene12);
   sceneManager.addScene(scene13);
-  // sceneManager.addScene(scene14);
-  // sceneManager.addScene(scene15);
+  sceneManager.addScene(scene14);
+  sceneManager.addScene(scene15);
   // TODO: consider storing scenes as anonymous functions in an array 
   //       in order to preload in sketch.js with a for loop
   // scenes = [];

@@ -30,8 +30,12 @@ const lunaData = {
               bad: "foist"
             }
           ]
-        },
-        {
+        }
+      ]
+    },
+    {
+      isChat: false,
+      paragraphs: [{
           base: "Do you remember?",
           cssClass: null,
           snippets: null
@@ -283,8 +287,12 @@ const lunaData = {
             blah: "The call of coydogs. Shrill. Unnerving.",
             bad: "The grumble of thunder. Ominous. Imminent."
           }]
-        },
-        {
+        }
+      ]
+    },
+    {
+      isChat: false,
+      paragraphs: [{
           base: "{0}",
           cssClass: null,
           snippets: [{
