@@ -104,6 +104,7 @@ function setupSceneManager() {
  * Draws something in *all* scenes
  */
 function drawScene() {
+  updateState();
   background(0);
   displayEncoder();
   if (isArduino == false) {
@@ -148,7 +149,11 @@ function updateInput() {
   isSpinning = input.isSpinning;
   isSpinningFwd = input.isSpinningFwd;
   isSpinningBkwd = input.isSpinningBkwd;
-  isGoTime = input.isGoTime;
+  // isGoTime = input.isGoTime;
+}
+
+function updateState() {
+  isGoTime = isSpinning;
 }
 
 function updateTone() {
