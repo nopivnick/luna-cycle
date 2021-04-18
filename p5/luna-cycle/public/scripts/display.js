@@ -22,7 +22,7 @@ let isScreenMirrored = false;
 let chatMessages = [];
 
 function updateScene() {
-  if (alphaValue < 0 && isSpinningFwd) {
+  if (alphaValue < 0 && isSpinningFwd && (charIndex == characters.length - 1)) {
     sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
 }
@@ -51,7 +51,7 @@ function displayProgress() {
 function updateProgress() {
   isProgressing = isSpinningFwd && charIndex < characters.length && !isFading;
   isRegressing = isSpinningBkwd && charIndex < characters.length && !isFading;
-  isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length);
+  isFadingOut = (isSpinningBkwd && counter < charIndex) || (isSpinningFwd && (counter - charIndexDelay) > characters.length) || !isGoTime;
   isFadingIn = isSpinningFwd && counter < charIndex;
   isFading = isFadingIn || isFadingOut;
 }
@@ -93,6 +93,7 @@ function updateAlpha() {
     counter = charIndex;
     increaseAlpha();
   }
+  alphaValue = constrain(alphaValue, -0.1, 1.1);
 }
 
 function decreaseAlpha() {
