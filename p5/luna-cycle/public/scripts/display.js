@@ -22,9 +22,10 @@ let isScreenMirrored = false;
 let chatMessages = [];
 
 function updateScene() {
-  if (alphaValue < 0 && isSpinningFwd && (charIndex == characters.length - 1)) {
+  if (alphaValue < 0 && isSpinningFwd && (charIndex == characters.length - 1) && isMyTurn) {
     sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
+  isDoneReading = false;
 }
 
 function displayProgress() {

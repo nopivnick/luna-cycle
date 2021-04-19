@@ -17,6 +17,18 @@ socket.on("isArduino", (data) => {
   console.log("isArduino: " + isArduino);
 });
 
+socket.on("whoAmI", (data) => {
+  whoAmI = data;
+  console.log("whoAmI: " + whoAmI);
+});
+
+socket.on("state", (data) => {
+  state = JSON.parse(data);
+  console.log("state:");
+  console.log(state);
+  updateState();
+});
+
 socket.on("input", (data) => {
   input = JSON.parse(data);
   updateInput();

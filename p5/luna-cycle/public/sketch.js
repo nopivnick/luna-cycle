@@ -1,4 +1,8 @@
-let user;
+// let user; // a or b
+
+let whoAmI; // userA or userB
+
+let playerMode; // 0 (1 User no touch); 1 (1 user w/ touch); 2 (2 users w/ touch)
 
 let input;
 
@@ -26,13 +30,22 @@ let isSpinning = false;
 let isSpinningFwd = false;
 let isSpinningBkwd = false;
 
+let isTableReady = false;
+
+let whoseTurn;
+
+let isMyTurn = false;
+
+let isDoneReading = false;
+let prevIsDoneReading = false;
+
 let isGoTime = false;
 
 let isTrackpadEncoder = false;
 
 function setup() {
-  let params = getURLParams();
-  user = params.user;
+  // let params = getURLParams();
+  // user = params.user;
   setupCanvas();
   toggleCursor();
   setupSceneManager();
@@ -44,7 +57,7 @@ function setup() {
       updateTrackpadEncoder() // TODO: should the serial communication baud be a multiple of this interval?
     }, 25);
   }
-  console.log("I am: user " + user);
+  // console.log("I am: user " + user);
 }
 
 /**
@@ -105,6 +118,7 @@ function setupSceneManager() {
  */
 function drawScene() {
   updateState();
+  updateIsMyTurn();
   background(0);
   displayEncoder();
   if (isArduino == false) {
@@ -112,6 +126,7 @@ function drawScene() {
   }
   displayProgress();
   displayTypingIndicator();
+  updateIsDoneReading();
   updateScene();
 }
 
@@ -149,11 +164,42 @@ function updateInput() {
   isSpinning = input.isSpinning;
   isSpinningFwd = input.isSpinningFwd;
   isSpinningBkwd = input.isSpinningBkwd;
-  // isGoTime = input.isGoTime;
 }
 
 function updateState() {
-  isGoTime = isSpinning;
+  playerMode = state.playerMode;
+  whoseTurn = state.whoseTurn;
+  // scene = state.scene;
+  // tone = state.tone;
+  if (playerMode == 0) {        // 1 User no touch
+    isTableReady = isSpinning;
+  } else if (playerMode == 1) { // 1 User w/ touch
+    isTableReady = isSpinning && isUserA_touchingPlate;
+  } else if (playerMode == 2) { // 2 Users w/ touch
+    isTableReady = isSpinning && isAandB_touchingPlates;
+  }
+  isGoTime = isTableReady;
+}
+
+function updateIsMyTurn() {
+  if (state.whoseTurn == whoAmI) {
+    isMyTurn = true;
+  } else {
+    isMyTurn = false;
+  }
+}
+
+function updateIsDoneReading() {
+  if (alphaValue < 0 && (charIndex == characters.length - 1)) {
+    isDoneReading = true;
+  }
+  if (prevIsDoneReading !== isDoneReading) {
+    socket.emit("isDoneReading", isDoneReading); // tell the server I've reached the end of the screen
+  }
+  prevIsDoneReading = isDoneReading;
+  if (frameCount % 10 == 0) {
+    console.log("isDoneReading: " + isDoneReading);
+  }
 }
 
 function updateTone() {
