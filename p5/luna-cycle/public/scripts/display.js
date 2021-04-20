@@ -26,6 +26,7 @@ function updateScene() {
     sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
   isDoneReading = false;
+  // prevIsDoneReading = false;
 }
 
 function displayProgress() {
