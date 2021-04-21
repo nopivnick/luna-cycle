@@ -44,12 +44,12 @@ let input = JSON.stringify({ // TODO: change variable name to sensors
   isSpinningBkwd: false
 });
 
-let state = JSON.stringify({
+let state = {
   playerMode: playerMode,
   whoseTurn: "userA"
   // scene: 0,
   // tone: "bliss"
-});
+};
 
 app.use(express.static("public"));
 
@@ -85,7 +85,17 @@ io.on('connection', (socket) => {
   socket.emit("input", input);
 
   socket.on("isDoneReading", (data) => {
-    console.log(getKeyByValue(users, socket.id) + " isDoneReading: " + data)
+    console.log(getKeyByValue(users, socket.id) + " just sent isDoneReading: " + data)
+    if (getKeyByValue(users, socket.id) == "userA") {
+      state.whoseTurn = "userB";
+      // console.log(getKeyByValue(users, socket.id) + " isDoneReading: " + data)
+    }
+    if (getKeyByValue(users, socket.id) == "userB") {
+      state.whoseTurn = "userA";
+      // console.log(getKeyByValue(users, socket.id) + " isDoneReading: " + data)
+    }
+    console.log("server just sent state.whoseTurn: " + state.whoseTurn);
+    io.emit("state", state);
   })
 
   socket.on('disconnect', () => {

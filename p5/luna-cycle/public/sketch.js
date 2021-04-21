@@ -32,12 +32,14 @@ let isSpinningBkwd = false;
 
 let isTableReady = false;
 
+let state;
+
 let whoseTurn;
 
 let isMyTurn = false;
 
 let isDoneReading = false;
-let prevIsDoneReading = false;
+// let prevIsDoneReading = false;
 
 let isGoTime = false;
 
@@ -117,6 +119,9 @@ function setupSceneManager() {
  * Draws something in *all* scenes
  */
 function drawScene() {
+  if (!state) {
+    return;
+  }
   updateState();
   updateIsMyTurn();
   background(0);
@@ -182,7 +187,7 @@ function updateState() {
 }
 
 function updateIsMyTurn() {
-  if (state.whoseTurn == whoAmI) {
+  if (whoseTurn == whoAmI) {
     isMyTurn = true;
   } else {
     isMyTurn = false;
@@ -190,15 +195,10 @@ function updateIsMyTurn() {
 }
 
 function updateIsDoneReading() {
-  if (alphaValue < 0 && (charIndex == characters.length - 1)) {
+  if (alphaValue < 0 && (charIndex == characters.length - 1) && isMyTurn && isDoneReading === false) {
     isDoneReading = true;
-  }
-  if (prevIsDoneReading !== isDoneReading) {
     socket.emit("isDoneReading", isDoneReading); // tell the server I've reached the end of the screen
-  }
-  prevIsDoneReading = isDoneReading;
-  if (frameCount % 10 == 0) {
-    console.log("isDoneReading: " + isDoneReading);
+    isDoneReading = false;
   }
 }
 

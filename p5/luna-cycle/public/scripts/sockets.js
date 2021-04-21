@@ -23,10 +23,16 @@ socket.on("whoAmI", (data) => {
 });
 
 socket.on("state", (data) => {
-  state = JSON.parse(data);
+  state = data;
+  updateState();
   console.log("state:");
   console.log(state);
-  updateState();
+  console.log("");
+  console.log("whoseTurn: " + whoseTurn);
+  console.log("whoAmI: " + whoAmI);
+  console.log("isMyTurn: " + isMyTurn);
+  console.log("isDoneReading: " + isDoneReading);
+  console.log("\n");
 });
 
 socket.on("input", (data) => {

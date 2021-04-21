@@ -89,10 +89,10 @@ function getBase(scene, tone) {
 
     setCSS(setupParagraphs(base, i), i); // TODO: move this to setupScreen()
   }
-  console.log("sendMessageCuesByScene:");
-  console.log(sendMessageCuesByScene);
-  console.log("typingIndicatorCuesByScene:");
-  console.log(typingIndicatorCuesByScene);
+  // console.log("sendMessageCuesByScene:");
+  // console.log(sendMessageCuesByScene);
+  // console.log("typingIndicatorCuesByScene:");
+  // console.log(typingIndicatorCuesByScene);
   return base;
 }
 
