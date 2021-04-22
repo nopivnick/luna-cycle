@@ -3,7 +3,7 @@ console.log("hotkeys.js FOUND");
 let screen;
 
 function hotKeyPressed() {
-  print("We're in the hotKeyPressed() function!");
+  // console.log("We're in the hotKeyPressed() function!");
   if (key === 'a') {
     toggleAlpha();
   } else if (key === 'c') {

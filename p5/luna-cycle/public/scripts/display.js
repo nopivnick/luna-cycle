@@ -22,7 +22,8 @@ let isScreenMirrored = false;
 let chatMessages = [];
 
 function updateScene() {
-  if (alphaValue < 0 && isSpinningFwd && (charIndex == characters.length - 1)) {
+  if (alphaValue < 0 && isSpinningFwd && (charIndex == characters.length - 1) && isMyTurn) {
+    console.log("scene updated!");
     sceneManager.showNextScene(); // TODO: sceneManager.showScene((previousScene + 1) % 12) or similar
   }
 }
@@ -81,7 +82,7 @@ function displayTypingIndicator() {
 
 function resetProgress() {
   alphaValue = 1; // 0 = characters on a new screen fade in incrementally, 1 = they turn opaque right away
-  charIndex = 0;
+  charIndex = -1;
 }
 
 function updateAlpha() {
@@ -117,7 +118,7 @@ function setTextColor(i) { // TODO: this should be getTextColor() and it should 
   }
 }
 
-function setCSS(paragraph, i) {
+function setCSS(paragraph, i) { // TODO: this should be getCSS() and it should return the CSS
   if (lunaData.scenes[scene].isChat === true) { // if the current scene is a chat exchange ...
     container.addClass("messages");
     paragraph.addClass(lunaData.scenes[scene].paragraphs[i].cssClass); // ... apply the specified CSS class to the paragraph.
