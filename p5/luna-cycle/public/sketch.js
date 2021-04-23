@@ -24,7 +24,7 @@ let previousEncoder;
 
 let isUserA_touchingPlate = false;
 let isUserB_touchingPlate = false;
-let isAandB_touchingPlates = false;
+// let isAandB_touchingPlates = false;
 
 let isSpinning = false;
 let isSpinningFwd = false;
@@ -165,7 +165,7 @@ function updateInput() {
   previousEncoder = input.previousEncoder; // ... and this ...
   isUserA_touchingPlate = input.isUserA_touchingPlate; // ... and this, etc.?
   isUserB_touchingPlate = input.isUserB_touchingPlate;
-  isAandB_touchingPlates = input.isAandB_touchingPlates;
+  // isAandB_touchingPlates = input.isAandB_touchingPlates;
   isSpinning = input.isSpinning;
   isSpinningFwd = input.isSpinningFwd;
   isSpinningBkwd = input.isSpinningBkwd;
@@ -181,7 +181,7 @@ function updateState() {
   } else if (playerMode == 1) { // 1 User w/ touch
     isTableReady = isSpinning && isUserA_touchingPlate;
   } else if (playerMode == 2) { // 2 Users w/ touch
-    isTableReady = isSpinning && isAandB_touchingPlates;
+    isTableReady = isSpinning && isUserA_touchingPlate && isUserB_touchingPlate;
   }
   isGoTime = isTableReady;
 }
