@@ -8,10 +8,10 @@ let previousEncoderDelta = 0;
 
 let characters = [];
 let charIndex = -1;
-let charIndexDelay = 0;
+let charIndexDelay = 5;
 
 function updateCounter() {
-  if (isGoTime && isMyTurn) {
+  if (isTableReady && isMyTurn) {
     counter = (encoder - encoderDelta);
     previousCounter = (previousEncoder - previousEncoderDelta)
   } else {
